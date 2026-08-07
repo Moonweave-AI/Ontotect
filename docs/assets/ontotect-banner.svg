@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1400"
+     height="480"
+     viewBox="0 0 1400 480"
+     preserveAspectRatio="xMidYMid meet"
+     role="img"
+     aria-labelledby="ontotect-banner-title ontotect-banner-desc">
+  <title id="ontotect-banner-title">Ontotect — Ontology Engineering Skill</title>
+  <desc id="ontotect-banner-desc">
+    A dark banner showing Ontotect beside an ontology graph that connects
+    competency questions, concepts, OWL, SHACL, SPARQL, evidence, and release.
+  </desc>
+
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#06111f"/>
+      <stop offset="0.55" stop-color="#10172b"/>
+      <stop offset="1" stop-color="#21133b"/>
+    </linearGradient>
+    <radialGradient id="aura" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#7769ff" stop-opacity="0.28"/>
+      <stop offset="0.58" stop-color="#36d9c2" stop-opacity="0.09"/>
+      <stop offset="1" stop-color="#07111f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#75ead5"/>
+      <stop offset="1" stop-color="#b9a7ff"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#d8e4ff" stroke-opacity="0.055"/>
+      <circle cx="0" cy="0" r="1.6" fill="#8ce8d7" fill-opacity="0.12"/>
+    </pattern>
+    <filter id="soft-glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5"
+            markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#78dfd0" fill-opacity="0.7"/>
+    </marker>
+  </defs>
+
+  <rect width="1400" height="480" rx="28" fill="url(#background)"/>
+  <rect width="1400" height="480" rx="28" fill="url(#grid)"/>
+  <ellipse cx="1085" cy="238" rx="350" ry="300" fill="url(#aura)"/>
+  <path d="M82 80V400" stroke="url(#accent)" stroke-width="4" stroke-linecap="round"/>
+  <path d="M102 80H420" stroke="url(#accent)" stroke-width="1.5" stroke-opacity="0.45"/>
+
+  <g font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <text x="120" y="120" fill="#86e6d4" font-size="18" font-weight="700"
+          letter-spacing="4">ONTOLOGY ENGINEERING SKILL</text>
+    <text x="114" y="226" fill="#f7f9ff" font-size="86" font-weight="760"
+          letter-spacing="-2">Ontotect</text>
+    <text x="120" y="286" fill="#c2cce1" font-size="29" font-weight="430">
+      Engineer meaning, not just triples.
+    </text>
+    <text x="120" y="350" fill="#8fa1c2" font-size="16" font-weight="650"
+          letter-spacing="2.4">ROUTE  ·  MODEL  ·  VERIFY  ·  GOVERN</text>
+    <rect x="120" y="382" width="440" height="2" rx="1" fill="url(#accent)" opacity="0.62"/>
+  </g>
+
+  <g fill="none" stroke="#80dfd1" stroke-width="2" stroke-opacity="0.48"
+     marker-end="url(#arrow)">
+    <path d="M837 229C900 195 941 179 995 192"/>
+    <path d="M1048 178C1040 144 1057 124 1080 112"/>
+    <path d="M1107 113C1170 112 1210 132 1242 165"/>
+    <path d="M1125 218C1184 214 1225 238 1251 270"/>
+    <path d="M1101 253C1099 304 1107 326 1118 347"/>
+    <path d="M1009 250C967 286 930 306 892 326"/>
+    <path d="M906 118C961 127 991 150 1016 184"/>
+    <path d="M923 348C982 375 1044 376 1092 368"/>
+    <path d="M1240 311C1208 342 1175 359 1146 365"/>
+  </g>
+
+  <g font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+     text-anchor="middle">
+    <g>
+      <circle cx="812" cy="242" r="48" fill="#101d32" stroke="#b5a7ff" stroke-width="2"/>
+      <circle cx="812" cy="242" r="42" fill="none" stroke="#b5a7ff" stroke-opacity="0.2"/>
+      <text x="812" y="238" fill="#f5f7ff" font-size="15" font-weight="720">ROUTER</text>
+      <text x="812" y="258" fill="#9fb0cc" font-size="11">intent → stage</text>
+    </g>
+
+    <g>
+      <circle cx="891" cy="103" r="39" fill="#101d32" stroke="#76e2d0" stroke-width="2"/>
+      <text x="891" y="99" fill="#f5f7ff" font-size="14" font-weight="720">CQ</text>
+      <text x="891" y="117" fill="#9fb0cc" font-size="10">requirements</text>
+    </g>
+
+    <g filter="url(#soft-glow)">
+      <path d="M1064 170L1120 202V266L1064 298L1008 266V202Z"
+            fill="#172446" stroke="url(#accent)" stroke-width="2.4"/>
+    </g>
+    <text x="1064" y="226" fill="#f8faff" font-size="15" font-weight="760">SEMANTIC</text>
+    <text x="1064" y="247" fill="#f8faff" font-size="15" font-weight="760">CONTRACT</text>
+    <text x="1064" y="267" fill="#9fb0cc" font-size="10">meaning · evidence</text>
+
+    <g>
+      <circle cx="1093" cy="86" r="42" fill="#111d34" stroke="#b4a4ff" stroke-width="2"/>
+      <text x="1093" y="82" fill="#f5f7ff" font-size="13" font-weight="720">CONCEPT</text>
+      <text x="1093" y="100" fill="#9fb0cc" font-size="10">commitments</text>
+    </g>
+
+    <g>
+      <circle cx="1270" cy="185" r="42" fill="#111d34" stroke="#75e1cf" stroke-width="2"/>
+      <text x="1270" y="181" fill="#f5f7ff" font-size="14" font-weight="760">OWL</text>
+      <text x="1270" y="199" fill="#9fb0cc" font-size="10">entailment</text>
+    </g>
+
+    <g>
+      <circle cx="1278" cy="299" r="44" fill="#111d34" stroke="#75e1cf" stroke-width="2"/>
+      <text x="1278" y="295" fill="#f5f7ff" font-size="13" font-weight="760">SHACL</text>
+      <text x="1278" y="313" fill="#9fb0cc" font-size="10">integrity</text>
+    </g>
+
+    <g>
+      <circle cx="868" cy="349" r="44" fill="#111d34" stroke="#b4a4ff" stroke-width="2"/>
+      <text x="868" y="345" fill="#f5f7ff" font-size="12.5" font-weight="760">SPARQL</text>
+      <text x="868" y="363" fill="#9fb0cc" font-size="10">acceptance</text>
+    </g>
+
+    <g>
+      <circle cx="1127" cy="374" r="48" fill="#12223a" stroke="url(#accent)" stroke-width="2.2"/>
+      <text x="1127" y="370" fill="#f5f7ff" font-size="13" font-weight="760">EVIDENCE</text>
+      <text x="1127" y="389" fill="#9fb0cc" font-size="10">gate · release</text>
+    </g>
+  </g>
+
+  <circle cx="1354" cy="52" r="3" fill="#77e5d2" opacity="0.8"/>
+  <circle cx="1328" cy="78" r="2" fill="#b6a6ff" opacity="0.65"/>
+  <circle cx="68" cy="432" r="2.5" fill="#b6a6ff" opacity="0.6"/>
+</svg>
