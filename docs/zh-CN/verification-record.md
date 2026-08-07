@@ -15,6 +15,7 @@ related:
   - docs/decisions/0002-explicit-npm-installer.md
   - docs/decisions/0003-organization-scoped-npm-package.md
   - docs/zh-CN/npm-installer-security-review.md
+  - docs/zh-CN/release-readiness-0.1.2.md
   - docs/zh-CN/release-readiness-0.1.1.md
 supersedes: null
 superseded_by: null
@@ -85,13 +86,16 @@ python ontotect/scripts/install_skill.py --agents all --scope project --project-
 
 ## 明确边界
 
-- 尚未把 Cursor、Codex、Kilo、OpenCode、Claude Code 五个外部产品逐一启动并指向
-  本工作区，因此真实宿主中的 discovery 与 behavioral compatibility 仍为
-  `unverified`。
-- 已从当前源码为五个宿主执行用户级结构安装。针对已发布 package 的用户/全局范围安装仍为
-  `unverified`，且公开 0.1.1 不包含本次 suite 修复。
+- 刷新后的 Codex runtime 已枚举全部 20 个已安装 `ontotect*` entries。尚未把 Cursor、
+  Kilo、OpenCode 与 Claude Code 逐一作为外部产品启动并指向本工作区，因此它们的真实
+  discovery 与 behavioral compatibility 仍为 `unverified`。
+- 已从当前源码为五个宿主执行用户级结构安装。针对公开 0.1.2 package 的用户/全局范围
+  安装需等发布后验证；公开 0.1.1 是不包含本次 suite 修复的历史 package。
 - 重新设计的 README 与两个品牌资产已随 0.1.1 进入 npm 分发。npm 0.1.0 保持不可变，其 54-entry 发布证据继续作为历史保留。
-- `@moonweave-ai/ontotect@0.1.0` 继续作为首次发布历史保留。0.1.1 是当前公开版本与 `latest`；匿名 registry 访问、精确版本公共 npx help 以及全部五个隔离宿主布局的项目级安装均通过。Package provenance 与 npm 账号恢复继续单独跟踪。
+- `@moonweave-ai/ontotect@0.1.0` 继续作为首次发布历史保留。在 0.1.1 发布观察时，
+  `latest` 指向 0.1.1；匿名 registry 访问、精确版本公共 npx help 以及全部五个隔离宿主
+  布局的项目级安装均通过。0.1.2 的公共结果只能在发布后写入。Package provenance 与
+  npm 账号恢复继续单独跟踪。
 - Ignore 规则使用隔离的临时 Git metadata 执行。仓库此后已发布；该发布事件不改变原始 Ignore 检查的证据范围。
 - 没有提供目标领域本体或完整 OWL reasoner 契约。Starter 夹具结果不能证明另一
   本体一致、可满足、正确或已准备发布。

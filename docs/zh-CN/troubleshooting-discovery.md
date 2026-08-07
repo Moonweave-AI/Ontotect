@@ -40,26 +40,25 @@ flowchart LR
 
 `npm install --global @moonweave-ai/ontotect` 安装的是 shell executable。发布或下载软件包
 不会自动把 skills 复制到 Agent roots。
-公开 `0.1.1` 也早于 focused-suite compiler：它的 installer 只创建早期的 `ontotect`
-root skill，不提供 `list`、`--suite`、`--commands`、focused entries 或 adapters。因此，
-通过公开 `0.1.1` 安装后没有 `ontotect-review` 属于预期结果，不是宿主 discovery 故障。
+`0.1.2` 及后续版本提供 focused-suite compiler。`0.1.1` 只创建历史 `ontotect` root skill；
+因此 `0.1.1` 安装后缺少 `ontotect-review` 属于版本边界问题，而不是宿主 discovery 故障。
 
-下列 20-entry 检查需要使用当前 Ontotect 源码 checkout 或本地 packed archive。在 checkout
-中预览用户级完整安装：
+下列 20-entry 检查可使用公开 `0.1.2` 或后续版本、当前源码 checkout 或本地 packed
+archive。先预览用户级完整安装：
 
 ```powershell
-node bin/ontotect.js plan --agents all --scope user
+npx @moonweave-ai/ontotect plan --agents all --scope user
 ```
 
 计划应显示五个 core targets、五组各 19 个 generated skill entries，以及 Kilo/OpenCode
 各 20 个 command files。应用完全相同、已审阅的计划：
 
 ```powershell
-node bin/ontotect.js install --agents all --scope user
+npx @moonweave-ai/ontotect install --agents all --scope user
 ```
 
-若已用 `npm install --global .` 全局安装当前 checkout，也可把相同命令写成 `ontotect plan`
-与 `ontotect install`。只有明确希望安装单一入口时才使用 `--suite core`。
+全局安装 package 后，也可写成 `ontotect plan` 与 `ontotect install`。从 checkout 运行时，
+使用 `node bin/ontotect.js`。只有明确希望安装单一入口时才使用 `--suite core`。
 
 ## 2. 检查一个精确发现文件
 

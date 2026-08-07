@@ -108,7 +108,7 @@ npm registry / 本地 tarball
 5. 运行仓库文档、Skill Creator 及现有 Python 回归；
 6. 在[验证记录](verification-record.md)写入结果与边界。
 
-公开发布还需验证 npm 认证与 package ownership，记录发布权限和 MIT 许可证，检查准确的公开包，并记录账号恢复、package provenance 与私密漏洞报告路径。首次 `@moonweave-ai/ontotect@0.1.0` 发布与当前 0.1.1 补丁发布分别记录如下。不可用的控制必须保持明确，不能从命令成功推断。
+公开发布还需验证 npm 认证与 package ownership，记录发布权限和 MIT 许可证，检查准确的公开包，并记录账号恢复、package provenance 与私密漏洞报告路径。`0.1.0` 与 `0.1.1` 发布作为历史证据保留如下；active `0.1.2` 候选记录在 [release-readiness-0.1.2.md](release-readiness-0.1.2.md)。不可用的控制必须保持明确，不能从命令成功推断。
 
 ## 首次 0.1.0 验证结果 — 2026-08-07
 
@@ -120,13 +120,14 @@ npm registry / 本地 tarball
 
 已审阅源码候选通过 29 项 Python 测试、8 项 Node 测试、Skill Creator 验证、生成技能 advisory scan，以及 0 warning 的 Claude、Amp 与 Copilot 静态 lenses。Dry-run package 检查报告 55 个预期条目、0 个禁止条目、零依赖和零生命周期脚本。通过不存在的 user npm 配置查询公共包：精确 metadata 报告 0.1.1、MIT、`ontotect` 可执行命令与 Moonweave-AI 仓库，`latest` 指向 0.1.1。精确版本公共 npx help 退出码为 0。五个隔离项目级宿主布局均安装 48 个文件并包含 `SKILL.md`，其相对文件集与直接字节内容一致。npm 页面正确呈现居中品牌标识、横幅、版本徽章、新版 README 与仓库链接。
 
-当前已发布制品的结论：发布分发控制集继续为 **pass with follow-up actions**。0.1.0
-证据保持为历史；0.1.1 是当前公开版本与 `latest`。
+0.1.1 制品的历史结论：发布分发控制集为 **pass with follow-up actions**。0.1.0 与
+0.1.1 证据是不可变历史，不能作为 0.1.2 的证据。
 
-## Focused-suite 源码修复 — 2026-08-07
+## 0.1.2 focused-suite release candidate — 2026-08-07
 
 当前源码树增加声明式 20-entry registry、生成式 focused skills、Kilo/OpenCode command
 adapters、`list` 与扩展后的 `plan` 输出、full/core 套件模式、解析路径/类型预检、纯路径
 受管状态、干净 forced refresh，以及带 rollback backups 的 staged transaction commit。
-focused copies 会排除嵌套的分发安装器。本次源码修复不属于公开 0.1.1；它的本地测试
-证据写入 active 验证记录，真实宿主 UI discovery 与任何后续公开发布仍是独立 gate。
+focused copies 会排除嵌套的分发安装器。本次修复是 0.1.2 candidate 的有界范围，不属于
+历史 0.1.1；本地测试证据写入 active 验证记录，精确公共 registry 行为与其余真实宿主
+UI discovery 仍是独立 gate。

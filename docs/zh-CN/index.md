@@ -48,6 +48,7 @@ Ontotect 是从一套 canonical workflow 编译出的 20-entry 本体工程 skil
 | [架构](architecture.md) | 技能包、渐进披露、命令层、资产和脚本 |
 | [质量与验证](quality-and-validation.md) | 十层证据、QA 期望和结果解释 |
 | [本地验证记录](verification-record.md) | 当前源技能包实际执行的检查及其明确边界 |
+| [0.1.2 发布就绪报告](release-readiness-0.1.2.md) | focused-suite 发布门、rollout、回退与公共验证计划 |
 | [0.1.1 发布就绪报告](release-readiness-0.1.1.md) | 已发布补丁的证据、rollout、回退与后续控制 |
 | [0.1.0 发布就绪报告](release-readiness-0.1.0.md) | Go/No-Go 证据、rollout、回退与发布后检查 |
 | [兼容性](compatibility.md) | 宿主发现、便携契约和验证状态 |
@@ -68,8 +69,7 @@ Ontotect 是从一套 canonical workflow 编译出的 20-entry 本体工程 skil
 
 ## 项目状态
 
-`@moonweave-ai/ontotect@0.1.1` 是当前公开 npm `latest`，但它早于本源码树中的 focused
-skill-suite discovery 修复。在新版本发布前，不得把公开 0.1.1 报告为包含 20-entry
-installer。结构安装与真实宿主 discovery 仍是不同证据。
+`@moonweave-ai/ontotect@0.1.2` 是首个包含 20-entry focused-suite installer 的公开版本。
+`0.1.1` 继续作为历史单技能布局保留。结构安装与真实宿主 discovery 仍是不同证据。
 
 Ontotect 的原创仓库内容采用 [MIT 许可证](../../LICENSE)。第三方参考资料继续适用其自身条款，私有构建语料不参与分发。

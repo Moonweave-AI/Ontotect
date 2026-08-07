@@ -78,12 +78,11 @@ Create any real test tarball only under the ignored `tmp/` directory, inspect it
 
 ## Public npm and npx commands
 
-Version `0.1.1` is the current public `latest` release, but it predates the
-focused skill-suite discovery repair documented on this source branch. Until a
-new release is published, use the source checkout or a locally packed archive
-to test the 20-entry suite; do not report public `0.1.1` as containing it.
+Version `0.1.2` is the first public release with the 20-entry focused
+skill-suite compiler. Version `0.1.1` remains the historical single-skill
+installer and should be upgraded before using this workflow.
 
-After the suite release is published, the public workflow is:
+The public workflow is:
 
 ```powershell
 npx @moonweave-ai/ontotect list

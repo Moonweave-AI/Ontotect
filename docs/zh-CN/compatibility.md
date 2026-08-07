@@ -27,9 +27,8 @@ Ontotect 交付一套 canonical 本体工程源码，并在显式安装时编译
 名称、固定命令语义、本地 references、assets、scripts 与可选 OpenAI UI metadata。
 
 > [!IMPORTANT]
-> 本矩阵描述当前源码树及本地 packed archive 中的 focused-suite compiler。公开
-> `@moonweave-ai/ontotect@0.1.1` 早于该实现，只安装早期的 `ontotect` root skill，不提供
-> `list`、suite 选择、focused entries 或 command adapters。
+> 本矩阵适用于公开 `@moonweave-ai/ontotect@0.1.2` 及后续版本、当前源码树和本地 packed
+> archive。`0.1.1` 是历史单技能 installer，不能用于本矩阵。
 
 该设计采用 Moonweave Governance Skills 中值得借鉴的职责分离：focused skills 形成可发现
 体系；轻量宿主 commands 提供兼容；installer 负责放置；registry 防止映射漂移。
@@ -87,8 +86,8 @@ files。
 
 1. 在当前 checkout 中运行 `node bin/ontotect.js list`，再执行 dry-run plan；已全局安装的
    当前本地包可改用 `ontotect list`。
-2. 通过源码 Node/Python installer 或本地 suite archive 安装；本矩阵不能使用公开
-   `0.1.1`，也不要手工散放 wrapper files。
+2. 安装公开 `0.1.2` 或后续版本，或者使用源码 Node/Python installer、本地 suite
+   archive；不要手工散放 wrapper files。
 3. 刷新宿主。
 4. 确认 Help、Router、Review、Validate 和至少一个 lifecycle-stage entry 可以显示或显式调用。
 5. 运行 Help，路由无害请求，并对 fixture 做只读 Review。

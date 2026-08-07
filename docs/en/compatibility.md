@@ -29,10 +29,9 @@ fixed command semantics, local references, assets, scripts, and optional OpenAI
 UI metadata.
 
 > [!IMPORTANT]
-> This matrix describes the focused-suite compiler in the current source tree
-> and in locally packed archives. Public `@moonweave-ai/ontotect@0.1.1`
-> predates it and installs only the earlier `ontotect` root skill. It does not
-> provide `list`, suite selection, focused entries, or command adapters.
+> This matrix applies to public `@moonweave-ai/ontotect@0.1.2` and later, the
+> current source tree, and locally packed archives. Version `0.1.1` is the
+> historical single-skill installer and must not be used for this matrix.
 
 This follows the useful separation in Moonweave Governance Skills: focused
 skills create the discoverable system; thin host commands provide compatibility;
@@ -100,9 +99,8 @@ not levels 3 or 4.
 
 1. From the current checkout, run `node bin/ontotect.js list`, then a dry-run
    plan. A locally installed current package may use `ontotect list` instead.
-2. Install through the source Node/Python installer or a local suite archive;
-   do not use public `0.1.1` for this matrix and do not manually scatter wrapper
-   files.
+2. Install public `0.1.2` or later, use the source Node/Python installer, or use
+   a local suite archive; do not manually scatter wrapper files.
 3. Refresh the host.
 4. Confirm Help, Router, Review, Validate, and one lifecycle-stage entry appear
    or can be explicitly invoked.

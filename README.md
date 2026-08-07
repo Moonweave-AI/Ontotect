@@ -40,10 +40,9 @@
 > [verification record](docs/en/verification-record.md).
 
 > [!IMPORTANT]
-> Public `0.1.1` predates the 20-entry discovery repair in this source tree.
-> Until a later version is published, run the source installer shown below (or
-> a locally packed archive) to install the focused suite; do not expect public
-> `0.1.1` to expose these entries.
+> Version `0.1.2` introduces the complete 20-entry discovery repair. If you
+> installed `0.1.1`, upgrade the package, rerun the installer with `--force`,
+> and refresh or reopen the Agent host.
 
 Ontotect is a suite of 20 independently discoverable skills backed by one
 canonical ontology-engineering workflow. It turns an ontology request into a routed, staged, evidence-producing
@@ -55,18 +54,15 @@ accountable release decisions.
 
 ## Install in 60 seconds
 
-From an Ontotect source checkout, inspect the 20 focused entries and point the
-explicit installer at the project that should receive them. Replace the example
-target path before running the commands:
+Inspect the 20 focused entries, then point the explicit installer at the
+project that should receive them. Replace the example target path before
+running the commands:
 
 ~~~powershell
-node bin/ontotect.js list
-node bin/ontotect.js plan --agents all --scope project --project-root C:\path\to\target-project
-node bin/ontotect.js install --agents all --scope project --project-root C:\path\to\target-project
+npx @moonweave-ai/ontotect list
+npx @moonweave-ai/ontotect plan --agents all --scope project --project-root C:\path\to\target-project
+npx @moonweave-ai/ontotect install --agents all --scope project --project-root C:\path\to\target-project
 ~~~
-
-After the next suite release, the same commands work through
-`npx @moonweave-ai/ontotect ...`.
 
 The default `--suite full` install creates `ontotect-help`, `ontotect-router`,
 all engineering modes, and all lifecycle-stage skills. Kilo and OpenCode also
@@ -91,22 +87,19 @@ mode is unclear. The portable natural-language fallback remains:
 Use Ontotect. Command: review. Target: path/to/ontology.ttl.
 ~~~
 
-### Global command from the current source
+### Global command
 
-Public `0.1.1` can install the earlier single-skill layout, but it does not
-provide `list`, `--suite`, focused entries, or command adapters. To use the
-current suite compiler as a global shell command before the next release, run
-this from an Ontotect source checkout:
+Install the organization-scoped package to expose the `ontotect` shell command,
+then explicitly install the suite into the selected Agent roots:
 
 ~~~powershell
-npm install --global .
+npm install --global @moonweave-ai/ontotect
 ontotect help
 ontotect list
 ontotect install --agents cursor,codex --scope project --project-root C:\path\to\target-project
 ~~~
 
-After the suite release is published, replace `.` with
-`@moonweave-ai/ontotect` in the global install command.
+From a source checkout, use `npm install --global .` instead.
 
 ### Source and dry-run workflows
 

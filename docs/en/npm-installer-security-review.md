@@ -116,7 +116,7 @@ Before a local acceptance claim:
 5. run the repository documentation, Skill Creator, and existing Python regression checks;
 6. record results and limits in [verification-record.md](verification-record.md).
 
-For a public release, additionally verify npm authentication and package ownership, record release authority and the MIT license, inspect the exact public package, and document account recovery, package provenance, and a private vulnerability-reporting path. The initial `@moonweave-ai/ontotect@0.1.0` publication and the current 0.1.1 patch publication are recorded separately below. Any unavailable control must remain explicit rather than being inferred from a successful command.
+For a public release, additionally verify npm authentication and package ownership, record release authority and the MIT license, inspect the exact public package, and document account recovery, package provenance, and a private vulnerability-reporting path. The `0.1.0` and `0.1.1` publications are retained as historical evidence below; the active `0.1.2` candidate is tracked in [release-readiness-0.1.2.md](release-readiness-0.1.2.md). Any unavailable control must remain explicit rather than being inferred from a successful command.
 
 ## Initial 0.1.0 verification result — 2026-08-07
 
@@ -128,17 +128,17 @@ Initial result: the release distribution control set was **pass with follow-up a
 
 The reviewed source candidate passed 29 Python tests, 8 Node tests, Skill Creator validation, the generated-skill advisory scan, and Claude, Amp, and Copilot static lenses with zero warnings. Dry-run package inspection reported 55 intended entries, zero forbidden entries, zero dependencies, and zero lifecycle scripts. The public package was queried with a nonexistent user npm configuration: exact metadata reported 0.1.1, MIT, the `ontotect` executable, and the Moonweave-AI repository, while `latest` resolved to 0.1.1. Exact-version public npx help exited 0. All five isolated project-scoped host layouts installed with 48 files and `SKILL.md`; their relative file sets and direct byte content matched. The npm page rendered the centered brand mark, banner, version badge, redesigned README, and repository link.
 
-Current result for the published artifact: the release distribution control set
-remains **pass with follow-up actions**. The 0.1.0 evidence remains historical;
-version 0.1.1 is the current public release and `latest`.
+Historical result for the 0.1.1 artifact: the release distribution control set
+was **pass with follow-up actions**. The 0.1.0 and 0.1.1 evidence remains
+immutable history rather than evidence for 0.1.2.
 
-## Focused-suite source repair — 2026-08-07
+## 0.1.2 focused-suite release candidate — 2026-08-07
 
 The current source tree adds a declarative 20-entry registry, generated focused
 skills, Kilo/OpenCode command adapters, `list` and expanded `plan` output,
 full/core suite modes, resolved-path/type preflight, path-only managed state,
 clean forced refresh, and staged transactional commit with rollback backups.
-Focused copies omit the nested distribution installer. This source repair is
-not part of public 0.1.1. Its local test evidence belongs in the active
-verification record; live host UI discovery and any later public release remain
-separate gates.
+Focused copies omit the nested distribution installer. This repair is the
+bounded scope of the 0.1.2 candidate and is not part of historical 0.1.1. Its
+local test evidence belongs in the active verification record; exact public
+registry behavior and remaining live host UI discovery are separate gates.

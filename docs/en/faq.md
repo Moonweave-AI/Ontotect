@@ -45,8 +45,8 @@ No. The npm executable lists, plans, or installs the focused suite into fixed
 host discovery roots. It copies the canonical root and generates self-contained
 focused skills; for Kilo and OpenCode it also generates thin slash-command
 adapters. It does not run the Agent workflow, validators, reasoners, repairs, or
-publication. Public `0.1.1` predates this discovery repair, so use the source
-installer or a local package until a later suite version is published.
+publication. Public `0.1.2` and later include this discovery repair; `0.1.1`
+remains the historical single-skill installer.
 
 ## Why separate `validate` from `verify`?
 

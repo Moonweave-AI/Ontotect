@@ -28,13 +28,12 @@ canonical source, generates presentation metadata, adds compatibility commands
 where required, and preflights the whole transaction before writing.
 
 > [!IMPORTANT]
-> Public `@moonweave-ai/ontotect@0.1.1` predates the focused-suite compiler. It
-> installs the earlier single `ontotect` skill and does not provide `list`,
-> `--suite`, `--commands`, focused entries, or command adapters. Until a later
-> suite version is published, use the current source checkout or a locally
-> packed archive for the workflow on this page.
+> Public versions `0.1.2` and later include the focused-suite compiler. Version
+> `0.1.1` is the historical single-skill installer and does not provide `list`,
+> `--suite`, `--commands`, focused entries, or command adapters. Upgrade before
+> following this page.
 
-## Install with npx after the suite release
+## Install with npx
 
 List the 20 discoverable entries:
 
@@ -66,8 +65,7 @@ postinstall lifecycle hook.
 ## Install from a source checkout
 
 Run these commands from the Ontotect checkout and replace the example target
-path. The Node entry is the current canonical behavior that the next suite npm
-binary will expose:
+path. The Node entry and the public npm binary expose the same behavior:
 
 ```powershell
 node bin/ontotect.js list
@@ -108,9 +106,9 @@ selects project-scoped output.
 
 ## Choose the discovery surface
 
-The bare `ontotect` examples below assume that the current checkout was installed
-with `npm install --global .`, or that a later focused-suite release is in use.
-They do not describe public `0.1.1`.
+The bare `ontotect` examples below assume that `0.1.2` or later was installed
+globally, or that the current checkout was installed with
+`npm install --global .`.
 
 Use the full suite unless a minimal installation is intentional:
 

@@ -27,12 +27,11 @@ installer 会从一套 canonical 源编译全部 focused skills、生成呈现 m
 宿主中增加兼容 commands，并在写入前预检整个事务。
 
 > [!IMPORTANT]
-> 公开 `@moonweave-ai/ontotect@0.1.1` 早于 focused-suite compiler。它只安装早期的单一
-> `ontotect` skill，不提供 `list`、`--suite`、`--commands`、focused entries 或 command
-> adapters。在后续套件版本发布前，请使用当前源码 checkout 或本地 packed archive 执行
-> 本页流程。
+> 公开 `0.1.2` 及后续版本包含 focused-suite compiler。`0.1.1` 是历史单技能 installer，
+> 不提供 `list`、`--suite`、`--commands`、focused entries 或 command adapters。执行
+> 本页流程前请先升级。
 
-## 套件版本发布后使用 npx 安装
+## 使用 npx 安装
 
 先列出 20 个可发现 entries：
 
@@ -62,8 +61,8 @@ npx @moonweave-ai/ontotect install --agents all --scope project --project-root .
 
 ## 从源码 checkout 安装
 
-在 Ontotect checkout 中运行下列命令，并替换示例目标路径。Node 入口是当前 canonical
-行为，下一版套件 npm binary 将暴露相同能力：
+在 Ontotect checkout 中运行下列命令，并替换示例目标路径。Node 入口与公共 npm binary
+提供相同行为：
 
 ```powershell
 node bin/ontotect.js list
@@ -102,8 +101,8 @@ OpenCode commands 使用项目级 `.opencode/commands/` 或用户级
 
 ## 选择发现表面
 
-下方不带路径的 `ontotect` 示例假定已用 `npm install --global .` 全局安装当前 checkout，或
-正在使用后续的 focused-suite 版本；它们不描述公开 `0.1.1`。
+下方不带路径的 `ontotect` 示例假定已全局安装 `0.1.2` 或后续版本，或者已用
+`npm install --global .` 全局安装当前 checkout。
 
 除非明确需要最小安装，否则使用完整 suite：
 

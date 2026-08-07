@@ -516,6 +516,7 @@ test("invalid commands and options fail without writing", async (t) => {
 test("package metadata is an explicit zero-dependency whitelist", async () => {
   const packageJson = JSON.parse(await readFile(join(ROOT, "package.json"), "utf8"));
   assert.equal(packageJson.name, "@moonweave-ai/ontotect");
+  assert.equal(packageJson.version, "0.1.2");
   assert.equal(packageJson.type, "module");
   assert.equal(packageJson.license, "MIT");
   assert.equal(packageJson.repository.url, "git+https://github.com/Moonweave-AI/Ontotect.git");

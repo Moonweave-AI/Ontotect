@@ -49,6 +49,7 @@ optimization, refactoring, validation, and governance.
 | [Architecture](architecture.md) | Skill package, progressive disclosure, command layer, assets, and scripts |
 | [Quality and validation](quality-and-validation.md) | Ten evidence layers, QA expectations, and honest result interpretation |
 | [Local verification record](verification-record.md) | Checks actually executed for this source package and their explicit limits |
+| [Release readiness 0.1.2](release-readiness-0.1.2.md) | Focused-suite release gate, rollout, rollback, and public verification plan |
 | [Release readiness 0.1.1](release-readiness-0.1.1.md) | Published patch evidence, rollout, rollback, and follow-up controls |
 | [Release readiness 0.1.0](release-readiness-0.1.0.md) | Go/No-Go evidence, rollout, rollback, and post-publication checks |
 | [Compatibility](compatibility.md) | Host discovery, portability contract, and verification status |
@@ -69,10 +70,9 @@ English pages are canonical. Files under `docs/zh-CN/` are same-name translation
 
 ## Project status
 
-`@moonweave-ai/ontotect@0.1.1` is the current public npm `latest`, but it
-predates the focused skill-suite discovery repair in this source tree. Until a
-new release is published, public 0.1.1 must not be reported as containing the
-20-entry installer. Structural installation and live-host discovery remain
+`@moonweave-ai/ontotect@0.1.2` is the first public release containing the
+20-entry focused-suite installer. Version `0.1.1` remains the historical
+single-skill layout. Structural installation and live-host discovery remain
 separate evidence.
 
 Ontotect's original repository content is released under the [MIT License](../../LICENSE). Third-party references retain their own terms, and the private construction corpus is not distributed.

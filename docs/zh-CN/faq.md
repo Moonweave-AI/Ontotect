@@ -42,8 +42,8 @@ reasoner。
 
 不会。npm 可执行程序只会把 focused suite 列出、规划或安装到固定宿主发现路径：复制
 canonical root、生成可自包含的 focused skills，并为 Kilo 与 OpenCode 生成薄 slash-command
-adapters。它不运行 Agent 工作流、validator、reasoner、repair 或发布。公开 `0.1.1` 早于
-本次 discovery 修复，因此在后续套件版本发布前应使用源码安装器或本地包。
+adapters。它不运行 Agent 工作流、validator、reasoner、repair 或发布。公开 `0.1.2` 及
+后续版本包含本次 discovery 修复；`0.1.1` 继续作为历史单技能 installer 保留。
 
 ## 为什么区分 `validate` 和 `verify`？
 

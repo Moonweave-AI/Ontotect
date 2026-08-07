@@ -40,17 +40,16 @@ flowchart LR
 
 `npm install --global @moonweave-ai/ontotect` installs the shell executable.
 Publishing or downloading the package does not copy skills into Agent roots.
-Public `0.1.1` also predates the focused-suite compiler: its installer creates
-only the earlier `ontotect` root skill and has no `list`, `--suite`,
-`--commands`, focused entries, or adapters. Missing `ontotect-review` after a
-public `0.1.1` install is therefore expected, not a host discovery failure.
+Version `0.1.2` and later provide the focused-suite compiler. Version `0.1.1`
+creates only the historical `ontotect` root skill, so a missing
+`ontotect-review` after a `0.1.1` install is a version-boundary problem rather
+than a host discovery failure.
 
-For the 20-entry checks below, use the current Ontotect source checkout or a
-locally packed archive. From the checkout, preview a user-level full
-installation:
+For the 20-entry checks below, use public `0.1.2` or later, the current source
+checkout, or a locally packed archive. Preview a user-level full installation:
 
 ```powershell
-node bin/ontotect.js plan --agents all --scope user
+npx @moonweave-ai/ontotect plan --agents all --scope user
 ```
 
 The plan should show five core targets, five groups of 19 generated skill
@@ -58,12 +57,13 @@ entries, and Kilo/OpenCode command groups with 20 files each. Apply the exact
 reviewed plan:
 
 ```powershell
-node bin/ontotect.js install --agents all --scope user
+npx @moonweave-ai/ontotect install --agents all --scope user
 ```
 
-If the current checkout was installed with `npm install --global .`, the same
-commands can be run as `ontotect plan` and `ontotect install`. Use `--suite
-core` only if a one-entry installation is intentional.
+If the package was installed globally, the same commands can be run as
+`ontotect plan` and `ontotect install`. From a checkout, use
+`node bin/ontotect.js`. Use `--suite core` only if a one-entry installation is
+intentional.
 
 ## 2. Check one exact discovery file
 

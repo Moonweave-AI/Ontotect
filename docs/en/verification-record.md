@@ -15,6 +15,7 @@ related:
   - docs/decisions/0002-explicit-npm-installer.md
   - docs/decisions/0003-organization-scoped-npm-package.md
   - docs/en/npm-installer-security-review.md
+  - docs/en/release-readiness-0.1.2.md
   - docs/en/release-readiness-0.1.1.md
 supersedes: null
 superseded_by: null
@@ -90,20 +91,23 @@ directories and removed them after execution.
 
 ## Explicit limits
 
-- Cursor, Codex, Kilo, OpenCode, and Claude Code were not each launched as
-  external products against this checkout. Discovery and behavioral
-  compatibility in those live hosts remain `unverified`.
+- The refreshed Codex runtime enumerated all 20 installed `ontotect*` entries.
+  Cursor, Kilo, OpenCode, and Claude Code were not each launched as external
+  products against this checkout, so their live discovery and behavioral
+  compatibility remain `unverified`.
 - User-scope structural installation was executed from the current source for
   all five hosts. User/global-scope installation remains `unverified` against
-  the published package, and public 0.1.1 does not contain this suite repair.
+  the public 0.1.2 package until post-publication verification. Public 0.1.1 is
+  the historical package that does not contain this suite repair.
 - The redesigned README and both brand assets entered the npm distribution with
   0.1.1. npm 0.1.0 remains immutable, and its 54-entry release evidence remains
   historical.
-- `@moonweave-ai/ontotect@0.1.0` remains the historical initial release.
-  Version 0.1.1 is the current public release and `latest`; anonymous registry
-  access, exact-version public npx help, and project-scoped installation into all
-  five isolated host layouts passed. Package provenance and npm account recovery
-  remain separately tracked.
+- `@moonweave-ai/ontotect@0.1.0` remains the historical initial release. For
+  the 0.1.1 release observation, `latest` resolved to 0.1.1; anonymous registry
+  access, exact-version public npx help, and project-scoped installation into
+  all five isolated host layouts passed. The 0.1.2 public result is recorded
+  only after publication. Package provenance and npm account recovery remain
+  separately tracked.
 - Ignore-rule semantics were executed using isolated temporary Git metadata.
   The repository has since been published; that release event does not alter
   the scope of the original ignore-rule check.

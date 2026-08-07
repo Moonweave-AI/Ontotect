@@ -39,9 +39,8 @@
 > [验证记录](docs/zh-CN/verification-record.md)中。
 
 > [!IMPORTANT]
-> 公开 `0.1.1` 早于当前源码树中的 20-entry discovery 修复。在后续版本发布前，请使用
-> 下方的源码安装器（或本地打包文件）安装 focused suite；不要预期公开 `0.1.1` 会显示
-> 这些入口。
+> `0.1.2` 提供完整的 20-entry discovery 修复。如果此前安装了 `0.1.1`，请升级 package，
+> 使用 `--force` 重新运行 installer，并刷新或重新打开 Agent 宿主。
 
 Ontotect 由 20 个可独立发现的 focused skills 与一套 canonical 本体工程工作流构成。
 它把本体需求转化为经过路由、分阶段并持续产生证据的工作流：从能力问题和
@@ -51,16 +50,14 @@ Ontotect 由 20 个可独立发现的 focused skills 与一套 canonical 本体�
 
 ## 60 秒安装
 
-在 Ontotect 源码 checkout 根目录中查看 20 个 focused entries，并让显式安装器指向需要
-接收它们的目标项目。运行前请替换示例目标路径：
+先查看 20 个 focused entries，再让显式安装器指向需要接收它们的目标项目。运行前请替换
+示例目标路径：
 
 ~~~powershell
-node bin/ontotect.js list
-node bin/ontotect.js plan --agents all --scope project --project-root C:\path\to\target-project
-node bin/ontotect.js install --agents all --scope project --project-root C:\path\to\target-project
+npx @moonweave-ai/ontotect list
+npx @moonweave-ai/ontotect plan --agents all --scope project --project-root C:\path\to\target-project
+npx @moonweave-ai/ontotect install --agents all --scope project --project-root C:\path\to\target-project
 ~~~
-
-下一版套件发布后，同样的命令可通过 `npx @moonweave-ai/ontotect ...` 运行。
 
 默认的 `--suite full` 会安装 `ontotect-help`、`ontotect-router`、全部工程模式和全部
 生命周期阶段 skills；Kilo 与 OpenCode 还会获得同名 Markdown command adapters。只有在
@@ -83,20 +80,19 @@ node bin/ontotect.js install --agents all --scope project --project-root C:\path
 Use Ontotect. Command: review. Target: path/to/ontology.ttl.
 ~~~
 
-### 从当前源码安装全局命令
+### 安装全局命令
 
-公开 `0.1.1` 可以安装早期的单技能布局，但不提供 `list`、`--suite`、focused entries 或
-command adapters。在下一版发布前，如需从 shell 全局调用当前 suite compiler，请在 Ontotect
-源码 checkout 中运行：
+安装 organization-scoped package 以提供 `ontotect` shell 命令，再显式安装到选定的
+Agent roots：
 
 ~~~powershell
-npm install --global .
+npm install --global @moonweave-ai/ontotect
 ontotect help
 ontotect list
 ontotect install --agents cursor,codex --scope project --project-root C:\path\to\target-project
 ~~~
 
-套件版本发布后，可在全局安装命令中用 `@moonweave-ai/ontotect` 替换 `.`。
+从源码 checkout 安装时，改用 `npm install --global .`。
 
 ### 源码与 dry-run 工作流
 

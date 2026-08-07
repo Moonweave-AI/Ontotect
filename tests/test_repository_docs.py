@@ -176,6 +176,7 @@ class RepositoryDocumentationTests(unittest.TestCase):
     def test_npm_package_is_explicit_and_dependency_free(self) -> None:
         package = json.loads((ROOT / "package.json").read_text(encoding="utf-8"))
         self.assertEqual(package["name"], "@moonweave-ai/ontotect")
+        self.assertEqual(package["version"], "0.1.2")
         self.assertEqual(package["license"], "MIT")
         self.assertEqual(
             package["repository"]["url"],
@@ -230,8 +231,11 @@ class RepositoryDocumentationTests(unittest.TestCase):
         )
         for body in public_install_docs:
             self.assertIn("@moonweave-ai/ontotect", body)
+            self.assertIn("0.1.2", body)
             self.assertNotIn("npx ontotect ", body)
             self.assertNotIn("npm install --global ontotect", body)
+            self.assertNotIn("After the next suite release", body)
+            self.assertNotIn("下一版套件发布后", body)
         self.assertFalse(
             {"book/", "paper/", "tools/", "book-to-skill/", "tmp/", "tests/"}
             & files
@@ -340,6 +344,15 @@ class RepositoryDocumentationTests(unittest.TestCase):
                     self.assertIn("20", body)
 
         for language in ("en", "zh-CN"):
+            index = (DOCS_ROOT / language / "index.md").read_text(encoding="utf-8")
+            readiness = (
+                DOCS_ROOT / language / "release-readiness-0.1.2.md"
+            ).read_text(encoding="utf-8")
+            with self.subTest(language=language, surface="release-readiness"):
+                self.assertIn("release-readiness-0.1.2.md", index)
+                for token in ("0.1.2", "Conditional Go", "41", "14", "57"):
+                    self.assertIn(token, readiness)
+
             command_reference = (
                 DOCS_ROOT / language / "command-reference.md"
             ).read_text(encoding="utf-8")

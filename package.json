@@ -1,6 +1,6 @@
 {
   "name": "@moonweave-ai/ontotect",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Ontology engineering skill suite with a cross-agent installer and slash-command adapters",
   "keywords": [
     "agent-skill",

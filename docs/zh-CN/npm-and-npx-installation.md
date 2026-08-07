@@ -76,11 +76,10 @@ npm pack --dry-run --json
 
 ## 公共 npm 与 npx 命令
 
-`0.1.1` 是当前公开 `latest`，但它早于本源码分支中的 focused skill-suite discovery 修复。
-在新版本发布前，请使用源码 checkout 或本地 packed archive 测试 20-entry suite；不得把公开
-`0.1.1` 报告为已经包含该修复。
+`0.1.2` 是首个包含 20-entry focused skill-suite compiler 的公开版本。`0.1.1` 继续作为
+历史单技能 installer 保留；使用本流程前应先升级。
 
-suite 版本发布后，公共流程为：
+公共流程为：
 
 ```powershell
 npx @moonweave-ai/ontotect list
