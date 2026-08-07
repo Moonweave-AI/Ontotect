@@ -1,0 +1,75 @@
+# Private and local research corpus -- never publish
+/book/
+/paper/
+/tools/
+/book-to-skill/
+
+# Extraction, analysis, QA, and local runtimes
+/tmp/
+/.runtime/
+/extracted/
+/corpus/
+/analysis-output/
+/qa-output/
+
+# Research-document formats outside the public documentation tree
+*.pdf
+*.epub
+*.mobi
+*.azw
+*.azw3
+*.doc
+*.docx
+*.rtf
+
+# Generated project-scope skill installation mirrors
+/.agents/skills/ontotect/
+/.cursor/skills/ontotect/
+/.kilo/skills/ontotect/
+/.opencode/skills/ontotect/
+/.claude/skills/ontotect/
+
+# Python caches and local environments
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Node.js and npm local state
+/node_modules/
+/.npm/
+/.npx/
+npm-debug.log*
+*.tgz
+
+# Build, coverage, and documentation output
+/build/
+/dist/
+/site/
+*.egg-info/
+.coverage
+htmlcov/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+secrets.json
+
+# Editor and operating-system noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# Do not ignore Ontotect's public Markdown, Turtle, SPARQL, or JSON assets.
