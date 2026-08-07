@@ -1,6 +1,6 @@
 ---
 type: verification
-status: conditional-go
+status: pass-with-actions
 owner: Moonweave-AI
 created: 2026-08-07
 updated: 2026-08-07
@@ -24,11 +24,11 @@ superseded_by: null
 
 ## Decision
 
-**Conditional Go.** The Owner has selected the MIT License, accepted ADR 0001,
-ADR 0002, and ADR 0003, and authorized the initial public GitHub and npm
-release. GitHub `main` is synchronized. npm authentication and organization
-ownership are verified; publication must still pass the final package checks
-and be followed by registry and public npx verification.
+**Pass with follow-up actions.** Ontotect uses the MIT License, ADR 0001,
+ADR 0002, and ADR 0003 are accepted, GitHub `main` is synchronized, and
+`@moonweave-ai/ontotect@0.1.0` is published on npm. Public registry metadata,
+anonymous acquisition, npx help, and isolated project-scoped installation for
+all five host layouts passed.
 
 Work object: public release operation. Risk: **S4**. Required quality:
 **QA-L4**. Owner and release authority: Moonweave-AI. Execution DRI: the
@@ -46,7 +46,7 @@ publishing maintainer.
   ontology-domain certification, and automatic host mutation during package
   acquisition.
 
-## Pre-release evidence
+## Pre-release evidence (historical)
 
 | Gate | Result |
 |---|---|
@@ -64,23 +64,25 @@ Checks use direct file and byte comparison where needed. This release does not
 add cryptographic hash validation, dependency pinning, host-version locking, or
 a package lock.
 
-## Staged rollout
+## Staged rollout status
 
-1. Initialize `main`, review ignored and staged files, and create logical local
-   commits.
-2. Push `main` to the empty public GitHub repository and verify the remote head
-   and public README.
-3. Recheck npm authentication, package-name state, tests, and the exact dry-run
-   package list.
-4. Publish `@moonweave-ai/ontotect@0.1.0` with public access.
-5. Verify registry metadata, public package contents, and a clean `npx`
-   installation into isolated five-host project roots.
-6. Update the verification and security records with observed publication
-   evidence, commit the record, and push `main` again.
+1. **Complete:** initialize `main`, review ignored and staged files, and create
+   logical local commits.
+2. **Complete:** push `main` to the public GitHub repository and verify the
+   remote head and public README.
+3. **Complete:** recheck npm authentication, package-name state, tests, and the
+   exact dry-run package list.
+4. **Complete:** publish `@moonweave-ai/ontotect@0.1.0` with public access.
+5. **Complete:** registry metadata reported `0.1.0`, `latest`, and MIT; anonymous
+   registry access and public npx help passed; all five isolated project-scoped
+   host roots installed with 48 skill files per destination.
+6. **Complete:** observed post-publication evidence is recorded in the
+   verification, security, and decision records. Remote `main` synchronization
+   is checked through Git after the documentation commit.
 
 ## Rollback and incident response
 
-- Before npm publication, stop without changing the registry if any gate fails.
+- For future npm releases, stop before publication if any gate fails.
 - For a GitHub defect, revert the specific commit and push the reviewed revert.
 - For a published package defect, prefer deprecating the affected version and
   publishing a corrected patch. Do not assume registry unpublish is available
@@ -90,7 +92,8 @@ a package lock.
 
 ## Post-release checks and follow-up
 
-Post-release results remain `unverified` until the rollout reaches Step 5.
-Follow-up controls are a permanent private security-reporting path, npm account
-recovery documentation, CI, and live discovery/behavior smoke tests in the five
-named hosts.
+Public-registry metadata and project-scoped npx acquisition passed. Follow-up
+controls are a permanent private security-reporting path, npm account recovery
+documentation, package provenance, CI, user/global-scope installation, and live
+discovery/behavior smoke tests in the five named hosts; these remain
+`unverified` where no execution evidence has been recorded.

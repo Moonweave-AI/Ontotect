@@ -23,9 +23,14 @@ superseded_by: null
 
 Ontotect reads ontologies, shapes, mappings, data, documentation, issues, and web material that may be untrusted. It helps an Agent reason about those artifacts; it is not itself a permission boundary, sandbox, complete OWL reasoner, or guarantee that a graph is safe to publish.
 
-## Supported state
+## Supported versions
 
-The project is currently a draft/pre-release skill and has not announced a supported release series. Security fixes target the current repository state. This section must be replaced with an explicit support table when releases begin.
+| Version | Supported |
+|---|---|
+| `0.1.x` | Yes |
+| `< 0.1.0` | No |
+
+Security fixes target the latest published `0.1.x` release and the current `main` branch.
 
 ## Report a vulnerability
 
@@ -60,6 +65,6 @@ Do not publish private knowledge graphs, credentials, personal data, restricted 
 
 Request a specialized review before a change that adds automatic execution, network access, credential use, remote publication, package installation, high-impact autonomous behavior, or processing of regulated/sensitive data. Stop release when secrets, unprovenanced distributable assets, or unauthorized sensitive data are present.
 
-The current npm adapter review is [npm-installer-security-review.md](docs/en/npm-installer-security-review.md). The Owner selected the MIT License and authorized the initial public release; registry authentication, publication evidence, npm ownership recovery, provenance, and private reporting remain release controls recorded separately.
+The current npm adapter review is [npm-installer-security-review.md](docs/en/npm-installer-security-review.md). Ontotect uses the MIT License, and `@moonweave-ai/ontotect@0.1.0` is published on npm. npm ownership recovery, package provenance, and a permanent private reporting path remain independently tracked controls.
 
 Security reports and remediation claims must distinguish verified results from hypotheses and mark unavailable checks as `unverified`.

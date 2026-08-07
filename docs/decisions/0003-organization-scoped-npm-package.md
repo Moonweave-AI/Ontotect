@@ -76,3 +76,11 @@ preflight time, not a permanent reservation.
 - The operator has read-write access to the organization's existing package.
 - Registry lookup returned `E404` for `@moonweave-ai/ontotect` before release.
 - Package tests and dry-run inspection must pass again after the identity change.
+
+## Implementation status
+
+`@moonweave-ai/ontotect@0.1.0` was published with public access on 2026-08-07.
+The official registry reports `latest` as `0.1.0`, anonymous metadata access
+succeeds, the organization permission is read-write, and the installed command
+remains `ontotect`. Public npx help and isolated project-level installation for
+all five supported host layouts passed; live-host loading remains `unverified`.

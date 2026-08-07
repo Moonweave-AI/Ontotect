@@ -24,7 +24,7 @@ superseded_by: null
 
 ## 状态
 
-Owner 已于 2026-08-07 接受本 ADR，选择 MIT 许可证并明确授权发布。ADR 0003 仅把原先拟定的非 scoped 包名修订为 `@moonweave-ai/ontotect`；可执行命令与本 ADR 的全部安全控制保持不变。
+本 ADR 于 2026-08-07 接受。项目采用 MIT 许可证，首次公开发布已获授权。ADR 0003 仅把原先拟定的非 scoped 包名修订为 `@moonweave-ai/ontotect`；可执行命令与本 ADR 的全部安全控制保持不变。
 
 ## 背景
 
@@ -49,7 +49,7 @@ Ontotect 已有便携 Agent Skills 目录和 Python 安装器。Cursor、Codex�
 8. 复制完整 `ontotect/` 技能包，同时排除临时缓存文件，并向用户报告源目录与目标目录。
 9. 通过 `package.json` 的 `files` 白名单只包含可执行程序、可分发技能、公开 README 及 README 使用的本地 banner。不得打包 `book/`、`paper/`、`tools/`、`book-to-skill/`、`tmp/`、测试、本地运行状态或提取全文。
 10. npm metadata 使用 `MIT` 并包含权威项目 `LICENSE`。npm 必需的语义版本只是分发 metadata，不是依赖固化，也不是稳定发布声明。
-11. 未经 Owner 明确授权且 registry 检查未成功，不发布到 npm、不创建 release，也不声称公共 registry 获取已可用。Owner 于 2026-08-07 的发布指令已为 `0.1.0` 提供授权；实际执行证据写入验证记录。
+11. 未经明确发布授权且 registry 检查未成功，不发布到 npm、不创建 release，也不声称公共 registry 获取已可用。2026-08-07 的发布记录已为 `0.1.0` 提供授权；实际执行证据写入验证记录。
 
 ## 宿主目标路径
 
@@ -107,4 +107,4 @@ Ontotect 已有便携 Agent Skills 目录和 Python 安装器。Cursor、Codex�
 - 包没有依赖或生命周期脚本。
 - 双语安装、架构、安全和验证文档保持同步。
 
-本地证据已执行并写入[验证记录](../zh-CN/verification-record.md)：8 项 Node 测试通过；MIT 发布候选 pack 含 54 个预期条目（包括 `LICENSE`），禁止的语料/缓存/测试制品为 0；真实本地 tarball 通过 npx 安装五个项目布局，每个目标 48 个文件与源文件逐字节直接一致。Registry 发布与真实宿主发现需要独立执行证据，在实际完成前仍为 `unverified`。
+本地证据已执行并写入[验证记录](../zh-CN/verification-record.md)：8 项 Node 测试通过；MIT 发布候选 pack 含 54 个预期条目（包括 `LICENSE`），禁止的语料/缓存/测试制品为 0；真实本地 tarball 通过 npx 安装五个项目布局，每个目标 48 个文件与源文件逐字节直接一致。随后已成功执行公共 registry 发布、匿名 metadata 访问、公共 npx help，以及面向五个隔离宿主布局的项目级安装。真实宿主中的 discovery 与 behavior 仍为 `unverified`。

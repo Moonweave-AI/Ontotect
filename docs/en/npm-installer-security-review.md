@@ -1,6 +1,6 @@
 ---
 type: security-review
-status: draft
+status: active
 owner: project-maintainers
 created: 2026-08-07
 updated: 2026-08-07
@@ -26,7 +26,7 @@ superseded_by: null
 
 Work object: public Agent-skill distribution feature. Risk: **S4**, because a package-manager executable can write into project or user Agent configuration. Required quality: **QA-L4**. Owner: project maintainers. DRI for this review: implementation maintainer.
 
-The design is acceptable for public release provided the controls below remain true and the Owner's release authorization, registry authentication, package inspection, and post-publication verification are recorded. The review becomes `revise` if package inspection, installer tests, or path controls fail; it becomes Stop-Ship if private corpus material, secrets, unprovenanced assets, lifecycle auto-execution, or an undeclared network operation enters the package.
+The design remains acceptable for the published package provided the controls below remain true and release authority, registry authentication, package inspection, and post-publication verification are recorded. The review becomes `revise` if package inspection, installer tests, or path controls fail; it becomes Stop-Ship if private corpus material, secrets, unprovenanced assets, lifecycle auto-execution, or an undeclared network operation enters the package.
 
 ## Assets and security objectives
 
@@ -80,7 +80,7 @@ Package acquisition is not installation into an Agent host. The security-relevan
 - `install` creates only `ontotect` under one or more fixed skill roots.
 - `--force` authorizes replacement of those exact destinations, not arbitrary filesystem writes.
 - The installer does not edit host settings, shell profiles, repository manifests, or ontology files.
-- Remote publication, authentication, registry ownership, and npm provenance are outside the CLI and require separate Owner-authorized release work.
+- Remote publication, authentication, registry ownership, and npm provenance are outside the CLI and require a separately authorized release operation.
 
 ## Residual risks
 
@@ -101,10 +101,10 @@ Before a local acceptance claim:
 5. run the repository documentation, Skill Creator, and existing Python regression checks;
 6. record results and limits in [verification-record.md](verification-record.md).
 
-Before public publication, additionally verify npm authentication and package ownership, record the Owner's release approval and MIT license, inspect the exact public package, and document account recovery, package provenance, and a private vulnerability-reporting path. Any unavailable control must remain explicit rather than being inferred from a successful command.
+For a public release, additionally verify npm authentication and package ownership, record release authority and the MIT license, inspect the exact public package, and document account recovery, package provenance, and a private vulnerability-reporting path. Publication of `@moonweave-ai/ontotect@0.1.0` is recorded; anonymous registry access, public npx help, and isolated project-scoped installation for all five host layouts passed. Any unavailable control must remain explicit rather than being inferred from a successful command.
 
 ## Local verification result — 2026-08-07
 
 All six local evidence steps were executed. The first pack inspection correctly blocked acceptance when two generated `.pyc` files appeared; the scripts allowlist was narrowed to public Python sources. The MIT release-candidate inspection reported 54 intended entries, including `LICENSE`, and no forbidden corpus, cache, test, temporary, document-source, or tarball file. Eight Node tests passed, including a real local tarball executed through npx in offline and ignore-scripts mode against all five project roots. Each of the five installed skills contained 48 files that matched the canonical source directly byte-for-byte.
 
-Result: local Preview control set **pass**. The Owner has accepted ADR 0002, selected MIT, and authorized version `0.1.0`. Public publication is **conditional-go** pending authenticated npm access, a clean final package inspection, successful registry publication, and post-publication verification; account recovery and the permanent private reporting path remain follow-up controls.
+Result: the release distribution control set is **pass with follow-up actions**. ADR 0002 and ADR 0003 are accepted, the project uses MIT, and `@moonweave-ai/ontotect@0.1.0` has been published. Registry metadata reported `0.1.0`, `latest`, and MIT; organization access was read-write; anonymous access, public npx help, and isolated project-scoped installation into all five host layouts passed with 48 files per destination. User/global-scope installation, live-host discovery and behavior, account recovery, package provenance, and the permanent private reporting path remain `unverified` follow-up controls.

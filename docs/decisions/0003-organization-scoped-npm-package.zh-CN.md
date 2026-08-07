@@ -65,3 +65,10 @@ package identity 条款；显式安装、零依赖、固定路径、白名单和
 - 该账号对组织现有包具有 read-write 权限。
 - 发布前 registry 查询 `@moonweave-ai/ontotect` 返回 `E404`。
 - 身份变更后必须重新通过 package 测试与 dry-run 检查。
+
+## 实施状态
+
+`@moonweave-ai/ontotect@0.1.0` 已于 2026-08-07 以 public access 发布。官方
+registry 将 `latest` 指向 `0.1.0`，匿名 metadata 访问成功，组织权限为
+read-write，安装后的命令仍为 `ontotect`。公共 npx help 与五个受支持宿主布局的
+隔离项目级安装均通过；真实宿主加载仍为 `unverified`。

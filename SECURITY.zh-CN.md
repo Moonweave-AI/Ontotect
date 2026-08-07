@@ -23,9 +23,14 @@ superseded_by: null
 
 Ontotect 会读取可能不可信的本体、Shapes、映射、数据、文档、Issue 和网络资料。它帮助 Agent 分析这些制品，但本身不是权限边界、沙箱、完整 OWL reasoner，也不保证图可以安全发布。
 
-## 支持状态
+## 支持版本
 
-项目目前是 draft/pre-release 技能，尚未公布受支持的发布系列。安全修复面向仓库当前状态。正式发布后必须用明确的支持版本表替换本节。
+| 版本 | 支持状态 |
+|---|---|
+| `0.1.x` | 支持 |
+| `< 0.1.0` | 不支持 |
+
+安全修复面向最新已发布的 `0.1.x` 版本和当前 `main` 分支。
 
 ## 报告漏洞
 
@@ -60,6 +65,6 @@ Ontotect 会读取可能不可信的本体、Shapes、映射、数据、文档�
 
 增加自动执行、网络访问、凭据使用、远程发布、包安装、高影响自主行为或受监管/敏感数据处理时，应先进行专门审查。发现秘密、来源不明的待发布资产或未经授权的敏感数据时停止发布。
 
-当前 npm 适配器审查见 [npm-installer-security-review.md](docs/zh-CN/npm-installer-security-review.md)。Owner 已选择 MIT 许可证并授权首次公开发布；registry 认证、发布证据、npm ownership 恢复、provenance 和私密报告渠道仍作为独立发布控制记录。
+当前 npm 适配器审查见 [npm-installer-security-review.md](docs/zh-CN/npm-installer-security-review.md)。Ontotect 采用 MIT 许可证，`@moonweave-ai/ontotect@0.1.0` 已发布到 npm。npm ownership 恢复、package provenance 和永久私密报告路径仍作为独立控制跟踪。
 
 安全报告和修复结论必须区分已验证结果与假设，并把无法执行的检查标为 `unverified`。

@@ -1,6 +1,6 @@
 ---
 type: verification
-status: conditional-go
+status: pass-with-actions
 owner: Moonweave-AI
 created: 2026-08-07
 updated: 2026-08-07
@@ -24,10 +24,10 @@ superseded_by: null
 
 ## 决策
 
-**Conditional Go。** Owner 已选择 MIT 许可证，接受 ADR 0001、ADR 0002 与 ADR
-0003，并授权首次公开 GitHub 与 npm 发布。GitHub `main` 已同步；npm 认证与组织
-ownership 已验证。发布仍需通过最终 package 检查，并在完成后执行 registry 与公共
-npx 验证。
+**Pass with follow-up actions。** Ontotect 采用 MIT 许可证，ADR 0001、ADR 0002
+与 ADR 0003 已接受，GitHub `main` 已同步，且
+`@moonweave-ai/ontotect@0.1.0` 已发布到 npm。公共 registry metadata、匿名
+获取、npx help 和五个宿主布局的隔离项目级安装均通过。
 
 工作对象：公开 Release Operation。风险：**S4**。所需质量：**QA-L4**。
 Owner 与发布权威：Moonweave-AI。执行 DRI：发布维护者。
@@ -43,7 +43,7 @@ Owner 与发布权威：Moonweave-AI。执行 DRI：发布维护者。
 - 非目标：创建 GitHub Release、认证所有真实宿主、目标领域本体认证，以及在获取
   package 时自动修改宿主。
 
-## 发布前证据
+## 发布前证据（历史）
 
 | 门禁 | 结果 |
 |---|---|
@@ -60,19 +60,19 @@ Owner 与发布权威：Moonweave-AI。执行 DRI：发布维护者。
 需要时采用文件与字节直接比较。本发布不增加密码学哈希验证、依赖固化、宿主版本
 锁定或 package lock。
 
-## 分阶段 Rollout
+## 分阶段 Rollout 状态
 
-1. 初始化 `main`，审查 ignored 与 staged 文件，并创建有逻辑边界的本地 commits。
-2. 把 `main` 推送到空的公开 GitHub 仓库，验证远端 head 与公共 README。
-3. 复核 npm 认证、包名状态、测试和准确的 dry-run package 列表。
-4. 以 public access 发布 `@moonweave-ai/ontotect@0.1.0`。
-5. 验证 registry metadata、公共 package 内容，并在隔离五宿主项目根执行干净的
-   `npx` 安装。
-6. 用观察到的发布证据更新验证与安全记录，提交该记录并再次推送 `main`。
+1. **已完成：**初始化 `main`，审查 ignored 与 staged 文件，并创建有逻辑边界的本地 commits。
+2. **已完成：**把 `main` 推送到公开 GitHub 仓库，验证远端 head 与公共 README。
+3. **已完成：**复核 npm 认证、包名状态、测试和准确的 dry-run package 列表。
+4. **已完成：**以 public access 发布 `@moonweave-ai/ontotect@0.1.0`。
+5. **已完成：**registry metadata 报告 `0.1.0`、`latest` 与 MIT；匿名 registry 访问和公共 npx help 通过；五个隔离项目级宿主根全部安装，每个目标 48 个技能文件。
+6. **已完成：**观察到的发布后证据已写入验证、安全和决策记录；文档提交后通过 Git
+   检查远端 `main` 同步状态。
 
 ## 回退与事故响应
 
-- npm 发布前任何门禁失败都应停止，不修改 registry。
+- 后续 npm 发布在任何门禁失败时都应于发布前停止。
 - GitHub 缺陷通过审阅后的精确 revert 修正。
 - package 已发布后发现缺陷时，优先 deprecate 受影响版本并发布修正 patch；不得
   假定 registry unpublish 可用或适当。
@@ -81,6 +81,6 @@ Owner 与发布权威：Moonweave-AI。执行 DRI：发布维护者。
 
 ## 发布后检查与后续
 
-Rollout 到达第 5 步前，发布后结果保持 `unverified`。后续控制包括永久私密安全
-报告路径、npm 账号恢复文档、CI，以及五个指定宿主中的真实 discovery/behavior
-冒烟测试。
+公共 registry metadata 与项目级 npx 获取已通过。后续控制包括永久私密安全报告路径、npm
+账号恢复文档、package provenance、CI、用户/全局范围安装，以及五个指定宿主中的真实
+discovery/behavior 冒烟测试；没有执行证据的部分继续标为 `unverified`。

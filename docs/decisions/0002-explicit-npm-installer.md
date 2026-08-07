@@ -24,7 +24,7 @@ superseded_by: null
 
 ## Status
 
-Accepted by the Owner on 2026-08-07. The Owner selected the MIT License and explicitly authorized publication. ADR 0003 amends only the package identity from the originally proposed unscoped name to `@moonweave-ai/ontotect`; the executable and all safety controls in this ADR remain unchanged.
+Accepted on 2026-08-07. The project uses the MIT License, and the initial public release was authorized. ADR 0003 amends only the package identity from the originally proposed unscoped name to `@moonweave-ai/ontotect`; the executable and all safety controls in this ADR remain unchanged.
 
 ## Context
 
@@ -49,7 +49,7 @@ The project is released under the MIT License. npm package identity metadata mus
 8. Copy the complete `ontotect/` skill package while excluding transient cache files. The source directory and destination are reported to the user.
 9. Use the `package.json` `files` allowlist to include only the executable, the distributable skill, public READMEs, and the local banner required by those READMEs. Do not package `book/`, `paper/`, `tools/`, `book-to-skill/`, `tmp/`, tests, local runtime state, or extracted text.
 10. Set npm metadata to `MIT` and include the authoritative project `LICENSE`. The required semantic package version is distribution metadata, not dependency pinning or a claim of release stability.
-11. Do not publish to npm, create a release, or claim public registry availability without explicit Owner authorization and a successful registry check. The Owner's 2026-08-07 publication directive supplies that authorization for version `0.1.0`; execution evidence belongs in the verification record.
+11. Do not publish to npm, create a release, or claim public registry availability without explicit release authorization and a successful registry check. The 2026-08-07 release record supplies that authorization for version `0.1.0`; execution evidence belongs in the verification record.
 
 ## Host destinations
 
@@ -107,4 +107,4 @@ Rejected because the installer is a host adapter, not a general-purpose recursiv
 - The package has no dependencies or lifecycle scripts.
 - Bilingual installation, architecture, security, and verification documentation remain synchronized.
 
-Local evidence was executed and is recorded in [verification-record.md](../en/verification-record.md): 8 Node tests passed; the MIT release-candidate pack contained 54 intended entries, including `LICENSE`, and zero forbidden corpus/cache/test artifacts; a real local tarball installed all five project layouts through npx, with 48 files per destination matching the source directly byte-for-byte. Registry publication and live-host discovery require separate execution evidence and remain `unverified` until performed.
+Local evidence was executed and is recorded in [verification-record.md](../en/verification-record.md): 8 Node tests passed; the MIT release-candidate pack contained 54 intended entries, including `LICENSE`, and zero forbidden corpus/cache/test artifacts; a real local tarball installed all five project layouts through npx, with 48 files per destination matching the source directly byte-for-byte. Public registry publication, anonymous metadata access, public npx help, and project-scoped installation into all five isolated host layouts were subsequently executed successfully. Live-host discovery and behavior remain `unverified`.

@@ -1,6 +1,6 @@
 ---
 type: security-review
-status: draft
+status: active
 owner: project-maintainers
 created: 2026-08-07
 updated: 2026-08-07
@@ -26,7 +26,7 @@ superseded_by: null
 
 工作对象：公共 Agent skill 分发 Feature。风险：**S4**，因为包管理器可执行程序能够写入项目或用户 Agent 配置。所需质量：**QA-L4**。Owner：项目维护者。审查 DRI：实现维护者。
 
-只要下列控制持续成立，并记录 Owner 发布授权、registry 认证、包检查和发布后验证，该设计即可用于公开发布。包检查、安装器测试或路径控制失败时结论为 `revise`；若私有语料、秘密、来源不明资产、生命周期自动执行或未声明网络操作进入包，则触发 Stop-Ship。
+只要下列控制持续成立，并记录发布权限、registry 认证、包检查和发布后验证，该设计就继续适用于已发布 package。包检查、安装器测试或路径控制失败时结论为 `revise`；若私有语料、秘密、来源不明资产、生命周期自动执行或未声明网络操作进入包，则触发 Stop-Ship。
 
 ## 资产与安全目标
 
@@ -80,7 +80,7 @@ npm registry / 本地 tarball
 - `install` 只在一个或多个固定技能根目录下创建 `ontotect`。
 - `--force` 只授权替换这些精确目标，不授权任意文件系统写入。
 - 安装器不修改宿主设置、shell profile、仓库 manifest 或本体文件。
-- 远程发布、身份验证、registry ownership 和 npm provenance 不属于 CLI，必须进入独立的 Owner 授权发布工作。
+- 远程发布、身份验证、registry ownership 和 npm provenance 不属于 CLI，必须进入独立授权的发布操作。
 
 ## 剩余风险
 
@@ -101,10 +101,10 @@ npm registry / 本地 tarball
 5. 运行仓库文档、Skill Creator 及现有 Python 回归；
 6. 在[验证记录](verification-record.md)写入结果与边界。
 
-公开发布前，还需验证 npm 认证与 package ownership，记录 Owner 发布批准和 MIT 许可证，检查准确的公开包，并记录账号恢复、package provenance 与私密漏洞报告路径。不可用的控制必须保持明确，不能从命令成功推断。
+公开发布还需验证 npm 认证与 package ownership，记录发布权限和 MIT 许可证，检查准确的公开包，并记录账号恢复、package provenance 与私密漏洞报告路径。`@moonweave-ai/ontotect@0.1.0` 的发布事件已记录；匿名 registry 访问、公共 npx help 和五个宿主布局的隔离项目级安装均通过。不可用的控制必须保持明确，不能从命令成功推断。
 
 ## 本地验证结果 — 2026-08-07
 
 六项本地证据均已执行。首次 pack 检查发现两个生成的 `.pyc` 文件并正确阻止验收，随后把 scripts 白名单收紧为公共 Python 源文件。MIT 发布候选 pack 包含 54 个预期条目（包括 `LICENSE`），禁止的语料、缓存、测试、临时、文档源或 tarball 文件为 0。8 项 Node 测试通过，其中真实本地 tarball 以 offline 和 ignore-scripts 模式经 npx 针对五个项目根执行；五份安装技能各含 48 个文件，并与 canonical 源逐字节直接一致。
 
-结果：本地 Preview 控制集 **pass**。Owner 已接受 ADR 0002、选择 MIT，并授权 `0.1.0`。公开发布为 **conditional-go**：仍需 npm 认证、最终包检查、registry 发布成功及发布后验证；账号恢复与永久私密报告路径作为后续控制保留。
+结果：发布分发控制集为 **pass with follow-up actions**。ADR 0002 与 ADR 0003 已接受，项目采用 MIT，`@moonweave-ai/ontotect@0.1.0` 已发布。Registry metadata 报告 `0.1.0`、`latest` 与 MIT，组织权限为 read-write；匿名访问、公共 npx help 与五个宿主布局的隔离项目级安装均通过，每个目标 48 个文件。用户/全局范围安装、真实宿主发现与行为、账号恢复、package provenance 与永久私密报告路径仍为 `unverified` 后续控制。

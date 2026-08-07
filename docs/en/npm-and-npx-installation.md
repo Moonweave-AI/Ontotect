@@ -6,7 +6,7 @@ created: 2026-08-07
 updated: 2026-08-07
 last_reviewed: 2026-08-07
 review_cycle_days: 180
-summary: Install Ontotect from source, a local npm package, npx, or a future public npm release into five common Agent Skills hosts.
+summary: Install Ontotect from the public npm package, npx, source, or a local package into five common Agent Skills hosts.
 canonical: docs/en/npm-and-npx-installation.md
 related:
   - docs/en/installation.md
@@ -24,7 +24,7 @@ superseded_by: null
 
 The npm package is a small, dependency-free adapter around the same portable `ontotect/` directory used by the Python and manual installation paths. Acquiring the package does not install the skill into any Agent host: there are no npm lifecycle scripts. You must explicitly run `plan` or `install`.
 
-## Current Preview: run from this source tree
+## Run from this source tree
 
 Inspect the five project destinations without writing:
 
@@ -68,7 +68,7 @@ Create any real test tarball only under the ignored `tmp/` directory, inspect it
 
 ## Public npm and npx commands
 
-The following commands become available only after an authorized maintainer publishes the organization package `@moonweave-ai/ontotect` to the public npm registry:
+Version `0.1.0` is published under the Moonweave AI organization scope. Run it directly from the public npm registry:
 
 ```powershell
 npx @moonweave-ai/ontotect plan --agents all --scope project --project-root .
@@ -82,7 +82,7 @@ npm install --global @moonweave-ai/ontotect
 ontotect install --agents all --scope project --project-root .
 ```
 
-Public publication has not yet been completed for the current Preview. The approved package identity is `@moonweave-ai/ontotect`; until registry verification succeeds, use the source-tree or local-package commands above.
+The public package identity is `@moonweave-ai/ontotect`; the installed executable remains `ontotect`. Public-registry acquisition and live-host discovery are separate checks: when reporting compatibility, distinguish the package's published state from any host behavior that has not been exercised.
 
 ## Destination map
 

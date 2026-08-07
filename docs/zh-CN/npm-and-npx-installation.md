@@ -6,7 +6,7 @@ created: 2026-08-07
 updated: 2026-08-07
 last_reviewed: 2026-08-07
 review_cycle_days: 180
-summary: 从源码、本地 npm 包、npx 或未来公开 npm release，把 Ontotect 安装到五种常见 Agent Skills 宿主。
+summary: 从公共 npm 包、npx、源码或本地包，把 Ontotect 安装到五种常见 Agent Skills 宿主。
 canonical: docs/en/npm-and-npx-installation.md
 related:
   - docs/zh-CN/installation.md
@@ -24,7 +24,7 @@ superseded_by: null
 
 npm 包是同一个便携 `ontotect/` 目录的零依赖小型适配器；Python 和手动安装也使用该目录。获取包不会把技能安装到任何 Agent 宿主，因为不存在 npm 生命周期脚本；用户必须显式运行 `plan` 或 `install`。
 
-## 当前 Preview：从源码树运行
+## 从源码树运行
 
 只检查五个项目级目标，不写入：
 
@@ -68,7 +68,7 @@ npm pack --dry-run --json
 
 ## 公共 npm 与 npx 命令
 
-只有获授权维护者把组织包 `@moonweave-ai/ontotect` 发布到公共 npm registry 后，下列命令才可用：
+`0.1.0` 已在 Moonweave AI 组织 scope 下发布。可直接从公共 npm registry 运行：
 
 ```powershell
 npx @moonweave-ai/ontotect plan --agents all --scope project --project-root .
@@ -82,7 +82,7 @@ npm install --global @moonweave-ai/ontotect
 ontotect install --agents all --scope project --project-root .
 ```
 
-当前 Preview 尚未完成公开发布。已批准的 package identity 是 `@moonweave-ai/ontotect`；registry 验证成功前，请使用源码树或本地包命令。
+公共 package identity 是 `@moonweave-ai/ontotect`，安装后的可执行命令仍为 `ontotect`。公共 registry 获取和真实宿主发现是两类独立检查；报告兼容性时，应区分 package 已发布的状态与尚未执行的宿主行为。
 
 ## 目标路径
 

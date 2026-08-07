@@ -1,6 +1,6 @@
 ---
 type: verification
-status: draft
+status: active
 owner: project-maintainers
 created: 2026-08-07
 updated: 2026-08-07
@@ -39,7 +39,7 @@ ontology validation report.
 | Generated-skill safety | book-to-skill advisory generated-skill scan | Passed; no known injection or unsafe-authority pattern reported |
 | Static host lenses | book-to-skill Claude, Amp, and GitHub Copilot CLI lenses | All three passed with zero warnings; these are static lenses, not live-host runs |
 | Documentation | Mirrored filenames, governance frontmatter, relative links, command vocabulary, encoding, and corpus exclusion | Passed through repository regression checks |
-| README visuals and references | Parsed the local SVG and checked accessibility metadata, two Mermaid diagrams per language, bilingual structure, internal links, standard-form references, and removed wording | Passed; SVG has no script, external font, or imported resource; stale `.mjs` and the rejected acknowledgment wording had zero public matches |
+| README visuals and references | Parsed the local SVG and checked accessibility metadata, two Mermaid diagrams per language, bilingual structure, internal links, standard-form references, and removed wording | Passed; SVG has no script, external font, or imported resource; stale `.mjs` and the rejected disclaimer wording had zero public matches |
 | Source assets | Parsed 4 Turtle files, 1 SPARQL query, 1 JSON file, 1 TSV file; parsed 4 Python scripts with `ast` | All parsed; the TSV contained data rows |
 | Functional fixtures | Ran the advisory audit with the valid and invalid fixtures and starter shapes | Valid fixture: exit 0, SHACL conforms, zero advisory findings. Invalid fixture: exit 1, SHACL non-conformant, one violation |
 | Asserted graph diff | Compared the valid fixture with itself and with the invalid fixture | Same graph: 0 added/0 removed. Changed graph: 1 added/4 removed |
@@ -48,8 +48,11 @@ ontology validation report.
 | Five-host packaging | Dry-run and applied the installer into isolated Cursor, Codex, Kilo, OpenCode, and Claude layouts | 5 plans and 5 installs; 48 files per source set compared byte-for-byte with zero mismatch; 5 repeat installs correctly refused without `--force` |
 | npm package metadata | Inspected `package.json` and executable behavior | Package name is `@moonweave-ai/ontotect`, binary is `ontotect`; MIT license, Moonweave-AI repository metadata, public publish configuration, ESM, zero dependencies, no engine constraint, no install/prepare lifecycle scripts, and a public-file allowlist |
 | npm pack allowlist | Ran `npm pack --dry-run --json --ignore-scripts` after Python tests had generated local caches | The first inspection exposed two `.pyc` cache files and blocked acceptance; the scripts allowlist was narrowed. The MIT release candidate contains 54 intended entries including `LICENSE`, all required public files, and zero corpus, cache, test, temporary, document-source, or tarball offenders |
+| Post-release documentation pack | Repeated the dry-run allowlist inspection after adding the centered README hero and local brand mark | Current `main` contains 55 intended entries, includes both accessible SVG brand assets, has every required file, and contains zero forbidden corpus, cache, test, temporary, lockfile, or tarball entries. This is source-state evidence, not a republished npm version |
 | Packed npx installation | Created a real local tarball in an isolated temporary directory, invoked it through npx in offline/ignore-scripts mode, and removed it after the test | All 5 project destinations installed; 48 relative files per destination matched the canonical skill byte-for-byte with zero mismatch; no registry publication occurred |
-| npm installer security | Applied the S4 / QA-L4 threat model and checked explicit mutation, fixed destinations, overwrite, network, dependency, corpus, lifecycle, and organization-scope boundaries | Local controls passed; the Owner accepted ADR 0002 and ADR 0003, selected MIT, and authorized `0.1.0`. Registry authentication and npm organization ownership are verified; publication evidence, account recovery, provenance, and a permanent private reporting path remain separately tracked |
+| npm installer security | Applied the S4 / QA-L4 threat model and checked explicit mutation, fixed destinations, overwrite, network, dependency, corpus, lifecycle, and organization-scope boundaries | Local controls passed; ADR 0002 and ADR 0003 are accepted, and the project uses MIT. Registry authentication and npm organization ownership were verified before publication; account recovery, provenance, and a permanent private reporting path remain separately tracked |
+| Public npm registry | Queried package metadata with and without authenticated organization context after publication | `@moonweave-ai/ontotect@0.1.0` is public; `latest` resolves to `0.1.0`; the registry reports MIT; organization access is read-write; anonymous registry access succeeded |
+| Public npx distribution | Invoked public `npx` help and installed from the registry into isolated project-scoped roots for Cursor, Codex, Kilo, OpenCode, and Claude Code | Help succeeded; all five project destinations installed with 48 skill files per destination |
 | Ignore behavior | Evaluated `.gitignore` with isolated temporary Git metadata | 10 private/generated cases ignored; 7 public Markdown/Turtle/SPARQL/JSON or `.env.example` cases remained visible |
 | First-contact behavior | A context-isolated Agent loaded the skill progressively and answered a Chinese first-use request | Correctly chose read-only `help`, recommended a separate read-only `review`, and preserved `unverified`; it exposed a help-stage ambiguity that was corrected and regression-tested |
 | Mixed-intent behavior | An independent follow-up evaluator routed a Chinese review, repair, OWL/SHACL validation, and release-evidence request | Selected `review -> repair -> validate -> release` preflight; limited writes to the named ontology and confirmed tests; prohibited remote publication; identified missing CQ, import, tool, and authority inputs; found no material defect after the correction |
@@ -82,20 +85,25 @@ directories and removed them after execution.
 - Cursor, Codex, Kilo, OpenCode, and Claude Code were not each launched as
   external products against this checkout. Discovery and behavioral
   compatibility in those live hosts remain `unverified`.
-- The public npm package was not yet published at this record point. The
-  authenticated operator and `moonweave-ai` organization ownership were
-  verified; package provenance, account recovery, and public
-  `npx @moonweave-ai/ontotect` acquisition remain `unverified`. Only a locally
-  packed tarball was executed.
-- The repository root is not currently a Git worktree. Ignore-rule semantics
-  were executed using temporary Git metadata, but the set of tracked files and
-  remote publication state remain `unverified`.
+- Public npx installation was exercised only for isolated project-scoped roots.
+  User/global-scope installation remains `unverified` against the published
+  package.
+- The redesigned README and local brand mark are present on current `main`, but
+  npm `0.1.0` is immutable. The npm package page will receive this presentation
+  only through a separately authorized future patch release.
+- `@moonweave-ai/ontotect@0.1.0` has been published. Anonymous registry access,
+  public npx help, and project-scoped installation into all five isolated host
+  layouts passed. Package provenance and npm account recovery remain separately
+  tracked.
+- Ignore-rule semantics were executed using isolated temporary Git metadata.
+  The repository has since been published; that release event does not alter
+  the scope of the original ignore-rule check.
 - No target domain ontology or complete OWL reasoner contract was supplied.
   Starter-fixture results are not proof that another ontology is consistent,
   satisfiable, correct, or release-ready.
-- ADR 0001, ADR 0002, and ADR 0003 are accepted, the project uses MIT, and the Owner authorized
-  the initial release. Permanent security contact, npm account recovery, public
-  repository settings, and CI remain follow-up decisions.
-- This record is `draft` until the project Owner reviews it. Later behavior or
-  documentation changes require a new or updated record; prior results must
+- ADR 0001, ADR 0002, and ADR 0003 are accepted, and the project uses MIT.
+  Permanent security contact, npm account recovery, public repository settings,
+  and CI remain follow-up decisions.
+- This record is active for the evidence captured on 2026-08-07. Later behavior
+  or documentation changes require a new or updated record; prior results must
   not be silently carried forward.

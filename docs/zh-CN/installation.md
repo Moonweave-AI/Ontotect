@@ -37,7 +37,7 @@ node bin/ontotect.js plan --agents all --scope project --project-root .
 node bin/ontotect.js install --agents all --scope project --project-root .
 ```
 
-该包没有依赖或生命周期脚本；仅获取包不会复制技能。只有获授权的组织 scoped npm 发布成功后，公共 `npx @moonweave-ai/ontotect` 命令才可用。源码、本地包、registry、用户级、覆盖及安全详情见 [npm 与 npx 安装](npm-and-npx-installation.md)。
+该包没有依赖或生命周期脚本；仅获取包不会复制技能。`0.1.0` 已以 `@moonweave-ai/ontotect` 发布到 npm。公共 npx、源码、本地包、用户级、覆盖及安全路径详见 [npm 与 npx 安装](npm-and-npx-installation.md)。
 
 ## 使用 Python 安装器
 
