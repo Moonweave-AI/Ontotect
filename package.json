@@ -1,0 +1,44 @@
+{
+  "name": "ontotect",
+  "version": "0.1.0",
+  "description": "Ontology engineering skill with a portable installer for common coding agents",
+  "keywords": [
+    "agent-skill",
+    "ontology",
+    "ontology-engineering",
+    "owl",
+    "rdf",
+    "shacl",
+    "sparql"
+  ],
+  "license": "MIT",
+  "author": "Moonweave AI",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Moonweave-AI/Ontotect.git"
+  },
+  "homepage": "https://github.com/Moonweave-AI/Ontotect#readme",
+  "bugs": {
+    "url": "https://github.com/Moonweave-AI/Ontotect/issues"
+  },
+  "type": "module",
+  "bin": {
+    "ontotect": "bin/ontotect.js"
+  },
+  "files": [
+    "bin/",
+    "LICENSE",
+    "README.md",
+    "README.zh-CN.md",
+    "docs/assets/ontotect-banner.svg",
+    "ontotect/SKILL.md",
+    "ontotect/agents/",
+    "ontotect/assets/",
+    "ontotect/references/",
+    "ontotect/scripts/*.py"
+  ],
+  "scripts": {
+    "test": "node --test tests/npm-installer.test.mjs",
+    "test:npm": "node --test tests/npm-installer.test.mjs"
+  }
+}
