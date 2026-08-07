@@ -6,7 +6,7 @@
   <p><em>Engineer meaning, not just triples.</em></p>
   <p>
     <a href="https://www.npmjs.com/package/@moonweave-ai/ontotect"><img src="https://img.shields.io/npm/v/%40moonweave-ai%2Fontotect?logo=npm&amp;label=npm" alt="npm version" /></a>
-    <a href="https://www.npmjs.com/package/@moonweave-ai/ontotect"><img src="https://img.shields.io/npm/dm/%40moonweave-ai%2Fontotect?logo=npm&amp;label=downloads" alt="monthly npm downloads" /></a>
+    <a href="package.json"><img src="https://img.shields.io/badge/dependencies-0-2ea44f" alt="zero runtime dependencies" /></a>
     <a href="https://github.com/Moonweave-AI/Ontotect"><img src="https://img.shields.io/github/stars/Moonweave-AI/Ontotect?logo=github&amp;label=stars" alt="GitHub stars" /></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2ea44f.svg" alt="MIT License" /></a>
   </p>

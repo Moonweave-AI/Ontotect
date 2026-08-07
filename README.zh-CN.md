@@ -6,7 +6,7 @@
   <p><em>工程化语义，而不只是生成三元组。</em></p>
   <p>
     <a href="https://www.npmjs.com/package/@moonweave-ai/ontotect"><img src="https://img.shields.io/npm/v/%40moonweave-ai%2Fontotect?logo=npm&amp;label=npm" alt="npm 版本" /></a>
-    <a href="https://www.npmjs.com/package/@moonweave-ai/ontotect"><img src="https://img.shields.io/npm/dm/%40moonweave-ai%2Fontotect?logo=npm&amp;label=downloads" alt="npm 月下载量" /></a>
+    <a href="package.json"><img src="https://img.shields.io/badge/dependencies-0-2ea44f" alt="零运行时依赖" /></a>
     <a href="https://github.com/Moonweave-AI/Ontotect"><img src="https://img.shields.io/github/stars/Moonweave-AI/Ontotect?logo=github&amp;label=stars" alt="GitHub Stars" /></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2ea44f.svg" alt="MIT 许可证" /></a>
   </p>
