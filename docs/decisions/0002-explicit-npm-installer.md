@@ -11,6 +11,7 @@ canonical: docs/decisions/0002-explicit-npm-installer.md
 related:
   - package.json
   - bin/ontotect.js
+  - docs/decisions/0003-organization-scoped-npm-package.md
   - docs/en/npm-and-npx-installation.md
   - docs/en/npm-installer-security-review.md
 supersedes: null
@@ -23,7 +24,7 @@ superseded_by: null
 
 ## Status
 
-Accepted by the Owner on 2026-08-07. The Owner selected the MIT License and explicitly authorized publication of the repository and `ontotect` npm package.
+Accepted by the Owner on 2026-08-07. The Owner selected the MIT License and explicitly authorized publication. ADR 0003 amends only the package identity from the originally proposed unscoped name to `@moonweave-ai/ontotect`; the executable and all safety controls in this ADR remain unchanged.
 
 ## Context
 
@@ -33,7 +34,7 @@ The project is released under the MIT License. npm package identity metadata mus
 
 ## Decision
 
-1. Add one unscoped package named `ontotect` with one executable named `ontotect`.
+1. Add one npm package with one executable named `ontotect`. The current package identity is `@moonweave-ai/ontotect` under ADR 0003.
 2. Use only Node.js standard-library APIs. Declare no runtime, development, optional, peer, or bundled dependencies.
 3. Provide no `preinstall`, `install`, `postinstall`, `prepare`, or other package lifecycle script. Merely downloading or globally installing the package does not copy a skill.
 4. Require an explicit command:
@@ -48,7 +49,7 @@ The project is released under the MIT License. npm package identity metadata mus
 8. Copy the complete `ontotect/` skill package while excluding transient cache files. The source directory and destination are reported to the user.
 9. Use the `package.json` `files` allowlist to include only the executable, the distributable skill, public READMEs, and the local banner required by those READMEs. Do not package `book/`, `paper/`, `tools/`, `book-to-skill/`, `tmp/`, tests, local runtime state, or extracted text.
 10. Set npm metadata to `MIT` and include the authoritative project `LICENSE`. The required semantic package version is distribution metadata, not dependency pinning or a claim of release stability.
-11. Do not publish to npm, create a release, or claim public `npx ontotect` availability without explicit Owner authorization and a successful registry check. The Owner's 2026-08-07 publication directive supplies that authorization for version `0.1.0`; execution evidence belongs in the verification record.
+11. Do not publish to npm, create a release, or claim public registry availability without explicit Owner authorization and a successful registry check. The Owner's 2026-08-07 publication directive supplies that authorization for version `0.1.0`; execution evidence belongs in the verification record.
 
 ## Host destinations
 
@@ -75,7 +76,7 @@ These are installer targets, not a guarantee that a live product has discovered 
 
 - npm requires a package version even though the project does not pin dependencies.
 - Users must run a second, explicit command after acquiring the package.
-- Public `npx ontotect` cannot work until the authorized package publication succeeds in the registry.
+- Public scoped npx installation cannot work until the authorized package publication succeeds in the registry.
 - External-host discovery and behavior still require separate live-host tests.
 - Package metadata, repository documentation, and the authoritative MIT license must remain synchronized.
 

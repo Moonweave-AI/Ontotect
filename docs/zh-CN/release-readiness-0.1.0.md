@@ -12,6 +12,7 @@ related:
   - docs/zh-CN/verification-record.md
   - docs/zh-CN/npm-installer-security-review.md
   - docs/decisions/0002-explicit-npm-installer.md
+  - docs/decisions/0003-organization-scoped-npm-package.md
   - package.json
 supersedes: null
 superseded_by: null
@@ -23,9 +24,10 @@ superseded_by: null
 
 ## 决策
 
-**Conditional Go。** Owner 已选择 MIT 许可证、接受 ADR 0001 与 ADR
-0002，并授权首次公开 GitHub 与 npm 发布。完成干净的暂存审查后可推送仓库；npm
-发布必须等待已认证的 registry 身份，并在发布后完成 registry 与公共 npx 验证。
+**Conditional Go。** Owner 已选择 MIT 许可证，接受 ADR 0001、ADR 0002 与 ADR
+0003，并授权首次公开 GitHub 与 npm 发布。GitHub `main` 已同步；npm 认证与组织
+ownership 已验证。发布仍需通过最终 package 检查，并在完成后执行 registry 与公共
+npx 验证。
 
 工作对象：公开 Release Operation。风险：**S4**。所需质量：**QA-L4**。
 Owner 与发布权威：Moonweave-AI。执行 DRI：发布维护者。
@@ -33,7 +35,7 @@ Owner 与发布权威：Moonweave-AI。执行 DRI：发布维护者。
 ## 发布范围
 
 - GitHub 仓库：`Moonweave-AI/Ontotect`，分支 `main`。
-- npm 包：`ontotect@0.1.0`，public access。
+- npm 包：`@moonweave-ai/ontotect@0.1.0`，public access；可执行命令为 `ontotect`。
 - 许可证：原创仓库内容采用 MIT；第三方参考资料与被排除的私有研究语料继续适用
   各自条款。
 - 分发内容：一个零依赖可执行程序，以及面向 Cursor、Codex、Kilo、OpenCode、
@@ -52,8 +54,8 @@ Owner 与发布权威：Moonweave-AI。执行 DRI：发布维护者。
 | 依赖与生命周期边界 | Pass：零依赖，无 install/prepare 生命周期脚本 |
 | 候选 secret 与本地路径扫描 | Pass：公开文件 0 命中 |
 | GitHub 仓库访问 | Pass：账号已认证、目标是空的公开仓库、SSH remote 可访问 |
-| npm 包名检查 | Pass：发布前未观察到已发布的 `ontotect` 包 |
-| npm 认证 | 发布前预检受阻：registry 返回 `E401 Unauthorized`；发布前必须复核 |
+| npm 包名检查 | Pass：发布前未观察到已发布的 `@moonweave-ai/ontotect` 包 |
+| npm 认证与组织权限 | Pass：已认证操作者是 `moonweave-ai` npm organization owner，并对现有组织包具有 read-write 权限 |
 
 需要时采用文件与字节直接比较。本发布不增加密码学哈希验证、依赖固化、宿主版本
 锁定或 package lock。
@@ -63,7 +65,7 @@ Owner 与发布权威：Moonweave-AI。执行 DRI：发布维护者。
 1. 初始化 `main`，审查 ignored 与 staged 文件，并创建有逻辑边界的本地 commits。
 2. 把 `main` 推送到空的公开 GitHub 仓库，验证远端 head 与公共 README。
 3. 复核 npm 认证、包名状态、测试和准确的 dry-run package 列表。
-4. 以 public access 发布 `ontotect@0.1.0`。
+4. 以 public access 发布 `@moonweave-ai/ontotect@0.1.0`。
 5. 验证 registry metadata、公共 package 内容，并在隔离五宿主项目根执行干净的
    `npx` 安装。
 6. 用观察到的发布证据更新验证与安全记录，提交该记录并再次推送 `main`。

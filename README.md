@@ -96,11 +96,12 @@ ontotect install --agents all --scope project --project-root .
 
 ### After public npm publication
 
-The registry forms become available after the `ontotect` package is published:
+The registry forms become available after the official organization package
+`@moonweave-ai/ontotect` is published:
 
 ~~~powershell
-npx ontotect install --agents all --scope project --project-root .
-npm install --global ontotect
+npx @moonweave-ai/ontotect install --agents all --scope project --project-root .
+npm install --global @moonweave-ai/ontotect
 ~~~
 
 The source-checkout and local-package forms above are the current paths. See

@@ -281,9 +281,14 @@ test("invalid commands and options fail without writing", async (t) => {
 
 test("package metadata is an explicit zero-dependency whitelist", async () => {
   const packageJson = JSON.parse(await readFile(join(ROOT, "package.json"), "utf8"));
+  assert.equal(packageJson.name, "@moonweave-ai/ontotect");
   assert.equal(packageJson.type, "module");
   assert.equal(packageJson.license, "MIT");
   assert.equal(packageJson.repository.url, "git+https://github.com/Moonweave-AI/Ontotect.git");
+  assert.deepEqual(packageJson.publishConfig, {
+    access: "public",
+    registry: "https://registry.npmjs.org/"
+  });
   assert.deepEqual(packageJson.bin, { ontotect: "bin/ontotect.js" });
   assert.ok(Array.isArray(packageJson.files));
   assert.ok(packageJson.files.includes("LICENSE"));
@@ -321,6 +326,7 @@ test("a locally packed tarball installs all five hosts through npx", async (t) =
   );
   assert.equal(packed.status, 0, `${packed.stdout}\n${packed.stderr}`);
   const packReport = JSON.parse(packed.stdout)[0];
+  assert.equal(packReport.name, "@moonweave-ai/ontotect");
   const packagePaths = packReport.files.map((file) => file.path);
   const forbidden = packagePaths.filter(
     (path) =>

@@ -11,6 +11,7 @@ canonical: docs/decisions/0002-explicit-npm-installer.md
 related:
   - package.json
   - bin/ontotect.js
+  - docs/decisions/0003-organization-scoped-npm-package.md
   - docs/zh-CN/npm-and-npx-installation.md
   - docs/zh-CN/npm-installer-security-review.md
 supersedes: null
@@ -23,7 +24,7 @@ superseded_by: null
 
 ## 状态
 
-Owner 已于 2026-08-07 接受本 ADR，选择 MIT 许可证，并明确授权公开仓库及 `ontotect` npm 包。
+Owner 已于 2026-08-07 接受本 ADR，选择 MIT 许可证并明确授权发布。ADR 0003 仅把原先拟定的非 scoped 包名修订为 `@moonweave-ai/ontotect`；可执行命令与本 ADR 的全部安全控制保持不变。
 
 ## 背景
 
@@ -33,7 +34,7 @@ Ontotect 已有便携 Agent Skills 目录和 Python 安装器。Cursor、Codex�
 
 ## 决定
 
-1. 增加一个名为 `ontotect` 的非 scoped 包，并提供同名可执行命令。
+1. 增加一个 npm 包，并提供名为 `ontotect` 的可执行命令。当前 package identity 按 ADR 0003 使用 `@moonweave-ai/ontotect`。
 2. 只使用 Node.js 标准库；不声明 runtime、development、optional、peer 或 bundled dependencies。
 3. 不提供 `preinstall`、`install`、`postinstall`、`prepare` 或其他包生命周期脚本。仅下载或全局安装包不会复制技能。
 4. 必须显式运行：
@@ -48,7 +49,7 @@ Ontotect 已有便携 Agent Skills 目录和 Python 安装器。Cursor、Codex�
 8. 复制完整 `ontotect/` 技能包，同时排除临时缓存文件，并向用户报告源目录与目标目录。
 9. 通过 `package.json` 的 `files` 白名单只包含可执行程序、可分发技能、公开 README 及 README 使用的本地 banner。不得打包 `book/`、`paper/`、`tools/`、`book-to-skill/`、`tmp/`、测试、本地运行状态或提取全文。
 10. npm metadata 使用 `MIT` 并包含权威项目 `LICENSE`。npm 必需的语义版本只是分发 metadata，不是依赖固化，也不是稳定发布声明。
-11. 未经 Owner 明确授权且 registry 检查未成功，不发布到 npm、不创建 release，也不声称公共 `npx ontotect` 已可用。Owner 于 2026-08-07 的发布指令已为 `0.1.0` 提供授权；实际执行证据写入验证记录。
+11. 未经 Owner 明确授权且 registry 检查未成功，不发布到 npm、不创建 release，也不声称公共 registry 获取已可用。Owner 于 2026-08-07 的发布指令已为 `0.1.0` 提供授权；实际执行证据写入验证记录。
 
 ## 宿主目标路径
 
@@ -75,7 +76,7 @@ Ontotect 已有便携 Agent Skills 目录和 Python 安装器。Cursor、Codex�
 
 - npm 即使没有依赖固化，也必须有 package version。
 - 用户获取包后必须再运行一个显式命令。
-- 只有获授权的 package publication 在 registry 成功后，公共 `npx ontotect` 才能工作。
+- 只有获授权的 package publication 在 registry 成功后，公共 scoped npx 安装才能工作。
 - 外部宿主发现与行为仍需独立 live-host 测试。
 - package metadata、仓库文档与权威 MIT 许可证必须保持同步。
 

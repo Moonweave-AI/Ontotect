@@ -153,7 +153,7 @@ class RepositoryDocumentationTests(unittest.TestCase):
 
     def test_npm_package_is_explicit_and_dependency_free(self) -> None:
         package = json.loads((ROOT / "package.json").read_text(encoding="utf-8"))
-        self.assertEqual(package["name"], "ontotect")
+        self.assertEqual(package["name"], "@moonweave-ai/ontotect")
         self.assertEqual(package["license"], "MIT")
         self.assertEqual(
             package["repository"]["url"],
@@ -162,6 +162,10 @@ class RepositoryDocumentationTests(unittest.TestCase):
         self.assertTrue((ROOT / "LICENSE").is_file())
         self.assertIn("MIT License", (ROOT / "LICENSE").read_text(encoding="utf-8"))
         self.assertEqual(package["type"], "module")
+        self.assertEqual(
+            package["publishConfig"],
+            {"access": "public", "registry": "https://registry.npmjs.org/"},
+        )
         self.assertEqual(package["bin"], {"ontotect": "bin/ontotect.js"})
         self.assertTrue((ROOT / package["bin"]["ontotect"]).is_file())
 
@@ -190,6 +194,21 @@ class RepositoryDocumentationTests(unittest.TestCase):
         self.assertIn("docs/assets/ontotect-banner.svg", files)
         self.assertIn("ontotect/scripts/*.py", files)
         self.assertNotIn("ontotect/scripts/", files)
+
+        public_install_docs = (
+            (ROOT / "README.md").read_text(encoding="utf-8"),
+            (ROOT / "README.zh-CN.md").read_text(encoding="utf-8"),
+            (ROOT / "docs" / "en" / "npm-and-npx-installation.md").read_text(
+                encoding="utf-8"
+            ),
+            (ROOT / "docs" / "zh-CN" / "npm-and-npx-installation.md").read_text(
+                encoding="utf-8"
+            ),
+        )
+        for body in public_install_docs:
+            self.assertIn("@moonweave-ai/ontotect", body)
+            self.assertNotIn("npx ontotect ", body)
+            self.assertNotIn("npm install --global ontotect", body)
         self.assertFalse(
             {"book/", "paper/", "tools/", "book-to-skill/", "tmp/", "tests/"}
             & files

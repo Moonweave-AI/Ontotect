@@ -10,6 +10,7 @@ summary: 对 Ontotect 显式、零依赖 npm 与 npx 安装器进行 S4、QA-L4 
 canonical: docs/en/npm-installer-security-review.md
 related:
   - docs/decisions/0002-explicit-npm-installer.md
+  - docs/decisions/0003-organization-scoped-npm-package.md
   - package.json
   - bin/ontotect.js
   - SECURITY.zh-CN.md

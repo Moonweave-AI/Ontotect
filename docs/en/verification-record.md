@@ -13,6 +13,7 @@ related:
   - docs/en/compatibility.md
   - docs/decisions/0001-portable-command-router.md
   - docs/decisions/0002-explicit-npm-installer.md
+  - docs/decisions/0003-organization-scoped-npm-package.md
   - docs/en/npm-installer-security-review.md
 supersedes: null
 superseded_by: null
@@ -45,10 +46,10 @@ ontology validation report.
 | Command process matrix | Invoked every scenario-card command, all seven `stage` commands, and all six unambiguous direct stage aliases | 9 scenario commands, 7 stages, and 6 aliases exited 0; router/help behavior is also covered by tests |
 | Router regression | Tested English and Chinese multi-intent routing, explicit command precedence, plan-only, ambiguous targets, every scenario, and coordination stages | Passed; `help` now uses `n/a`, while unknown `status` stage is `unverified` |
 | Five-host packaging | Dry-run and applied the installer into isolated Cursor, Codex, Kilo, OpenCode, and Claude layouts | 5 plans and 5 installs; 48 files per source set compared byte-for-byte with zero mismatch; 5 repeat installs correctly refused without `--force` |
-| npm package metadata | Inspected `package.json` and executable behavior | Package name and binary are `ontotect`; MIT license, repository metadata, ESM, zero dependencies, no engine constraint, no install/prepare lifecycle scripts, and a public-file allowlist |
+| npm package metadata | Inspected `package.json` and executable behavior | Package name is `@moonweave-ai/ontotect`, binary is `ontotect`; MIT license, Moonweave-AI repository metadata, public publish configuration, ESM, zero dependencies, no engine constraint, no install/prepare lifecycle scripts, and a public-file allowlist |
 | npm pack allowlist | Ran `npm pack --dry-run --json --ignore-scripts` after Python tests had generated local caches | The first inspection exposed two `.pyc` cache files and blocked acceptance; the scripts allowlist was narrowed. The MIT release candidate contains 54 intended entries including `LICENSE`, all required public files, and zero corpus, cache, test, temporary, document-source, or tarball offenders |
 | Packed npx installation | Created a real local tarball in an isolated temporary directory, invoked it through npx in offline/ignore-scripts mode, and removed it after the test | All 5 project destinations installed; 48 relative files per destination matched the canonical skill byte-for-byte with zero mismatch; no registry publication occurred |
-| npm installer security | Applied the S4 / QA-L4 threat model and checked explicit mutation, fixed destinations, overwrite, network, dependency, corpus, and lifecycle boundaries | Local controls passed; the Owner accepted ADR 0002, selected MIT, and authorized `0.1.0`. Registry authentication, publication evidence, account recovery, provenance, and a permanent private reporting path remain separately tracked |
+| npm installer security | Applied the S4 / QA-L4 threat model and checked explicit mutation, fixed destinations, overwrite, network, dependency, corpus, lifecycle, and organization-scope boundaries | Local controls passed; the Owner accepted ADR 0002 and ADR 0003, selected MIT, and authorized `0.1.0`. Registry authentication and npm organization ownership are verified; publication evidence, account recovery, provenance, and a permanent private reporting path remain separately tracked |
 | Ignore behavior | Evaluated `.gitignore` with isolated temporary Git metadata | 10 private/generated cases ignored; 7 public Markdown/Turtle/SPARQL/JSON or `.env.example` cases remained visible |
 | First-contact behavior | A context-isolated Agent loaded the skill progressively and answered a Chinese first-use request | Correctly chose read-only `help`, recommended a separate read-only `review`, and preserved `unverified`; it exposed a help-stage ambiguity that was corrected and regression-tested |
 | Mixed-intent behavior | An independent follow-up evaluator routed a Chinese review, repair, OWL/SHACL validation, and release-evidence request | Selected `review -> repair -> validate -> release` preflight; limited writes to the named ontology and confirmed tests; prohibited remote publication; identified missing CQ, import, tool, and authority inputs; found no material defect after the correction |
@@ -81,16 +82,18 @@ directories and removed them after execution.
 - Cursor, Codex, Kilo, OpenCode, and Claude Code were not each launched as
   external products against this checkout. Discovery and behavioral
   compatibility in those live hosts remain `unverified`.
-- The public npm package was not published. Registry ownership, publisher
-  identity, package provenance, account recovery, and public `npx ontotect`
-  acquisition remain `unverified`; only a locally packed tarball was executed.
+- The public npm package was not yet published at this record point. The
+  authenticated operator and `moonweave-ai` organization ownership were
+  verified; package provenance, account recovery, and public
+  `npx @moonweave-ai/ontotect` acquisition remain `unverified`. Only a locally
+  packed tarball was executed.
 - The repository root is not currently a Git worktree. Ignore-rule semantics
   were executed using temporary Git metadata, but the set of tracked files and
   remote publication state remain `unverified`.
 - No target domain ontology or complete OWL reasoner contract was supplied.
   Starter-fixture results are not proof that another ontology is consistent,
   satisfiable, correct, or release-ready.
-- ADR 0001 and ADR 0002 are accepted, the project uses MIT, and the Owner authorized
+- ADR 0001, ADR 0002, and ADR 0003 are accepted, the project uses MIT, and the Owner authorized
   the initial release. Permanent security contact, npm account recovery, public
   repository settings, and CI remain follow-up decisions.
 - This record is `draft` until the project Owner reviews it. Later behavior or

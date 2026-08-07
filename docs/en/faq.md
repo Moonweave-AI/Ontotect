@@ -36,9 +36,9 @@ No. `router` is canonical and `route` is an alias. Output should normalize to `r
 
 The portable commands are Agent prompt contracts. Use `Use Ontotect. Command: review. Target: ...`. The Python `ontotect.py` navigator only prints command guidance; it does not perform the ontology work.
 
-## Does `npx ontotect install` perform ontology engineering?
+## Does `npx @moonweave-ai/ontotect install` perform ontology engineering?
 
-No. The npm executable only plans or copies the complete skill into fixed host discovery roots. It does not run the Agent workflow, validators, reasoners, repairs, or publication. Public `npx ontotect` also requires a future authorized npm release; use `node bin/ontotect.js` in the current source Preview.
+No. The npm executable only plans or copies the complete skill into fixed host discovery roots. It does not run the Agent workflow, validators, reasoners, repairs, or publication. Public `npx @moonweave-ai/ontotect` requires the authorized organization release to succeed; use `node bin/ontotect.js` until registry verification is recorded.
 
 ## Why separate `validate` from `verify`?
 

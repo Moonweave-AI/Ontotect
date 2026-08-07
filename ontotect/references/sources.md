@@ -231,7 +231,8 @@ Ontotect follows the open Agent Skills directory model: a `SKILL.md` front door 
 - [npm `package.json` documentation](https://docs.npmjs.com/cli/configuring-npm/package-json/) for `name`, `version`, `license`, `files`, and `bin` semantics.
 - [npm `npx` documentation](https://docs.npmjs.com/cli/commands/npx/) for running a package binary locally or after registry acquisition.
 - [npm pack documentation](https://docs.npmjs.com/cli/pack/) for `--dry-run`, JSON reporting, and tarball inspection.
-- The public registry lookup for `ontotect` returned `E404` on 2026-08-07. This is an availability observation, not package ownership, publication, or reservation evidence.
+- The initial public registry lookup for the superseded unscoped name `ontotect` returned `E404` on 2026-08-07.
+- After ADR 0003 selected the organization scope, registry lookup for `@moonweave-ai/ontotect` also returned `E404`; npm authentication reported that the operator is an owner of the `moonweave-ai` organization with read-write access to its existing package. These are preflight observations, not publication or permanent reservation evidence.
 
 Host discovery paths and portability tests are recorded in [agent-compatibility.md](agent-compatibility.md). `agents/openai.yaml` is optional Codex/OpenAI UI metadata and does not control the portable workflow.
 

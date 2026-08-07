@@ -1,5 +1,5 @@
 {
-  "name": "ontotect",
+  "name": "@moonweave-ai/ontotect",
   "version": "0.1.0",
   "description": "Ontology engineering skill with a portable installer for common coding agents",
   "keywords": [
@@ -20,6 +20,10 @@
   "homepage": "https://github.com/Moonweave-AI/Ontotect#readme",
   "bugs": {
     "url": "https://github.com/Moonweave-AI/Ontotect/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "type": "module",
   "bin": {

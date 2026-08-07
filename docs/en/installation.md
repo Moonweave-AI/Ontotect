@@ -37,7 +37,7 @@ Apply the reviewed plan:
 node bin/ontotect.js install --agents all --scope project --project-root .
 ```
 
-The package has no dependencies or lifecycle scripts; acquisition alone does not copy the skill. Public `npx ontotect` commands become available only after an authorized npm publication. See [npm and npx installation](npm-and-npx-installation.md) for source, local package, future registry, user-scope, overwrite, and security details.
+The package has no dependencies or lifecycle scripts; acquisition alone does not copy the skill. Public `npx @moonweave-ai/ontotect` commands become available only after the authorized organization-scoped npm publication succeeds. See [npm and npx installation](npm-and-npx-installation.md) for source, local package, registry, user-scope, overwrite, and security details.
 
 ## Use the Python installer
 

@@ -13,6 +13,7 @@ related:
   - docs/zh-CN/compatibility.md
   - docs/decisions/0001-portable-command-router.md
   - docs/decisions/0002-explicit-npm-installer.md
+  - docs/decisions/0003-organization-scoped-npm-package.md
   - docs/zh-CN/npm-installer-security-review.md
 supersedes: null
 superseded_by: null
@@ -43,10 +44,10 @@ superseded_by: null
 | 命令进程矩阵 | 调用所有场景卡命令、7 个 `stage` 命令和 6 个无歧义直接阶段别名 | 9 个场景命令、7 个阶段和 6 个别名均 exit 0；Router/Help 另由测试覆盖 |
 | Router 回归 | 英中多意图、显式覆盖、plan-only、模糊目标、全部场景和协调命令阶段 | 通过；`help` 使用 `n/a`，无法确定的 `status` 阶段为 `unverified` |
 | 五宿主打包 | 在隔离的 Cursor、Codex、Kilo、OpenCode、Claude 目录中 dry-run 并安装 | 5 个计划、5 个安装；每个源集 48 个文件逐字节直接比较，0 差异；未给 `--force` 的 5 个重复安装全部正确拒绝 |
-| npm package metadata | 检查 `package.json` 与可执行行为 | 包名和 binary 均为 `ontotect`；MIT 许可证、仓库 metadata、ESM、零依赖、无 engine 约束、无 install/prepare 生命周期脚本，并使用公共文件白名单 |
+| npm package metadata | 检查 `package.json` 与可执行行为 | Package name 为 `@moonweave-ai/ontotect`，binary 为 `ontotect`；MIT 许可证、Moonweave-AI 仓库 metadata、public publish 配置、ESM、零依赖、无 engine 约束、无 install/prepare 生命周期脚本，并使用公共文件白名单 |
 | npm pack 白名单 | 在 Python 测试生成本地缓存后运行 `npm pack --dry-run --json --ignore-scripts` | 首次检查发现两个 `.pyc` 缓存并阻止验收；随后收紧 scripts 白名单。MIT 发布候选包含 54 个预期条目（含 `LICENSE`），必需公共文件齐全，语料、缓存、测试、临时文件、文档源和 tarball offender 均为 0 |
 | 打包 npx 安装 | 在隔离临时目录创建真实本地 tarball，以 offline/ignore-scripts 模式通过 npx 调用，并在测试后删除 | 5 个项目目标全部安装；每个目标 48 个相对文件与 canonical 技能逐字节一致，0 差异；未发生 registry 发布 |
-| npm 安装器安全 | 应用 S4 / QA-L4 威胁模型，检查显式修改、固定目标、覆盖、网络、依赖、语料和生命周期边界 | 本地控制通过；Owner 已接受 ADR 0002、选择 MIT 并授权 `0.1.0`。Registry 认证、发布证据、账号恢复、provenance 和永久私密报告路径继续单独跟踪 |
+| npm 安装器安全 | 应用 S4 / QA-L4 威胁模型，检查显式修改、固定目标、覆盖、网络、依赖、语料、生命周期与组织 scope 边界 | 本地控制通过；Owner 已接受 ADR 0002 与 ADR 0003、选择 MIT 并授权 `0.1.0`。Registry 认证与 npm organization ownership 已验证；发布证据、账号恢复、provenance 和永久私密报告路径继续单独跟踪 |
 | Ignore 行为 | 通过隔离临时 Git metadata 执行 `.gitignore` | 10 个私有/生成案例被忽略；7 个公开 Markdown/Turtle/SPARQL/JSON 或 `.env.example` 案例保持可见 |
 | 首次接触行为 | 上下文隔离 Agent 渐进加载技能并回答中文首次使用请求 | 正确选择只读 `help`，把只读 `review` 作为独立下一步，并保留 `unverified`；其发现的 help 阶段歧义已修正并加入回归 |
 | 多意图行为 | 独立后续评估者路由中文审核、修正、OWL/SHACL 验证和发布证据请求 | 选择 `review -> repair -> validate -> release` 预检；写入仅限指定本体及已确认测试；禁止远端发布；指出缺失的 CQ、import、工具和权威输入；修正后未发现实质缺陷 |
@@ -78,12 +79,12 @@ python ontotect/scripts/install_skill.py --agents all --scope project --project-
 - 尚未把 Cursor、Codex、Kilo、OpenCode、Claude Code 五个外部产品逐一启动并指向
   本工作区，因此真实宿主中的 discovery 与 behavioral compatibility 仍为
   `unverified`。
-- 未发布公共 npm 包。Registry ownership、publisher 身份、package provenance、账号恢复及公共 `npx ontotect` 获取仍为 `unverified`；实际执行的只是本地打包 tarball。
+- 本记录此时尚未发布公共 npm 包。已验证认证操作者与 `moonweave-ai` organization ownership；package provenance、账号恢复及公共 `npx @moonweave-ai/ontotect` 获取仍为 `unverified`，实际执行的只是本地打包 tarball。
 - 仓库根目录目前不是 Git worktree。Ignore 规则已通过临时 Git metadata 实际执行，
   但 tracked files 集合和远程发布状态仍为 `unverified`。
 - 没有提供目标领域本体或完整 OWL reasoner 契约。Starter 夹具结果不能证明另一
   本体一致、可满足、正确或已准备发布。
-- ADR 0001 与 ADR 0002 已接受，项目采用 MIT，Owner 已授权首次发布。永久安全联系人、
+- ADR 0001、ADR 0002 与 ADR 0003 已接受，项目采用 MIT，Owner 已授权首次发布。永久安全联系人、
   npm 账号恢复、公共仓库设置与 CI 仍是后续决定。
 - 本记录在 Owner 审阅前保持 `draft`。后续行为或文档变更需要新建或更新记录，
   不得静默沿用历史结果。

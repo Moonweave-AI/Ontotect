@@ -36,9 +36,9 @@ superseded_by: null
 
 便携命令是 Agent 提示契约：`Use Ontotect. Command: review. Target: ...`。Python `ontotect.py` navigator 只打印命令指导，不执行本体工作。
 
-## `npx ontotect install` 会执行本体工程吗？
+## `npx @moonweave-ai/ontotect install` 会执行本体工程吗？
 
-不会。npm 可执行程序只规划或复制完整技能到固定宿主发现路径，不运行 Agent 工作流、validator、reasoner、repair 或发布。公共 `npx ontotect` 还需要未来获授权的 npm release；当前源码 Preview 请使用 `node bin/ontotect.js`。
+不会。npm 可执行程序只规划或复制完整技能到固定宿主发现路径，不运行 Agent 工作流、validator、reasoner、repair 或发布。公共 `npx @moonweave-ai/ontotect` 需要获授权的组织 release 成功；registry 验证记录完成前请使用 `node bin/ontotect.js`。
 
 ## 为什么区分 `validate` 和 `verify`？
 

@@ -12,6 +12,7 @@ related:
   - docs/en/verification-record.md
   - docs/en/npm-installer-security-review.md
   - docs/decisions/0002-explicit-npm-installer.md
+  - docs/decisions/0003-organization-scoped-npm-package.md
   - package.json
 supersedes: null
 superseded_by: null
@@ -23,11 +24,11 @@ superseded_by: null
 
 ## Decision
 
-**Conditional Go.** The Owner has selected the MIT License, accepted ADR 0001
-and ADR 0002, and authorized the initial public GitHub and npm release. The
-repository may be pushed after the clean staging review. npm publication must
-wait for an authenticated registry identity and must be followed by registry
-and public npx verification.
+**Conditional Go.** The Owner has selected the MIT License, accepted ADR 0001,
+ADR 0002, and ADR 0003, and authorized the initial public GitHub and npm
+release. GitHub `main` is synchronized. npm authentication and organization
+ownership are verified; publication must still pass the final package checks
+and be followed by registry and public npx verification.
 
 Work object: public release operation. Risk: **S4**. Required quality:
 **QA-L4**. Owner and release authority: Moonweave-AI. Execution DRI: the
@@ -36,7 +37,7 @@ publishing maintainer.
 ## Release scope
 
 - GitHub repository: `Moonweave-AI/Ontotect`, branch `main`.
-- npm package: `ontotect@0.1.0`, public access.
+- npm package: `@moonweave-ai/ontotect@0.1.0`, public access; executable `ontotect`.
 - License: MIT for original repository content; third-party references and the
   excluded private research corpus retain separate terms.
 - Distribution: one dependency-free executable and one portable skill for
@@ -56,8 +57,8 @@ publishing maintainer.
 | Dependency and lifecycle boundary | Pass: zero dependencies and no install/prepare lifecycle scripts |
 | Candidate secret and local-path scan | Pass: zero matching public files |
 | GitHub repository access | Pass: authenticated account, public empty target repository, SSH remote reachable |
-| npm package-name check | Pass: no published `ontotect` package observed before release |
-| npm authentication | Blocked at preflight: registry returned `E401 Unauthorized`; recheck required before publication |
+| npm package-name check | Pass: no published `@moonweave-ai/ontotect` package observed before release |
+| npm authentication and organization authority | Pass: authenticated operator is an owner of the `moonweave-ai` npm organization and has read-write access to its existing package |
 
 Checks use direct file and byte comparison where needed. This release does not
 add cryptographic hash validation, dependency pinning, host-version locking, or
@@ -71,7 +72,7 @@ a package lock.
    and public README.
 3. Recheck npm authentication, package-name state, tests, and the exact dry-run
    package list.
-4. Publish `ontotect@0.1.0` with public access.
+4. Publish `@moonweave-ai/ontotect@0.1.0` with public access.
 5. Verify registry metadata, public package contents, and a clean `npx`
    installation into isolated five-host project roots.
 6. Update the verification and security records with observed publication

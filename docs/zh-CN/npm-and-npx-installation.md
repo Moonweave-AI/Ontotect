@@ -11,6 +11,7 @@ canonical: docs/en/npm-and-npx-installation.md
 related:
   - docs/zh-CN/installation.md
   - docs/decisions/0002-explicit-npm-installer.md
+  - docs/decisions/0003-organization-scoped-npm-package.md
   - docs/zh-CN/npm-installer-security-review.md
   - package.json
 supersedes: null
@@ -55,7 +56,7 @@ ontotect plan --agents all --project-root .
 ontotect install --agents all --project-root .
 ```
 
-这使用当前 checkout，不是公共 registry release。不再需要时可运行 `npm uninstall --global ontotect` 删除全局命令。
+这使用当前 checkout，不是公共 registry release。不再需要时可运行 `npm uninstall --global @moonweave-ai/ontotect` 删除全局包。
 
 维护者无需发布即可检查本地包：
 
@@ -67,21 +68,21 @@ npm pack --dry-run --json
 
 ## 公共 npm 与 npx 命令
 
-只有获授权维护者把 `ontotect` 发布到公共 npm registry 后，下列命令才可用：
+只有获授权维护者把组织包 `@moonweave-ai/ontotect` 发布到公共 npm registry 后，下列命令才可用：
 
 ```powershell
-npx ontotect plan --agents all --scope project --project-root .
-npx ontotect install --agents all --scope project --project-root .
+npx @moonweave-ai/ontotect plan --agents all --scope project --project-root .
+npx @moonweave-ai/ontotect install --agents all --scope project --project-root .
 ```
 
 也可先全局安装：
 
 ```powershell
-npm install --global ontotect
+npm install --global @moonweave-ai/ontotect
 ontotect install --agents all --scope project --project-root .
 ```
 
-当前 Preview 尚未执行公开发布；在此之前请使用源码树或本地包命令。
+当前 Preview 尚未完成公开发布。已批准的 package identity 是 `@moonweave-ai/ontotect`；registry 验证成功前，请使用源码树或本地包命令。
 
 ## 目标路径
 

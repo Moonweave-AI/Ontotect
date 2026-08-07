@@ -91,11 +91,11 @@ ontotect install --agents all --scope project --project-root .
 
 ### 公共 npm 发布后
 
-`ontotect` 软件包公开发布后，才可使用以下 registry 形式：
+官方组织包 `@moonweave-ai/ontotect` 公开发布后，才可使用以下 registry 形式：
 
 ~~~powershell
-npx ontotect install --agents all --scope project --project-root .
-npm install --global ontotect
+npx @moonweave-ai/ontotect install --agents all --scope project --project-root .
+npm install --global @moonweave-ai/ontotect
 ~~~
 
 当前可用的是上面的源码 checkout 与本地软件包形式。完整命令契约见

@@ -11,6 +11,7 @@ canonical: docs/en/npm-and-npx-installation.md
 related:
   - docs/en/installation.md
   - docs/decisions/0002-explicit-npm-installer.md
+  - docs/decisions/0003-organization-scoped-npm-package.md
   - docs/en/npm-installer-security-review.md
   - package.json
 supersedes: null
@@ -55,7 +56,7 @@ ontotect plan --agents all --project-root .
 ontotect install --agents all --project-root .
 ```
 
-This uses the current checkout. It is not a public registry release. Uninstall the global command with `npm uninstall --global ontotect` when it is no longer needed.
+This uses the current checkout. It is not a public registry release. Uninstall the global package with `npm uninstall --global @moonweave-ai/ontotect` when it is no longer needed.
 
 Maintainers can inspect a local package without publishing it:
 
@@ -67,21 +68,21 @@ Create any real test tarball only under the ignored `tmp/` directory, inspect it
 
 ## Public npm and npx commands
 
-The following commands become available only after an authorized maintainer publishes `ontotect` to the public npm registry:
+The following commands become available only after an authorized maintainer publishes the organization package `@moonweave-ai/ontotect` to the public npm registry:
 
 ```powershell
-npx ontotect plan --agents all --scope project --project-root .
-npx ontotect install --agents all --scope project --project-root .
+npx @moonweave-ai/ontotect plan --agents all --scope project --project-root .
+npx @moonweave-ai/ontotect install --agents all --scope project --project-root .
 ```
 
 Or install the executable globally first:
 
 ```powershell
-npm install --global ontotect
+npm install --global @moonweave-ai/ontotect
 ontotect install --agents all --scope project --project-root .
 ```
 
-Public publication has not been performed for the current Preview. Until it occurs, use the source-tree or local-package commands above.
+Public publication has not yet been completed for the current Preview. The approved package identity is `@moonweave-ai/ontotect`; until registry verification succeeds, use the source-tree or local-package commands above.
 
 ## Destination map
 

@@ -10,6 +10,7 @@ summary: S4 and QA-L4 security review of Ontotect's explicit, dependency-free np
 canonical: docs/en/npm-installer-security-review.md
 related:
   - docs/decisions/0002-explicit-npm-installer.md
+  - docs/decisions/0003-organization-scoped-npm-package.md
   - package.json
   - bin/ontotect.js
   - SECURITY.md
