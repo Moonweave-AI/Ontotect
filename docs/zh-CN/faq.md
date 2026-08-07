@@ -38,7 +38,7 @@ superseded_by: null
 
 ## `npx @moonweave-ai/ontotect install` 会执行本体工程吗？
 
-不会。npm 可执行程序只规划或复制完整技能到固定宿主发现路径，不运行 Agent 工作流、validator、reasoner、repair 或发布。公共 `npx @moonweave-ai/ontotect` 需要获授权的组织 release 成功；registry 验证记录完成前请使用 `node bin/ontotect.js`。
+不会。npm 可执行程序只规划或复制完整技能到固定宿主发现路径，不运行 Agent 工作流、validator、reasoner、repair 或发布。组织包已可从公共 npm registry 获取；可用 `npx @moonweave-ai/ontotect help` 查看安装器帮助，并用 `npx @moonweave-ai/ontotect install ...` 复制技能。
 
 ## 为什么区分 `validate` 和 `verify`？
 

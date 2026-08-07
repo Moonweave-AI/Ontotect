@@ -45,6 +45,7 @@ Ontotect is an ontology engineering skill for systematic ontology design, constr
 | [Architecture](architecture.md) | Skill package, progressive disclosure, command layer, assets, and scripts |
 | [Quality and validation](quality-and-validation.md) | Ten evidence layers, QA expectations, and honest result interpretation |
 | [Local verification record](verification-record.md) | Checks actually executed for this source package and their explicit limits |
+| [Release readiness 0.1.1](release-readiness-0.1.1.md) | Patch-candidate gates, rollout, rollback, and post-publication checks |
 | [Release readiness 0.1.0](release-readiness-0.1.0.md) | Go/No-Go evidence, rollout, rollback, and post-publication checks |
 | [Compatibility](compatibility.md) | Host discovery, portability contract, and verification status |
 | [npm installer security review](npm-installer-security-review.md) | S4 threat model, controls, residual risk, and release blockers |

@@ -45,6 +45,7 @@ Ontotect 是一个本体工程技能，用于系统化地设计、构建、审�
 | [架构](architecture.md) | 技能包、渐进披露、命令层、资产和脚本 |
 | [质量与验证](quality-and-validation.md) | 十层证据、QA 期望和结果解释 |
 | [本地验证记录](verification-record.md) | 当前源技能包实际执行的检查及其明确边界 |
+| [0.1.1 发布就绪报告](release-readiness-0.1.1.md) | 补丁候选门禁、rollout、回退与发布后检查 |
 | [0.1.0 发布就绪报告](release-readiness-0.1.0.md) | Go/No-Go 证据、rollout、回退与发布后检查 |
 | [兼容性](compatibility.md) | 宿主发现、便携契约和验证状态 |
 | [npm 安装器安全审查](npm-installer-security-review.md) | S4 威胁模型、控制、剩余风险与发布阻断项 |

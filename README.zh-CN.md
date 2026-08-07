@@ -33,7 +33,7 @@
 ![Ontotect 横幅：从路由意图推进到语义证据的本体工程](docs/assets/ontotect-banner.svg)
 
 > [!NOTE]
-> **公开预览版 · v0.1.0。** Moonweave AI 组织包
+> **公开预览版。** Moonweave AI 组织包
 > [`@moonweave-ai/ontotect`](https://www.npmjs.com/package/@moonweave-ai/ontotect)
 > 已发布。稳定版发布前，命令契约和文档仍可能继续演进；已执行检查及其边界记录在
 > [验证记录](docs/zh-CN/verification-record.md)中。
