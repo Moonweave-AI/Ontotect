@@ -33,7 +33,7 @@
 ![Ontotect banner: ontology engineering from routed intent to semantic evidence](docs/assets/ontotect-banner.svg)
 
 > [!NOTE]
-> **Public preview · v0.1.0.** The organization package is available as
+> **Public preview.** The organization package is available as
 > [`@moonweave-ai/ontotect`](https://www.npmjs.com/package/@moonweave-ai/ontotect).
 > Its command contract and documentation may continue to evolve before a stable
 > release. Executed checks and remaining boundaries are recorded in the

@@ -38,7 +38,7 @@ The portable commands are Agent prompt contracts. Use `Use Ontotect. Command: re
 
 ## Does `npx @moonweave-ai/ontotect install` perform ontology engineering?
 
-No. The npm executable only plans or copies the complete skill into fixed host discovery roots. It does not run the Agent workflow, validators, reasoners, repairs, or publication. Public `npx @moonweave-ai/ontotect` requires the authorized organization release to succeed; use `node bin/ontotect.js` until registry verification is recorded.
+No. The npm executable only plans or copies the complete skill into fixed host discovery roots. It does not run the Agent workflow, validators, reasoners, repairs, or publication. The organization package is available from the public npm registry; use `npx @moonweave-ai/ontotect help` to inspect the installer and `npx @moonweave-ai/ontotect install ...` to copy the skill.
 
 ## Why separate `validate` from `verify`?
 

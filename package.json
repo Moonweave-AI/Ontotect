@@ -1,6 +1,6 @@
 {
   "name": "@moonweave-ai/ontotect",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Ontology engineering skill with a portable installer for common coding agents",
   "keywords": [
     "agent-skill",
