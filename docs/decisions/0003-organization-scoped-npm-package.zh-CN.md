@@ -69,6 +69,12 @@ package identity 条款；显式安装、零依赖、固定路径、白名单和
 ## 实施状态
 
 `@moonweave-ai/ontotect@0.1.0` 已于 2026-08-07 以 public access 发布。官方
-registry 将 `latest` 指向 `0.1.0`，匿名 metadata 访问成功，组织权限为
-read-write，安装后的命令仍为 `ontotect`。公共 npx help 与五个受支持宿主布局的
-隔离项目级安装均通过；真实宿主加载仍为 `unverified`。
+registry 在该首次发布时将 `latest` 指向 `0.1.0`；匿名 metadata 访问成功，组织
+权限为 read-write，安装后的命令仍为 `ontotect`。公共 npx help 与五个受支持宿主
+布局的隔离项目级安装均通过。
+
+`@moonweave-ai/ontotect@0.1.1` 也于 2026-08-07 以 public access 发布。官方
+registry 报告精确版本 `0.1.1`、`latest` 为 `0.1.1`、MIT、`ontotect` 可执行命令
+以及 Moonweave-AI 仓库；匿名 metadata 访问成功。精确版本公共 npx help 与五个
+宿主布局的隔离项目级安装均通过，每个目标 48 个文件。真实宿主加载与用户/全局
+范围安装仍为 `unverified`。

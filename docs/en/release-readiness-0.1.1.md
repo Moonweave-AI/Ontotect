@@ -1,12 +1,12 @@
 ---
 type: verification
-status: conditional-go
+status: pass-with-actions
 owner: Moonweave-AI
 created: 2026-08-07
 updated: 2026-08-07
 last_reviewed: 2026-08-07
 review_cycle_days: 30
-summary: Pre-publication release-quality report, rollout plan, rollback path, and post-release gates for the Ontotect 0.1.1 patch candidate.
+summary: Release-quality report, completed rollout, rollback path, and post-publication evidence for Ontotect 0.1.1.
 canonical: docs/en/release-readiness-0.1.1.md
 related:
   - docs/en/release-readiness-0.1.0.md
@@ -25,15 +25,19 @@ superseded_by: null
 
 ## Decision
 
-**Conditional Go — pre-publication.** Ontotect 0.1.1 is a patch candidate for
-synchronizing the redesigned README, brand assets, and related documentation
-into the npm distribution. Publication is permitted only after the candidate
-tests, package inspection, organization authority, and Git synchronization
-gates below are executed and recorded as passing. Every candidate-specific
-result not yet executed by the release DRI is explicitly `unverified`.
+**Pass with follow-up actions.** Ontotect 0.1.1 was published with public access
+under the Moonweave AI organization scope. GitHub `main` was synchronized at
+release commit `2351760`. The official registry reports exact version `0.1.1`,
+`latest` as `0.1.1`, MIT, the `ontotect` executable, and the
+`Moonweave-AI/Ontotect` repository; anonymous metadata access succeeded. Public
+npx help and isolated project-scoped installation for all five host layouts
+passed. The npm page rendered the centered brand mark, banner, version badge,
+and redesigned README. Live-host loading, user/global-scope installation, npm
+account recovery, package provenance, and a permanent private security-reporting
+path remain `unverified` follow-up controls.
 
 Work object: public release operation. Risk: **S4**. Required quality:
-**QA-L4**. Maturity: **M6 public-preview patch candidate**. Owner and release authority:
+**QA-L4**. Maturity: **M6 public-preview patch release**. Owner and release authority:
 Moonweave-AI. Execution DRI: the publishing maintainer. A release gate and
 post-publication verification are required; the presentation-only patch does
 not require a new RFC or ADR unless its scope changes.
@@ -41,7 +45,7 @@ not require a new RFC or ADR unless its scope changes.
 ## Release scope
 
 - GitHub repository: `Moonweave-AI/Ontotect`, branch `main`.
-- npm candidate: `@moonweave-ai/ontotect@0.1.1`, public access; executable
+- npm package: `@moonweave-ai/ontotect@0.1.1`, public access; executable
   `ontotect`.
 - Change scope: synchronize the revised English and Chinese README experience,
   brand assets, and supporting documentation in the npm package.
@@ -57,11 +61,11 @@ not require a new RFC or ADR unless its scope changes.
 The published `0.1.0` evidence remains historical and immutable. This report
 does not rewrite or supersede the 0.1.0 release-readiness record.
 
-## Candidate evidence
+## Release evidence
 
 | Gate | Pre-publication result |
 |---|---|
-| Candidate commit and clean worktree identified | `unverified`; completed only after the reviewed candidate is committed and merged |
+| Candidate commit and clean worktree identified | Pass: reviewed candidate merged as `2351760`; worktree was clean before publication |
 | Python repository regression | Pass: 29 tests |
 | Node/npm installer regression, including local tarball npx execution | Pass: 8 tests |
 | Skill Creator and generated-skill validation | Pass: Skill Creator valid; advisory scan passed; Claude, Amp, and Copilot lenses reported zero warnings |
@@ -71,7 +75,7 @@ does not rewrite or supersede the 0.1.0 release-readiness record.
 | MIT license and `@moonweave-ai` organization scope in packed metadata | Pass |
 | npm authentication and organization write authority | Pass: authenticated publisher is a Moonweave-AI organization owner with package read-write access |
 | Registry check confirming `0.1.1` is not already published | Pass: exact-version lookup returned `E404` before publication |
-| GitHub `main` synchronization before publication | `unverified` |
+| GitHub `main` synchronization before publication | Pass: local `main` and `origin/main` both resolved to `2351760` before publication |
 
 Checks may use direct file and byte comparison where needed. This patch does
 not introduce cryptographic hash validation, dependency pinning, host-version
@@ -86,25 +90,27 @@ locking, or a package lock.
 3. **Complete:** inspect the exact npm dry-run package and confirm 55 intended
    entries, MIT, organization scope, zero dependencies, and no lifecycle
    scripts.
-4. **Pending:** commit and push the candidate to `main`; confirm that local and
+4. **Complete:** commit and push the candidate to `main`; confirm that local and
    remote heads match and that the public README and brand assets render.
-5. **Pending:** recheck npm identity, Moonweave-AI organization authority, and
+5. **Complete:** recheck npm identity, Moonweave-AI organization authority, and
    registry availability; publish `@moonweave-ai/ontotect@0.1.1` with public
    access.
-6. **Pending:** verify public registry metadata and `latest`, then acquire and
+6. **Complete:** verify public registry metadata and `latest`, then acquire and
    execute the package anonymously through npx in an isolated environment.
-7. **Pending:** run isolated project-scoped installation for all five supported
+7. **Complete:** run isolated project-scoped installation for all five supported
    host layouts and record the observed file counts and help output.
-8. **Pending:** update the canonical verification and security records, commit
-   the post-release evidence, push it, and confirm remote `main` synchronization.
+8. **Complete through this documentation change:** update the canonical
+   verification and security records; the merged documentation PR records the
+   write-back, and remote `main` synchronization is checked after merge.
 
-Any failed candidate gate changes the decision to **No-Go** until corrected and
-re-executed. No unverified result may be represented as a pass.
+All prepublication gates passed. A future regression triggers the rollback path
+and must not be represented as a pass until corrected and re-executed.
 
 ## Rollback and incident response
 
-- Before publication, stop the rollout and correct or revert only the candidate
-  changes; keep `@moonweave-ai/ontotect@0.1.0` as the known public version.
+- Before publication, `@moonweave-ai/ontotect@0.1.0` was retained as the last
+  known public version. Now that 0.1.1 is published, package defects follow the
+  published-package rollback path below.
 - If the GitHub presentation is defective, revert the specific reviewed commit
   and push the revert.
 - If 0.1.1 is published with a package defect, deprecate that version when
@@ -117,7 +123,7 @@ re-executed. No unverified result may be represented as a pass.
 
 ## Post-release gates
 
-The release is not complete until the DRI records all of the following:
+The DRI observed and recorded the following:
 
 - Registry metadata reports `@moonweave-ai/ontotect@0.1.1`, MIT, the `ontotect`
   executable, and `latest` pointing to 0.1.1.
@@ -130,4 +136,6 @@ The release is not complete until the DRI records all of the following:
   report are updated with observed evidence; local and remote `main` match.
 - Any regression triggers the rollback path and a documented follow-up action.
 
-Until these observations are recorded, all post-release gates are `unverified`.
+The observed release gates passed. Live-host loading, user/global-scope
+installation, npm account recovery, package provenance, and a permanent private
+security-reporting path remain `unverified` follow-up controls.

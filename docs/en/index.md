@@ -45,7 +45,7 @@ Ontotect is an ontology engineering skill for systematic ontology design, constr
 | [Architecture](architecture.md) | Skill package, progressive disclosure, command layer, assets, and scripts |
 | [Quality and validation](quality-and-validation.md) | Ten evidence layers, QA expectations, and honest result interpretation |
 | [Local verification record](verification-record.md) | Checks actually executed for this source package and their explicit limits |
-| [Release readiness 0.1.1](release-readiness-0.1.1.md) | Patch-candidate gates, rollout, rollback, and post-publication checks |
+| [Release readiness 0.1.1](release-readiness-0.1.1.md) | Published patch evidence, rollout, rollback, and follow-up controls |
 | [Release readiness 0.1.0](release-readiness-0.1.0.md) | Go/No-Go evidence, rollout, rollback, and post-publication checks |
 | [Compatibility](compatibility.md) | Host discovery, portability contract, and verification status |
 | [npm installer security review](npm-installer-security-review.md) | S4 threat model, controls, residual risk, and release blockers |
@@ -65,6 +65,6 @@ English pages are canonical. Files under `docs/zh-CN/` are same-name translation
 
 ## Project status
 
-Ontotect `0.1.0` is published on GitHub and npm. Structural installation and local fixtures have been tested, but a successful directory copy is not evidence that every external host has loaded and executed the skill. Each compatibility claim must identify what was actually checked and mark unavailable behavior `unverified`.
+GitHub `main` identifies Ontotect 0.1.1, and `@moonweave-ai/ontotect@0.1.1` is published on npm with `latest` pointing to 0.1.1. Structural installation and local fixtures have been tested, but a successful directory copy is not evidence that every external host has loaded and executed the skill. Each compatibility claim must identify what was actually checked and mark unavailable behavior `unverified`.
 
 Ontotect's original repository content is released under the [MIT License](../../LICENSE). Third-party references retain their own terms, and the private construction corpus is not distributed.

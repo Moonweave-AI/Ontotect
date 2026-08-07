@@ -68,7 +68,7 @@ Create any real test tarball only under the ignored `tmp/` directory, inspect it
 
 ## Public npm and npx commands
 
-Version `0.1.0` is published under the Moonweave AI organization scope. Run it directly from the public npm registry:
+Version `0.1.1` is published under the Moonweave AI organization scope and is the current `latest` release. Run it directly from the public npm registry:
 
 ```powershell
 npx @moonweave-ai/ontotect plan --agents all --scope project --project-root .

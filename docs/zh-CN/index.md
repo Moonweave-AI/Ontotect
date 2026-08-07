@@ -45,7 +45,7 @@ Ontotect 是一个本体工程技能，用于系统化地设计、构建、审�
 | [架构](architecture.md) | 技能包、渐进披露、命令层、资产和脚本 |
 | [质量与验证](quality-and-validation.md) | 十层证据、QA 期望和结果解释 |
 | [本地验证记录](verification-record.md) | 当前源技能包实际执行的检查及其明确边界 |
-| [0.1.1 发布就绪报告](release-readiness-0.1.1.md) | 补丁候选门禁、rollout、回退与发布后检查 |
+| [0.1.1 发布就绪报告](release-readiness-0.1.1.md) | 已发布补丁的证据、rollout、回退与后续控制 |
 | [0.1.0 发布就绪报告](release-readiness-0.1.0.md) | Go/No-Go 证据、rollout、回退与发布后检查 |
 | [兼容性](compatibility.md) | 宿主发现、便携契约和验证状态 |
 | [npm 安装器安全审查](npm-installer-security-review.md) | S4 威胁模型、控制、剩余风险与发布阻断项 |
@@ -65,6 +65,6 @@ Ontotect 是一个本体工程技能，用于系统化地设计、构建、审�
 
 ## 项目状态
 
-Ontotect `0.1.0` 已发布到 GitHub 和 npm。结构安装和本地夹具已完成测试，但目录复制成功并不证明每个外部宿主都已发现和执行技能。兼容性声明必须指出实际检查内容，并把未执行的行为标为 `unverified`。
+GitHub `main` 当前标识 Ontotect 0.1.1，且 `@moonweave-ai/ontotect@0.1.1` 已发布到 npm，`latest` 指向 0.1.1。结构安装和本地夹具已完成测试，但目录复制成功并不证明每个外部宿主都已发现和执行技能。兼容性声明必须指出实际检查内容，并把未执行的行为标为 `unverified`。
 
 Ontotect 的原创仓库内容采用 [MIT 许可证](../../LICENSE)。第三方参考资料继续适用其自身条款，私有构建语料不参与分发。

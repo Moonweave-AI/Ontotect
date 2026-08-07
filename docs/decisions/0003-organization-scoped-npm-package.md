@@ -80,7 +80,15 @@ preflight time, not a permanent reservation.
 ## Implementation status
 
 `@moonweave-ai/ontotect@0.1.0` was published with public access on 2026-08-07.
-The official registry reports `latest` as `0.1.0`, anonymous metadata access
-succeeds, the organization permission is read-write, and the installed command
-remains `ontotect`. Public npx help and isolated project-level installation for
-all five supported host layouts passed; live-host loading remains `unverified`.
+For that initial release, the official registry then reported `latest` as
+`0.1.0`; anonymous metadata access succeeded, organization permission was
+read-write, and the installed command remained `ontotect`. Public npx help and
+isolated project-level installation for all five supported host layouts passed.
+
+On 2026-08-07, `@moonweave-ai/ontotect@0.1.1` was also published with public
+access. The official registry reports exact version `0.1.1`, `latest` as
+`0.1.1`, MIT, the `ontotect` executable, and the Moonweave-AI repository;
+anonymous metadata access succeeded. Exact-version public npx help and isolated
+project-level installation for all five host layouts passed with 48 files per
+destination. Live-host loading and user/global-scope installation remain
+`unverified`.

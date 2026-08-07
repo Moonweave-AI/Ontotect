@@ -65,6 +65,6 @@ Do not publish private knowledge graphs, credentials, personal data, restricted 
 
 Request a specialized review before a change that adds automatic execution, network access, credential use, remote publication, package installation, high-impact autonomous behavior, or processing of regulated/sensitive data. Stop release when secrets, unprovenanced distributable assets, or unauthorized sensitive data are present.
 
-The current npm adapter review is [npm-installer-security-review.md](docs/en/npm-installer-security-review.md). Ontotect uses the MIT License, and `@moonweave-ai/ontotect@0.1.0` is published on npm. npm ownership recovery, package provenance, and a permanent private reporting path remain independently tracked controls.
+The current npm adapter review is [npm-installer-security-review.md](docs/en/npm-installer-security-review.md). Ontotect uses the MIT License. Both `@moonweave-ai/ontotect@0.1.0` and `@moonweave-ai/ontotect@0.1.1` are published on npm; `latest` points to `0.1.1`. npm ownership recovery, package provenance, and a permanent private reporting path remain independently tracked controls.
 
 Security reports and remediation claims must distinguish verified results from hypotheses and mark unavailable checks as `unverified`.
