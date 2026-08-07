@@ -1,6 +1,6 @@
 ---
 type: verification
-status: active
+status: pass-with-actions
 owner: Moonweave-AI
 created: 2026-08-07
 updated: 2026-08-07
@@ -26,10 +26,10 @@ superseded_by: null
 
 ## 决策
 
-**Conditional Go。** 本体工程实现、focused-suite compiler、跨宿主安装控制、文档与
-本地 release candidate 已通过当前可执行的 QA-L4 门禁。只有在最终 `0.1.2` 候选完成
-commit、同步到 GitHub `main`、从干净工作树重新测试，并确认 npm registry 中不存在该
-版本后才可发布。Registry 发布与公共包检查必须等实际执行后才能记为通过。
+**Pass with follow-up actions。** 本体工程实现、focused-suite compiler、跨宿主安装控制、
+文档、干净 release candidate、获授权 npm 发布与精确公共包检查均已完成当前 QA-L4
+门禁。`@moonweave-ai/ontotect@0.1.2` 已公开，`latest` 指向 `0.1.2`。剩余控制在下文
+明确列出，不会使已观察到的发布结果失效。
 
 工作对象：公开 Release Operation。风险：**S4**。所需质量：**QA-L4**。成熟度：
 **M7 公开预览 focused-suite release**。Owner 与发布权威：Moonweave AI。执行 DRI：
@@ -77,12 +77,12 @@ commit、同步到 GitHub `main`、从干净工作树重新测试，并确认 np
 | 静态宿主 lenses | 通过：Claude、Amp、Copilot，60/60 |
 | 五宿主用户级安装 | 通过：每个宿主精确 20 skills；Kilo/OpenCode 各 20 adapters；事务工作文件为 0 |
 | 事务与路径控制 | 通过：冲突/类型/symlink 预检、受管刷新、未知 sibling 保留、回滚注入与有界瞬态重试 |
-| Package 白名单 | 最终 commit 前通过：57 个预期条目，禁止语料、缓存、测试、临时、PDF 与依赖条目为 0；干净 `main` 上需复跑 |
+| Package 白名单 | 干净 `main` 上通过：57 个预期条目，禁止语料、缓存、测试、临时、PDF、依赖与 lifecycle-script 条目为 0 |
 | Package identity | 通过：`@moonweave-ai/ontotect`、`author: Moonweave AI`、MIT、public access、Moonweave-AI repository |
 | Registry 版本可用性 | 通过：发布前精确 `0.1.2` 查询返回 `E404` |
 | npm 组织写入权限 | 通过：已认证账号对 `@moonweave-ai/ontotect` 有 read-write 权限 |
-| GitHub `main` 同步 | 等待最终 release commits 与 push |
-| 公共 npm/npx 行为 | 等待发布；不得从本地 archive 推断 |
+| GitHub `main` 同步 | 发布前通过：本地 `main` 与 `origin/main` 均指向 release commit `5e1bc27`；本证据 commit 完成发布后回写 |
+| 公共 npm/npx 行为 | 通过：精确版本与 `latest` 均报告 `0.1.2`；匿名 Help/List 成功；公共包隔离安装为五宿主各生成 20 skills，并生成全部 Kilo/OpenCode adapters |
 
 当前 Codex runtime 刷新后已枚举全部 20 个 `ontotect*` entries。五个宿主的文件系统安装
 已证明；Cursor、Kilo、OpenCode 与 Claude Code 的真实 slash 菜单观察仍为 `unverified`，
@@ -92,14 +92,15 @@ commit、同步到 GitHub `main`、从干净工作树重新测试，并确认 np
 
 1. **已完成：**实现并记录 discovery 修复；保留 canonical 源，通过 registry 编译 focused entries。
 2. **已完成：**执行本地 QA-L4 测试、validators、package 检查、安全边界、五宿主安装和独立审查。
-3. **进行中：**按逻辑阶段提交 `0.1.2` 候选，推送 feature branch，fast-forward `main`，
-   并验证本地/远端同步。
-4. **待执行：**从干净 `main` 复跑测试并检查准确 archive。
-5. **待执行：**复核 npm 组织权限与版本可用性，再以 public access 发布
-   `@moonweave-ai/ontotect@0.1.2`。
-6. **待执行：**验证精确版本 metadata、`latest`、匿名 help/list 和公共包五宿主隔离安装。
-7. **待执行：**把真实公共证据写回本报告、验证记录、安全审查、组织包 ADR、Security
-   状态与来源证据登记，并 commit/push。
+3. **已完成：**按三个逻辑阶段提交 `0.1.2` 候选，推送 feature branch，fast-forward
+   `main`，并在 `5e1bc27` 验证本地/远端同步。
+4. **已完成：**从干净 `main` 复跑 41 项 Python 与 14 项 Node 测试，并检查精确的
+   57-file archive。
+5. **已完成：**复核 npm 组织写入权限与版本可用性，并以 Moonweave AI package identity
+   和 public access 发布 `@moonweave-ai/ontotect@0.1.2`。
+6. **已完成：**验证精确版本 metadata、`latest`、匿名 Help/List 和公共包五宿主隔离安装。
+7. **随本记录完成：**把真实公共证据写回本报告、验证记录、安全审查、组织包 ADR、
+   Security 状态与来源证据登记，以供 commit/push。
 
 ## 回退与事故响应
 
@@ -112,9 +113,12 @@ commit、同步到 GitHub `main`、从干净工作树重新测试，并确认 np
 
 ## 发布后验证清单
 
-- 精确 registry metadata 报告 `0.1.2`、MIT、`ontotect` executable 与 Moonweave-AI
-  repository；`latest` 指向 `0.1.2`。
-- 匿名 `npx @moonweave-ai/ontotect@0.1.2 help` 与 `list` 成功退出。
-- 公共包隔离安装为五个宿主各创建精确 20 个 skills，并为 Kilo/OpenCode 各创建 20 adapters。
-- 公共 npm 与 GitHub README 展示 `0.1.2` 安装流程，而不是历史源码 workaround。
-- 发布后证据 commit 已存在于 `main`，且本地与远端同步。
+- **通过：**精确 registry metadata 报告 `0.1.2`、MIT、作者 `Moonweave AI`、
+  `ontotect` executable 与 Moonweave-AI repository；`latest` 指向 `0.1.2`。
+- **通过：**匿名精确版本 Help 与 List 执行成功；List 报告 20 个 entries，根入口
+  dispatch 为 `conditional`。
+- **通过：**公共包隔离安装为五个宿主各创建精确 20 个 skills，并为 Kilo/OpenCode
+  各创建 20 adapters。
+- **通过：**已发布 archive 与 GitHub `main` 包含 `0.1.2` 安装流程，而不是历史源码
+  workaround；本次没有重新检查 npm 页面视觉渲染。
+- **随本记录通过：**发布后证据已提交并推送到同步的 `main`。

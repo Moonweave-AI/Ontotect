@@ -78,3 +78,11 @@ registry 报告精确版本 `0.1.1`、`latest` 为 `0.1.1`、MIT、`ontotect` �
 以及 Moonweave-AI 仓库；匿名 metadata 访问成功。精确版本公共 npx help 与五个
 宿主布局的隔离项目级安装均通过，每个目标 48 个文件。真实宿主加载与用户/全局
 范围安装仍为 `unverified`。
+
+`@moonweave-ai/ontotect@0.1.2` 于 2026-08-07 在 release commit `5e1bc27`
+之后以 public access 发布。官方 registry 报告精确版本 `0.1.2`、`latest` 为
+`0.1.2`、MIT、作者 `Moonweave AI`、`ontotect` 可执行命令及 Moonweave-AI 仓库。
+匿名精确版本 Help/List 执行通过。公共包隔离安装为 Cursor、Codex、Kilo、OpenCode
+与 Claude Code 创建全部 20 个精确 skills，并为 Kilo 与 OpenCode 各创建全部 20 个
+command adapters。刷新后的 Codex runtime 已枚举全部 20 个入口；其余四个宿主的真实
+UI discovery 与公共包用户/全局范围安装仍为 `unverified`。

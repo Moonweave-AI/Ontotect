@@ -350,7 +350,13 @@ class RepositoryDocumentationTests(unittest.TestCase):
             ).read_text(encoding="utf-8")
             with self.subTest(language=language, surface="release-readiness"):
                 self.assertIn("release-readiness-0.1.2.md", index)
-                for token in ("0.1.2", "Conditional Go", "41", "14", "57"):
+                for token in (
+                    "0.1.2",
+                    "Pass with follow-up actions",
+                    "41",
+                    "14",
+                    "57",
+                ):
                     self.assertIn(token, readiness)
 
             command_reference = (

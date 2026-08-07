@@ -65,6 +65,6 @@ Ontotect 会读取可能不可信的本体、Shapes、映射、数据、文档�
 
 增加自动执行、网络访问、凭据使用、远程发布、包安装、高影响自主行为或受监管/敏感数据处理时，应先进行专门审查。发现秘密、来源不明的待发布资产或未经授权的敏感数据时停止发布。
 
-当前 npm 适配器审查见 [npm-installer-security-review.md](docs/zh-CN/npm-installer-security-review.md)。Ontotect 采用 MIT 许可证。`@moonweave-ai/ontotect@0.1.0` 与 `@moonweave-ai/ontotect@0.1.1` 均已发布到 npm；`latest` 指向 `0.1.1`。npm ownership 恢复、package provenance 和永久私密报告路径仍作为独立控制跟踪。
+当前 npm 适配器审查见 [npm-installer-security-review.md](docs/zh-CN/npm-installer-security-review.md)。Ontotect 采用 MIT 许可证。`@moonweave-ai/ontotect` 的 `0.1.0`、`0.1.1` 与 `0.1.2` 均已发布到 npm；`latest` 指向 `0.1.2`。`0.1.2` 的精确公共包 metadata、匿名 Help/List 执行，以及全部五个受支持宿主布局的隔离项目级完整套件安装均已通过。npm ownership 恢复、package provenance、永久私密报告路径、公共包用户/全局范围安装，以及 Codex 之外的真实 UI 观察仍作为独立控制跟踪。
 
 安全报告和修复结论必须区分已验证结果与假设，并把无法执行的检查标为 `unverified`。

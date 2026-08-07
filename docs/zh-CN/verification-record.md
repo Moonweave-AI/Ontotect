@@ -6,7 +6,7 @@ created: 2026-08-07
 updated: 2026-08-07
 last_reviewed: 2026-08-07
 review_cycle_days: 180
-summary: 当前 Ontotect 源技能包与公开文档的本地 QA-L4 证据及明确验证边界。
+summary: Ontotect 0.1.2 的 QA-L4 源码、发布与公共包证据，以及明确验证边界。
 canonical: docs/en/verification-record.md
 related:
   - docs/zh-CN/quality-and-validation.md
@@ -21,12 +21,12 @@ supersedes: null
 superseded_by: null
 ---
 
-# 本地验证记录 — 2026-08-07
+# 验证记录 — 2026-08-07
 
 [English](../en/verification-record.md) · [文档首页](index.md) · 本页是英文 canonical 的简体中文镜像。
 
-本记录说明命令、Router、文档、兼容性和 npm/npx 分发工作完成后，对当前本地源技能包实际执行的
-检查。它不是稳定发布声明、外部宿主认证或目标领域本体验证报告。
+本记录说明对当前源码、发布候选、公共包、命令、Router、文档与宿主布局实际执行的检查。
+它不是外部宿主认证或目标领域本体验证报告。
 
 ## 已执行证据
 
@@ -53,9 +53,12 @@ superseded_by: null
 | 打包 npx 安装 | 创建真实本地 tarball，以 offline/ignore-scripts 模式通过 npx 安装到隔离项目 | 五个宿主 root 均获得全部 20 个 skills；Kilo/OpenCode 均获得全部 20 个 adapters；generated metadata 与固定命令文件存在；未发生 registry 发布 |
 | Installer transaction 与路径控制 | 执行靠后冲突、错误目标类型、junction/symlink 逃逸、干净 force refresh、stale 受管 entry 删除、未知 sibling 保留、commit-time 注入失败、有界瞬态重试和 Windows watcher 竞争 | 被拒绝计划在外部或较早目标产生 0 写入；forced refresh 只删除 state-recorded targets；mid-commit 注入失败恢复已替换与待删除目标并移除新建目标；仅对 `EACCES`、`EBUSY`、`EPERM` 重试；首次 live Windows commit 遇到 `EPERM` 后完整回滚且 work artifacts 为 0，加入 watcher-aware retry 与 root 外 staging 后刷新完成 |
 | npm 安装器安全 | 应用 S4 / QA-L4 威胁模型，检查显式修改、解析后目标、事务覆盖、网络、依赖、语料、生命周期与组织 scope 边界 | 本地控制通过；ADR 0002、ADR 0003 与 ADR 0004 已接受，项目采用 MIT。历史公开发布的 registry 认证与 npm organization ownership 已验证；账号恢复、provenance 和永久私密报告路径继续单独跟踪 |
-| 公共 npm registry | 发布后在已认证组织上下文与不存在 user config 的匿名上下文查询精确 package metadata | `@moonweave-ai/ontotect@0.1.0` 继续作为首次发布的历史记录保留。`0.1.1` 已公开且 `latest` 指向 `0.1.1`；精确 metadata 报告 MIT、`ontotect` binary 与 Moonweave-AI 仓库；匿名 metadata 访问成功 |
-| 公共 npx 分发 | 调用精确公共版本 `0.1.1` 的 help，并从 registry 安装到 Cursor、Codex、Kilo、OpenCode 与 Claude Code 的隔离项目级根目录 | Help 退出码为 0；五个项目目标全部安装，每个目标包含 48 个技能文件且存在 `SKILL.md`；全部目标的相对文件集与直接字节内容一致 |
-| 公共 package 呈现 | 发布后检查 npm package 页面与公开 GitHub 仓库 | npm 显示 0.1.1、public access、零依赖、居中 Ontotect 标识、横幅、徽章、新版 README 标题与 Moonweave-AI 仓库链接；GitHub 显示公开 `main` 位于发布合并 `2351760` |
+| 历史公共 npm registry（0.1.0–0.1.1） | 发布后在已认证组织上下文与不存在 user config 的匿名上下文查询精确 package metadata | `@moonweave-ai/ontotect@0.1.0` 继续作为首次发布历史保留。`0.1.1` 已公开；在其发布时，`latest` 指向 `0.1.1`，精确 metadata 报告 MIT、`ontotect` binary 与 Moonweave-AI 仓库，匿名 metadata 访问成功 |
+| 历史公共 npx 分发（0.1.1） | 调用精确公共版本 `0.1.1` 的 help，并从 registry 安装到 Cursor、Codex、Kilo、OpenCode 与 Claude Code 的隔离项目级根目录 | Help 退出码为 0；五个项目目标全部安装，每个目标包含 48 个技能文件且存在 `SKILL.md`；全部目标的相对文件集与直接字节内容一致 |
+| 历史公共 package 呈现（0.1.1） | 发布后检查 npm package 页面与公开 GitHub 仓库 | npm 显示 0.1.1、public access、零依赖、居中 Ontotect 标识、横幅、徽章、新版 README 标题与 Moonweave-AI 仓库链接；GitHub 显示公开 `main` 位于发布合并 `2351760` |
+| 公共 npm registry（0.1.2） | 发布后通过不存在的 user npm 配置查询精确版本与 `latest` metadata | 精确版本与 `latest` 均报告 `0.1.2`；metadata 报告 MIT、作者 `Moonweave AI`、`ontotect` executable 与 Moonweave-AI 仓库；匿名访问成功 |
+| 公共 npx 分发（0.1.2） | 运行精确版本 Help/List，并把 registry package 安装到每个受支持宿主的全新隔离项目根 | Help/List 成功退出；`list` 报告 20 个 entries，根入口 dispatch 为 `conditional`；Cursor、Codex、Kilo、OpenCode 与 Claude Code 各获得全部 20 个精确 skills，Kilo 与 OpenCode 各获得全部 20 个 command adapters |
+| GitHub 发布同步 | 推送三个逻辑 release commits，fast-forward `main`，并在发布前核对本地/远端 refs | 本地 `main` 与 `origin/main` 均指向 release commit `5e1bc27`；本发布后证据记录是最终同步文档步骤 |
 | Ignore 行为 | 通过隔离临时 Git metadata 执行 `.gitignore` | 10 个私有/生成案例被忽略；7 个公开 Markdown/Turtle/SPARQL/JSON 或 `.env.example` 案例保持可见 |
 | 首次接触行为 | 上下文隔离 Agent 渐进加载技能并回答中文首次使用请求 | 正确选择只读 `help`，把只读 `review` 作为独立下一步，并保留 `unverified`；其发现的 help 阶段歧义已修正并加入回归 |
 | 多意图行为 | 独立后续评估者路由中文审核、修正、OWL/SHACL 验证和发布证据请求 | 选择 `review -> repair -> validate -> release` 预检；写入仅限指定本体及已确认测试；禁止远端发布；指出缺失的 CQ、import、工具和权威输入；修正后未发现实质缺陷 |
@@ -89,13 +92,14 @@ python ontotect/scripts/install_skill.py --agents all --scope project --project-
 - 刷新后的 Codex runtime 已枚举全部 20 个已安装 `ontotect*` entries。尚未把 Cursor、
   Kilo、OpenCode 与 Claude Code 逐一作为外部产品启动并指向本工作区，因此它们的真实
   discovery 与 behavioral compatibility 仍为 `unverified`。
-- 已从当前源码为五个宿主执行用户级结构安装。针对公开 0.1.2 package 的用户/全局范围
-  安装需等发布后验证；公开 0.1.1 是不包含本次 suite 修复的历史 package。
+- 已从当前源码为五个宿主执行用户级结构安装，并从公共 0.1.2 package 为全部五个宿主
+  通过项目级安装。公共包用户/全局范围安装仍为 `unverified`；公开 0.1.1 是不包含本次
+  suite 修复的历史 package。
 - 重新设计的 README 与两个品牌资产已随 0.1.1 进入 npm 分发。npm 0.1.0 保持不可变，其 54-entry 发布证据继续作为历史保留。
-- `@moonweave-ai/ontotect@0.1.0` 继续作为首次发布历史保留。在 0.1.1 发布观察时，
-  `latest` 指向 0.1.1；匿名 registry 访问、精确版本公共 npx help 以及全部五个隔离宿主
-  布局的项目级安装均通过。0.1.2 的公共结果只能在发布后写入。Package provenance 与
-  npm 账号恢复继续单独跟踪。
+- `@moonweave-ai/ontotect@0.1.0` 与 `0.1.1` 继续作为历史发布保留。0.1.2 发布观察中，
+  精确版本与 `latest` 均指向 0.1.2；匿名 registry 访问、精确版本公共 Help/List，以及
+  全部五个隔离宿主布局的项目级完整套件安装均通过。Package provenance 与 npm 账号
+  恢复继续单独跟踪。
 - Ignore 规则使用隔离的临时 Git metadata 执行。仓库此后已发布；该发布事件不改变原始 Ignore 检查的证据范围。
 - 没有提供目标领域本体或完整 OWL reasoner 契约。Starter 夹具结果不能证明另一
   本体一致、可满足、正确或已准备发布。

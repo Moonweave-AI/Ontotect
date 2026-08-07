@@ -6,7 +6,7 @@ created: 2026-08-07
 updated: 2026-08-07
 last_reviewed: 2026-08-07
 review_cycle_days: 180
-summary: Local QA-L4 evidence and explicit verification limits for the current Ontotect source package and public documentation.
+summary: QA-L4 source, release, and public-package evidence with explicit verification limits for Ontotect 0.1.2.
 canonical: docs/en/verification-record.md
 related:
   - docs/en/quality-and-validation.md
@@ -21,14 +21,14 @@ supersedes: null
 superseded_by: null
 ---
 
-# Local verification record — 2026-08-07
+# Verification record — 2026-08-07
 
 [简体中文](../zh-CN/verification-record.md) · [Documentation home](index.md)
 
-This record describes checks actually executed against the current local source
-package after the command, router, documentation, compatibility, and npm/npx distribution work. It is
-not a stable-release declaration, external-host certification, or domain
-ontology validation report.
+This record describes checks actually executed against the current source,
+release candidate, public package, commands, router, documentation, and host
+layouts. It is not an external-host certification or domain ontology validation
+report.
 
 ## Executed evidence
 
@@ -55,9 +55,12 @@ ontology validation report.
 | Packed npx installation | Created a real local tarball and invoked it through npx in offline/ignore-scripts mode against an isolated project | All five host roots received all 20 skills; Kilo/OpenCode received all 20 adapters; generated metadata and fixed-command files were present; no registry publication occurred |
 | Installer transaction and path controls | Exercised late conflict, wrong target type, junction/symlink escape, clean force refresh, stale managed entry removal, unknown-sibling preservation, commit-time injected failure, bounded transient retry, and Windows watcher contention | Preflight produced zero external/earlier writes on rejected plans; forced refresh removed only state-recorded targets; injected mid-commit failure restored replaced and deleted targets and removed newly created targets; retry occurred only for `EACCES`, `EBUSY`, and `EPERM`; the first live Windows commit hit `EPERM` and rolled back completely with zero work artifacts, then the watcher-aware retry/out-of-root staging refresh completed |
 | npm installer security | Applied the S4 / QA-L4 threat model and checked explicit mutation, resolved destinations, transactional overwrite, network, dependency, corpus, lifecycle, and organization-scope boundaries | Local controls passed; ADR 0002, ADR 0003, and ADR 0004 are accepted, and the project uses MIT. Registry authentication and npm organization ownership were verified for the historical public release; account recovery, provenance, and a permanent private reporting path remain separately tracked |
-| Public npm registry | Queried exact package metadata with authenticated organization context and with a nonexistent user config after publication | `@moonweave-ai/ontotect@0.1.0` remains the historical initial release. Version `0.1.1` is public and `latest` resolves to `0.1.1`; exact metadata reports MIT, the `ontotect` binary, and the Moonweave-AI repository; anonymous metadata access succeeded |
-| Public npx distribution | Invoked exact public version `0.1.1` help and installed it from the registry into isolated project-scoped roots for Cursor, Codex, Kilo, OpenCode, and Claude Code | Help exited 0; all five project destinations installed with 48 skill files and `SKILL.md` present; relative file sets and direct byte content matched across all destinations |
-| Public package presentation | Inspected the npm package page and public GitHub repository after publication | npm displayed 0.1.1, public access, zero dependencies, the centered Ontotect mark, banner, badges, redesigned README headings, and Moonweave-AI repository link; GitHub displayed public `main` at release merge `2351760` |
+| Historical public npm registry (0.1.0–0.1.1) | Queried exact package metadata with authenticated organization context and with a nonexistent user config after publication | `@moonweave-ai/ontotect@0.1.0` remains the historical initial release. Version `0.1.1` is public; at its release, `latest` resolved to `0.1.1`, exact metadata reported MIT, the `ontotect` binary, and the Moonweave-AI repository, and anonymous metadata access succeeded |
+| Historical public npx distribution (0.1.1) | Invoked exact public version `0.1.1` help and installed it from the registry into isolated project-scoped roots for Cursor, Codex, Kilo, OpenCode, and Claude Code | Help exited 0; all five project destinations installed with 48 skill files and `SKILL.md` present; relative file sets and direct byte content matched across all destinations |
+| Historical public package presentation (0.1.1) | Inspected the npm package page and public GitHub repository after publication | npm displayed 0.1.1, public access, zero dependencies, the centered Ontotect mark, banner, badges, redesigned README headings, and Moonweave-AI repository link; GitHub displayed public `main` at release merge `2351760` |
+| Public npm registry (0.1.2) | Queried exact and `latest` metadata with a nonexistent user npm configuration after publication | Exact version and `latest` both reported `0.1.2`; metadata reported MIT, author `Moonweave AI`, the `ontotect` executable, and the Moonweave-AI repository; anonymous access succeeded |
+| Public npx distribution (0.1.2) | Ran exact-version Help/List and installed the registry package into a fresh isolated project root for every supported host | Help/List exited successfully; `list` reported 20 entries and root dispatch `conditional`; Cursor, Codex, Kilo, OpenCode, and Claude Code each received all 20 exact skills, while Kilo and OpenCode each received all 20 command adapters |
+| GitHub release synchronization | Pushed three logical release commits, fast-forwarded `main`, and checked local/remote refs before publication | Local `main` and `origin/main` both pointed to release commit `5e1bc27`; this post-release evidence record is the final synchronized documentation step |
 | Ignore behavior | Evaluated `.gitignore` with isolated temporary Git metadata | 10 private/generated cases ignored; 7 public Markdown/Turtle/SPARQL/JSON or `.env.example` cases remained visible |
 | First-contact behavior | A context-isolated Agent loaded the skill progressively and answered a Chinese first-use request | Correctly chose read-only `help`, recommended a separate read-only `review`, and preserved `unverified`; it exposed a help-stage ambiguity that was corrected and regression-tested |
 | Mixed-intent behavior | An independent follow-up evaluator routed a Chinese review, repair, OWL/SHACL validation, and release-evidence request | Selected `review -> repair -> validate -> release` preflight; limited writes to the named ontology and confirmed tests; prohibited remote publication; identified missing CQ, import, tool, and authority inputs; found no material defect after the correction |
@@ -96,18 +99,18 @@ directories and removed them after execution.
   products against this checkout, so their live discovery and behavioral
   compatibility remain `unverified`.
 - User-scope structural installation was executed from the current source for
-  all five hosts. User/global-scope installation remains `unverified` against
-  the public 0.1.2 package until post-publication verification. Public 0.1.1 is
-  the historical package that does not contain this suite repair.
+  all five hosts, and project-scoped installation from the public 0.1.2 package
+  passed for all five. Public-package user/global-scope installation remains
+  `unverified`. Public 0.1.1 is the historical package that does not contain
+  this suite repair.
 - The redesigned README and both brand assets entered the npm distribution with
   0.1.1. npm 0.1.0 remains immutable, and its 54-entry release evidence remains
   historical.
-- `@moonweave-ai/ontotect@0.1.0` remains the historical initial release. For
-  the 0.1.1 release observation, `latest` resolved to 0.1.1; anonymous registry
-  access, exact-version public npx help, and project-scoped installation into
-  all five isolated host layouts passed. The 0.1.2 public result is recorded
-  only after publication. Package provenance and npm account recovery remain
-  separately tracked.
+- `@moonweave-ai/ontotect@0.1.0` and `0.1.1` remain historical releases. For
+  the 0.1.2 release observation, exact and `latest` both resolved to 0.1.2;
+  anonymous registry access, exact-version public Help/List, and project-scoped
+  full-suite installation into all five isolated host layouts passed. Package
+  provenance and npm account recovery remain separately tracked.
 - Ignore-rule semantics were executed using isolated temporary Git metadata.
   The repository has since been published; that release event does not alter
   the scope of the original ignore-rule check.

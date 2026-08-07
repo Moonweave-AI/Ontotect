@@ -92,3 +92,13 @@ anonymous metadata access succeeded. Exact-version public npx help and isolated
 project-level installation for all five host layouts passed with 48 files per
 destination. Live-host loading and user/global-scope installation remain
 `unverified`.
+
+On 2026-08-07, `@moonweave-ai/ontotect@0.1.2` was published with public access
+after release commit `5e1bc27`. The official registry reports exact version
+`0.1.2`, `latest` as `0.1.2`, MIT, author `Moonweave AI`, the `ontotect`
+executable, and the Moonweave-AI repository. Anonymous exact-version Help/List
+execution passed. An isolated public-package installation created all 20 exact
+skills for Cursor, Codex, Kilo, OpenCode, and Claude Code, plus all 20 command
+adapters for each of Kilo and OpenCode. The refreshed Codex runtime enumerated
+all 20 entries; live UI discovery in the other four hosts and public-package
+user/global-scope installation remain `unverified`.

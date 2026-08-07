@@ -1,6 +1,6 @@
 ---
 type: verification
-status: active
+status: pass-with-actions
 owner: Moonweave-AI
 created: 2026-08-07
 updated: 2026-08-07
@@ -26,13 +26,12 @@ superseded_by: null
 
 ## Decision
 
-**Conditional Go.** The ontology-engineering implementation, focused-suite
-compiler, cross-host installation controls, documentation, and local release
-candidate have passed the available QA-L4 gates. Publication may proceed only
-after the final `0.1.2` candidate is committed, synchronized to GitHub `main`,
-retested from a clean worktree, and confirmed absent from the npm registry.
-Registry publication and public-package checks remain pending until those gates
-complete; they must not be recorded as passed in advance.
+**Pass with follow-up actions.** The ontology-engineering implementation,
+focused-suite compiler, cross-host installation controls, documentation, clean
+release candidate, authorized npm publication, and exact public-package checks
+completed the available QA-L4 gates. `@moonweave-ai/ontotect@0.1.2` is public,
+and `latest` resolves to `0.1.2`. The remaining controls are stated explicitly
+below and do not invalidate the observed release result.
 
 Work object: public release operation. Risk: **S4**. Required quality:
 **QA-L4**. Maturity: **M7 public-preview focused-suite release**. Owner and
@@ -91,12 +90,12 @@ does not maintain a separate changelog.
 | Static host lenses | Pass: Claude, Amp, and Copilot lenses, 60/60 |
 | Five-host user installation | Pass: 20 exact skills per host; Kilo/OpenCode each have 20 adapters; no transaction work files remained |
 | Transaction and path controls | Pass: conflict/type/symlink preflight, managed refresh, unknown-sibling preservation, rollback injection, and bounded transient retry |
-| Package allowlist | Pass before final commit: 57 intended entries and zero forbidden corpus, cache, test, temporary, PDF, or dependency entries; repeat on clean `main` |
+| Package allowlist | Pass on clean `main`: 57 intended entries and zero forbidden corpus, cache, test, temporary, PDF, dependency, or lifecycle-script entries |
 | Package identity | Pass: `@moonweave-ai/ontotect`, `author: Moonweave AI`, MIT, public access, Moonweave-AI repository |
 | Registry version availability | Pass: exact `0.1.2` lookup returned `E404` before publication |
 | npm organization write authority | Pass: authenticated account has read-write access to `@moonweave-ai/ontotect` |
-| GitHub `main` synchronization | Pending final release commits and push |
-| Public npm/npx behavior | Pending publication; do not infer from the local archive |
+| GitHub `main` synchronization | Pass before publication: local `main` and `origin/main` both pointed to release commit `5e1bc27`; this evidence commit completes the post-release write-back |
+| Public npm/npx behavior | Pass: exact and `latest` report `0.1.2`; anonymous Help/List succeeded; isolated public-package installation produced all 20 skills for each of five hosts and all 20 Kilo/OpenCode adapters |
 
 The current Codex runtime enumerated all 20 installed `ontotect*` entries after
 refresh. Filesystem installation for all five hosts is proven; live slash-menu
@@ -109,16 +108,19 @@ is not a release blocker for this preview package.
    canonical source and compile focused entries through the registry.
 2. **Complete:** run local QA-L4 tests, validators, package inspection, security
    boundary checks, five-host installation, and independent review.
-3. **In progress:** commit the `0.1.2` candidate in logical stages, push the
-   feature branch, fast-forward `main`, and verify local/remote synchronization.
-4. **Pending:** rerun tests and inspect the exact archive from clean `main`.
-5. **Pending:** recheck npm organization authority and version availability,
-   then publish `@moonweave-ai/ontotect@0.1.2` with public access.
-6. **Pending:** verify exact-version metadata, `latest`, anonymous help/list,
+3. **Complete:** committed the `0.1.2` candidate in three logical stages,
+   pushed the feature branch, fast-forwarded `main`, and verified local/remote
+   synchronization at `5e1bc27`.
+4. **Complete:** reran 41 Python and 14 Node tests and inspected the exact
+   57-file archive from clean `main`.
+5. **Complete:** rechecked npm organization write authority and version
+   availability, then published `@moonweave-ai/ontotect@0.1.2` with public
+   access under the Moonweave AI package identity.
+6. **Complete:** verified exact-version metadata, `latest`, anonymous Help/List,
    and isolated five-host installation from the public package.
-7. **Pending:** write observed public evidence back to this report, the
-   verification record, security review, organization-package ADR, security
-   status, and source evidence register; commit and push that record.
+7. **Complete with this record:** wrote observed public evidence back to this
+   report, the verification record, security review, organization-package ADR,
+   security status, and source evidence register for commit and push.
 
 ## Rollback and incident response
 
@@ -133,11 +135,15 @@ is not a release blocker for this preview package.
 
 ## Post-release verification checklist
 
-- Exact registry metadata reports `0.1.2`, MIT, the `ontotect` executable, and
-  the Moonweave-AI repository; `latest` points to `0.1.2`.
-- Anonymous `npx @moonweave-ai/ontotect@0.1.2 help` and `list` exit successfully.
-- An isolated public-package install creates 20 exact skill entries for all five
-  hosts and 20 adapters for each of Kilo and OpenCode.
-- The public npm and GitHub README present the `0.1.2` installation flow rather
-  than the historical source-only workaround.
-- The post-release evidence commit is present on and synchronized with `main`.
+- **Pass:** exact registry metadata reports `0.1.2`, MIT, author `Moonweave AI`,
+  the `ontotect` executable, and the Moonweave-AI repository; `latest` points
+  to `0.1.2`.
+- **Pass:** anonymous exact-version Help and List execution completed
+  successfully; List reported 20 entries and root dispatch `conditional`.
+- **Pass:** an isolated public-package install created 20 exact skill entries
+  for each of all five hosts and 20 adapters for each of Kilo and OpenCode.
+- **Pass:** the published archive and GitHub `main` contain the `0.1.2`
+  installation flow rather than the historical source-only workaround. The
+  npm page's visual rendering was not re-inspected for this release.
+- **Pass with this record:** the post-release evidence is committed and pushed
+  to synchronized `main`.

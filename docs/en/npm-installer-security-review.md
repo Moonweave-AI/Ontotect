@@ -26,14 +26,13 @@ superseded_by: null
 
 Work object: public Agent-skill distribution feature. Risk: **S4**, because a package-manager executable can write into project or user Agent configuration. Required quality: **QA-L4**. Owner: project maintainers. DRI for this review: implementation maintainer.
 
-The historical public 0.1.1 artifact and the current source candidate are
-separate evidence objects. The current source design is acceptable for local
-use under the controls below; it is not yet a published suite release. A future
-release still requires explicit authority, package inspection, registry
-verification, and post-publication checks. The review becomes `revise` if
-installer tests or path controls fail; it becomes Stop-Ship if private corpus
-material, secrets, unprovenanced assets, lifecycle auto-execution, or an
-undeclared network operation enters the package.
+The historical 0.1.0 and 0.1.1 artifacts, the reviewed source, and the public
+0.1.2 artifact are separate evidence objects. Version 0.1.2 completed the
+authorized publication and exact public-package checks described below. The
+review result is **pass with follow-up actions** under the stated controls. It
+becomes `revise` if installer tests or path controls fail; it becomes Stop-Ship
+if private corpus material, secrets, unprovenanced assets, lifecycle
+auto-execution, or an undeclared network operation enters the package.
 
 ## Assets and security objectives
 
@@ -116,7 +115,7 @@ Before a local acceptance claim:
 5. run the repository documentation, Skill Creator, and existing Python regression checks;
 6. record results and limits in [verification-record.md](verification-record.md).
 
-For a public release, additionally verify npm authentication and package ownership, record release authority and the MIT license, inspect the exact public package, and document account recovery, package provenance, and a private vulnerability-reporting path. The `0.1.0` and `0.1.1` publications are retained as historical evidence below; the active `0.1.2` candidate is tracked in [release-readiness-0.1.2.md](release-readiness-0.1.2.md). Any unavailable control must remain explicit rather than being inferred from a successful command.
+For a public release, additionally verify npm authentication and package ownership, record release authority and the MIT license, inspect the exact public package, and document account recovery, package provenance, and a private vulnerability-reporting path. The `0.1.0` and `0.1.1` publications are retained as historical evidence below; the completed `0.1.2` release is tracked in [release-readiness-0.1.2.md](release-readiness-0.1.2.md). Any unavailable control must remain explicit rather than being inferred from a successful command.
 
 ## Initial 0.1.0 verification result — 2026-08-07
 
@@ -132,13 +131,33 @@ Historical result for the 0.1.1 artifact: the release distribution control set
 was **pass with follow-up actions**. The 0.1.0 and 0.1.1 evidence remains
 immutable history rather than evidence for 0.1.2.
 
-## 0.1.2 focused-suite release candidate — 2026-08-07
+## 0.1.2 focused-suite verification result — 2026-08-07
 
-The current source tree adds a declarative 20-entry registry, generated focused
+The reviewed release adds a declarative 20-entry registry, generated focused
 skills, Kilo/OpenCode command adapters, `list` and expanded `plan` output,
 full/core suite modes, resolved-path/type preflight, path-only managed state,
 clean forced refresh, and staged transactional commit with rollback backups.
-Focused copies omit the nested distribution installer. This repair is the
-bounded scope of the 0.1.2 candidate and is not part of historical 0.1.1. Its
-local test evidence belongs in the active verification record; exact public
-registry behavior and remaining live host UI discovery are separate gates.
+Focused copies omit the nested distribution installer. This bounded repair is
+not part of historical 0.1.1.
+
+Clean-`main` release commit `5e1bc27` passed 41 Python tests, 14 Node tests,
+Node/Python syntax and Git whitespace checks, source-plus-installed Skill
+Creator validation at 21/21, generated-skill advisory validation at 21/21, and
+60/60 static host lenses. Dry-run packaging contained 57 allowlisted files,
+including the suite registry, adapter template, and MIT license, with zero
+forbidden corpus, cache, test, temporary, PDF, dependency, or lifecycle-script
+entries.
+
+After authorized public publication, the registry reported exact version
+`0.1.2`, `latest` as `0.1.2`, MIT, author `Moonweave AI`, the `ontotect`
+executable, and the Moonweave-AI repository. Anonymous exact-version Help/List
+execution succeeded. A fresh isolated project-scoped install from the public
+package produced all 20 registered skills in each of the Cursor, Codex, Kilo,
+OpenCode, and Claude Code layouts, plus all 20 command adapters for each of Kilo
+and OpenCode. The refreshed Codex runtime enumerated all 20 entries.
+
+Result: **pass with follow-up actions**. Live slash-menu observation in Cursor,
+Kilo, OpenCode, and Claude Code, public-package user/global-scope installation,
+npm ownership recovery, package provenance, and a permanent private reporting
+path remain `unverified` or independently tracked; none is inferred from the
+successful structural checks.

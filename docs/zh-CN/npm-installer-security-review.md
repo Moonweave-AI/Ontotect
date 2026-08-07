@@ -26,10 +26,10 @@ superseded_by: null
 
 工作对象：公共 Agent skill 分发 Feature。风险：**S4**，因为包管理器可执行程序能够写入项目或用户 Agent 配置。所需质量：**QA-L4**。Owner：项目维护者。审查 DRI：实现维护者。
 
-历史公开 0.1.1 制品与当前源码候选是两个独立证据对象。当前源码设计在下列控制下可用于
-本地安装，但尚不是已发布的 suite release。任何后续发布仍需显式授权、package 检查、
-registry 验证与发布后检查。installer tests 或路径控制失败时结论为 `revise`；若私有语料、
-秘密、来源不明资产、lifecycle 自动执行或未声明网络操作进入包，则触发 Stop-Ship。
+历史 0.1.0 与 0.1.1 制品、已审阅源码以及公开 0.1.2 制品是彼此独立的证据对象。
+0.1.2 已完成下述获授权发布和精确公共包检查。审查结论为在所列控制下
+**pass with follow-up actions**。installer tests 或路径控制失败时结论为 `revise`；若私有
+语料、秘密、来源不明资产、lifecycle 自动执行或未声明网络操作进入包，则触发 Stop-Ship。
 
 ## 资产与安全目标
 
@@ -108,7 +108,7 @@ npm registry / 本地 tarball
 5. 运行仓库文档、Skill Creator 及现有 Python 回归；
 6. 在[验证记录](verification-record.md)写入结果与边界。
 
-公开发布还需验证 npm 认证与 package ownership，记录发布权限和 MIT 许可证，检查准确的公开包，并记录账号恢复、package provenance 与私密漏洞报告路径。`0.1.0` 与 `0.1.1` 发布作为历史证据保留如下；active `0.1.2` 候选记录在 [release-readiness-0.1.2.md](release-readiness-0.1.2.md)。不可用的控制必须保持明确，不能从命令成功推断。
+公开发布还需验证 npm 认证与 package ownership，记录发布权限和 MIT 许可证，检查准确的公开包，并记录账号恢复、package provenance 与私密漏洞报告路径。`0.1.0` 与 `0.1.1` 发布作为历史证据保留如下；已完成的 `0.1.2` 发布记录在 [release-readiness-0.1.2.md](release-readiness-0.1.2.md)。不可用的控制必须保持明确，不能从命令成功推断。
 
 ## 首次 0.1.0 验证结果 — 2026-08-07
 
@@ -123,11 +123,25 @@ npm registry / 本地 tarball
 0.1.1 制品的历史结论：发布分发控制集为 **pass with follow-up actions**。0.1.0 与
 0.1.1 证据是不可变历史，不能作为 0.1.2 的证据。
 
-## 0.1.2 focused-suite release candidate — 2026-08-07
+## 0.1.2 focused-suite 验证结果 — 2026-08-07
 
-当前源码树增加声明式 20-entry registry、生成式 focused skills、Kilo/OpenCode command
+已审阅发布增加声明式 20-entry registry、生成式 focused skills、Kilo/OpenCode command
 adapters、`list` 与扩展后的 `plan` 输出、full/core 套件模式、解析路径/类型预检、纯路径
 受管状态、干净 forced refresh，以及带 rollback backups 的 staged transaction commit。
-focused copies 会排除嵌套的分发安装器。本次修复是 0.1.2 candidate 的有界范围，不属于
-历史 0.1.1；本地测试证据写入 active 验证记录，精确公共 registry 行为与其余真实宿主
-UI discovery 仍是独立 gate。
+focused copies 会排除嵌套的分发安装器。本次有界修复不属于历史 0.1.1。
+
+干净 `main` 上的 release commit `5e1bc27` 通过 41 项 Python 测试、14 项 Node 测试、
+Node/Python 语法与 Git whitespace 检查、源码加已安装套件的 Skill Creator 验证 21/21、
+generated-skill advisory 验证 21/21，以及 60/60 静态宿主 lenses。Dry-run package 包含
+57 个白名单文件，包括 suite registry、adapter template 与 MIT 许可证；禁止语料、缓存、
+测试、临时、PDF、依赖或 lifecycle-script 条目均为 0。
+
+完成获授权公开发布后，registry 报告精确版本 `0.1.2`、`latest` 为 `0.1.2`、MIT、作者
+`Moonweave AI`、`ontotect` 可执行命令及 Moonweave-AI 仓库。匿名精确版本 Help/List
+执行成功。通过公共包进行全新隔离项目级安装后，Cursor、Codex、Kilo、OpenCode 与
+Claude Code 每个布局均获得全部 20 个注册 skills，Kilo 与 OpenCode 还各获得全部 20 个
+command adapters。刷新后的 Codex runtime 已枚举全部 20 个入口。
+
+结论：**pass with follow-up actions**。Cursor、Kilo、OpenCode 与 Claude Code 的真实
+slash 菜单观察、公共包用户/全局范围安装、npm ownership 恢复、package provenance 与
+永久私密报告路径仍为 `unverified` 或继续独立跟踪；不得从成功的结构检查推断这些结果。
