@@ -2,7 +2,7 @@
 
   <img src="docs/assets/ontotect-mark.svg" alt="Ontotect semantic graph mark" width="96" />
   <h1>Ontotect</h1>
-  <p><strong>Ontology Engineering Skill</strong></p>
+  <p><strong>Ontology Engineering Skill Suite</strong></p>
   <p><em>Engineer meaning, not just triples.</em></p>
   <p>
     <a href="https://www.npmjs.com/package/@moonweave-ai/ontotect"><img src="https://img.shields.io/npm/v/%40moonweave-ai%2Fontotect?logo=npm&amp;label=npm" alt="npm version" /></a>
@@ -16,7 +16,7 @@
   </p>
   <p><a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a></p>
   <p>
-    <strong>The evidence-driven ontology engineering workflow for Agent Skills.</strong><br />
+    <strong>The evidence-driven ontology engineering skill system for coding agents.</strong><br />
     Route, design, build, review, repair, optimize, refactor, validate, and govern<br />
     ontologies through explicit stages and decision-ready evidence.
   </p>
@@ -39,7 +39,14 @@
 > release. Executed checks and remaining boundaries are recorded in the
 > [verification record](docs/en/verification-record.md).
 
-Ontotect turns an ontology request into a routed, staged, evidence-producing
+> [!IMPORTANT]
+> Public `0.1.1` predates the 20-entry discovery repair in this source tree.
+> Until a later version is published, run the source installer shown below (or
+> a locally packed archive) to install the focused suite; do not expect public
+> `0.1.1` to expose these entries.
+
+Ontotect is a suite of 20 independently discoverable skills backed by one
+canonical ontology-engineering workflow. It turns an ontology request into a routed, staged, evidence-producing
 workflow—from competency questions and conceptual commitments through
 RDF/OWL/SHACL/SPARQL artifacts, regression evidence, semantic impact, and
 accountable release decisions.
@@ -48,36 +55,58 @@ accountable release decisions.
 
 ## Install in 60 seconds
 
-From the root of the project that should receive the skill, install Ontotect
-into every supported project-level Agent Skills directory:
+From an Ontotect source checkout, inspect the 20 focused entries and point the
+explicit installer at the project that should receive them. Replace the example
+target path before running the commands:
 
 ~~~powershell
-npx @moonweave-ai/ontotect install --agents all --scope project --project-root .
+node bin/ontotect.js list
+node bin/ontotect.js plan --agents all --scope project --project-root C:\path\to\target-project
+node bin/ontotect.js install --agents all --scope project --project-root C:\path\to\target-project
 ~~~
 
-Then ask the active agent for help or let the router classify a real request:
+After the next suite release, the same commands work through
+`npx @moonweave-ai/ontotect ...`.
 
-~~~text
-$ontotect help
-$ontotect router "Review this OWL ontology for logical, SHACL, and governance defects."
-~~~
+The default `--suite full` install creates `ontotect-help`, `ontotect-router`,
+all engineering modes, and all lifecycle-stage skills. Kilo and OpenCode also
+receive matching Markdown command adapters. Use `--suite core --commands none`
+only when one minimal router skill is preferred.
 
-Hosts that expose skills as slash commands may use `/ontotect ...`. The
-portable natural-language fallback is:
+Reload the host or start a new session when required, then use its supported
+invocation form:
+
+| Host | Help | Focused review |
+|---|---|---|
+| Codex CLI / IDE | `$ontotect-help` or `/skills` | `$ontotect-review` |
+| Cursor | `/ontotect-help` | `/ontotect-review` |
+| Claude Code | `/ontotect-help` | `/ontotect-review` |
+| Kilo | `/ontotect-help` through the generated command adapter | `/ontotect-review` through the adapter |
+| OpenCode | `/ontotect-help` through the generated command adapter | `/ontotect-review` through the adapter |
+
+Use `/ontotect-router <goal>` (or `$ontotect-router` in Codex) when the correct
+mode is unclear. The portable natural-language fallback remains:
 
 ~~~text
 Use Ontotect. Command: review. Target: path/to/ontology.ttl.
 ~~~
 
-### Global command
+### Global command from the current source
 
-Install the dependency-free command globally when direct shell access is useful:
+Public `0.1.1` can install the earlier single-skill layout, but it does not
+provide `list`, `--suite`, focused entries, or command adapters. To use the
+current suite compiler as a global shell command before the next release, run
+this from an Ontotect source checkout:
 
 ~~~powershell
-npm install --global @moonweave-ai/ontotect
+npm install --global .
 ontotect help
-ontotect install --agents cursor,codex --scope project --project-root .
+ontotect list
+ontotect install --agents cursor,codex --scope project --project-root C:\path\to\target-project
 ~~~
+
+After the suite release is published, replace `.` with
+`@moonweave-ai/ontotect` in the global install command.
 
 ### Source and dry-run workflows
 
@@ -86,9 +115,11 @@ with the Python installer before applying it:
 
 ~~~powershell
 node bin/ontotect.js help
-node bin/ontotect.js install --agents all --scope project --project-root .
-python ontotect/scripts/install_skill.py --agents all --scope project --project-root .
-python ontotect/scripts/install_skill.py --agents all --scope project --project-root . --apply
+node bin/ontotect.js list
+node bin/ontotect.js plan --agents all --scope project --project-root C:\path\to\target-project
+node bin/ontotect.js install --agents all --scope project --project-root C:\path\to\target-project
+python ontotect/scripts/install_skill.py --agents all --scope project --project-root C:\path\to\target-project
+python ontotect/scripts/install_skill.py --agents all --scope project --project-root C:\path\to\target-project --apply
 ~~~
 
 See [npm and npx installation](docs/en/npm-and-npx-installation.md) for the
@@ -98,8 +129,10 @@ for a complete first session.
 
 ## What Ontotect is
 
-Ontotect is an engineering workflow packaged as an Agent Skill. It supplies:
+Ontotect is an engineering workflow packaged as a discoverable Agent Skill
+Suite. It supplies:
 
+- 20 focused skills for Router, Help, Status, engineering modes, and lifecycle stages;
 - an explicit command router for different ontology situations;
 - a gated lifecycle from charter to release;
 - modeling and decision guidance for RDF, RDFS, OWL 2, SKOS, SHACL, SPARQL,
@@ -111,8 +144,11 @@ Ontotect is an engineering workflow packaged as an Agent Skill. It supplies:
 - a decision-ready output contract that distinguishes executed evidence from
   assumptions and unverified work.
 
-The installable skill lives in [`ontotect/`](ontotect/). Its front door is
-[`ontotect/SKILL.md`](ontotect/SKILL.md).
+The canonical source lives in [`ontotect/`](ontotect/), with
+[`ontotect/SKILL.md`](ontotect/SKILL.md) as its behavioral source of truth and
+[`skill-suite.json`](ontotect/assets/skill-suite.json) as the focused-entry
+registry. The installer compiles complete, self-contained skill directories;
+users do not manually scatter wrapper files into host folders.
 
 ## Why Ontotect
 
@@ -159,6 +195,7 @@ unexecuted check into a pass.
 
 | Capability | Ontotect approach |
 |---|---|
+| Discoverable skill system | Installs 20 focused skills so Help, Router, modes, and lifecycle stages appear as first-class Agent entries. |
 | Domain-specific execution | Encodes ontology-engineering decisions, artifacts, failure modes, and release gates as an actionable workflow. |
 | Scenario-aware routing | Selects `build`, `review`, `repair`, `optimize`, `refactor`, `validate`, `govern`, or `release` and sequences mixed requests. |
 | Lifecycle control | Exposes `charter`, `reuse`, `conceptualize`, `formalize`, `implement`, `verify`, and `release` as addressable stages. |
@@ -312,16 +349,17 @@ complete [source register](ontotect/references/sources.md) and summarized in
 ## Cross-agent design
 
 Ontotect keeps portable `name` and `description` frontmatter, relative
-references, and host-neutral workflow semantics. Optional host metadata does
-not control the core behavior.
+references, and host-neutral workflow semantics. The installer generates the
+same 20 focused directories under each selected skill root; optional host
+metadata controls presentation, not ontology behavior.
 
-| Host | Example project skill root |
-|---|---|
-| Cursor | `.cursor/skills/ontotect/` |
-| Codex | `.agents/skills/ontotect/` |
-| Kilo | `.kilo/skills/ontotect/` or `.agents/skills/ontotect/` |
-| OpenCode | `.opencode/skills/ontotect/`, `.agents/skills/ontotect/`, or `.claude/skills/ontotect/` |
-| Claude Code | `.claude/skills/ontotect/` |
+| Host | Project skill root | Focused invocation |
+|---|---|---|
+| Cursor | `.cursor/skills/` | `/ontotect-review` |
+| Codex | `.agents/skills/` | `$ontotect-review` or `/skills` |
+| Kilo | `.kilo/skills/` | `/ontotect-review`; adapters in `.kilo/commands/` |
+| OpenCode | `.opencode/skills/` | `/ontotect-review`; adapters in `.opencode/commands/` |
+| Claude Code | `.claude/skills/` | `/ontotect-review` |
 
 Invocation and refresh behavior vary by host. The
 [Compatibility guide](docs/en/compatibility.md) documents installation and
@@ -337,9 +375,9 @@ bin/
 └── ontotect.js              dependency-free Node and npm entry point
 
 ontotect/
-├── SKILL.md                 portable skill front door
+├── SKILL.md                 canonical ontology behavior
 ├── references/              commands and ontology-engineering knowledge
-├── assets/                  briefs, cards, fixtures, reports, and checklists
+├── assets/                  suite registry, adapter template, fixtures, and templates
 ├── scripts/                 installer, command cards, audit, and RDF diff
 └── agents/openai.yaml       optional host metadata
 
@@ -351,9 +389,9 @@ docs/
 package.json                 local package metadata and CLI mapping
 ~~~
 
-The runtime skill uses progressive disclosure: open `SKILL.md` first, then load
-only the command, method, validation, tool, or governance reference needed for
-the current gate.
+The installer compiles 19 focused entries alongside the canonical root skill.
+Every generated entry contains the complete runtime package, then uses
+progressive disclosure to load only the references needed at the current gate.
 
 ## Documentation
 
@@ -363,6 +401,7 @@ the current gate.
 | First use | [Getting started](docs/en/getting-started.md) |
 | Install and refresh | [Installation](docs/en/installation.md) |
 | Node, npm, and npx installation | [npm and npx installation](docs/en/npm-and-npx-installation.md) |
+| Missing skill or slash entry | [Troubleshoot discovery](docs/en/troubleshooting-discovery.md) |
 | All commands and syntax | [Command reference](docs/en/command-reference.md) |
 | Router, stages, and work state | [Routing and workflow](docs/en/routing-and-workflow.md) |
 | Build, review, repair, optimize, refactor, validate, govern, release | [Scenario playbooks](docs/en/scenario-playbooks.md) |

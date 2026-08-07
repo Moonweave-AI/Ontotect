@@ -12,6 +12,7 @@ related:
   - package.json
   - bin/ontotect.js
   - docs/decisions/0003-organization-scoped-npm-package.md
+  - docs/decisions/0004-host-discovery-and-command-adapters.zh-CN.md
   - docs/zh-CN/npm-and-npx-installation.md
   - docs/zh-CN/npm-installer-security-review.md
 supersedes: null
@@ -24,7 +25,10 @@ superseded_by: null
 
 ## 状态
 
-本 ADR 于 2026-08-07 接受。项目采用 MIT 许可证，首次公开发布已获授权。ADR 0003 仅把原先拟定的非 scoped 包名修订为 `@moonweave-ai/ontotect`；可执行命令与本 ADR 的全部安全控制保持不变。
+本 ADR 于 2026-08-07 接受。项目采用 MIT 许可证，首次公开发布已获授权。ADR 0003 把
+package identity 修订为 `@moonweave-ai/ontotect`。ADR 0004 随后把单入口安装布局修订为
+生成式 focused skill suite 加 Kilo/OpenCode command adapters；本 ADR 的显式调用、固定
+根目录、零依赖、无 lifecycle scripts、全局预检和覆盖控制继续有效。
 
 ## 背景
 
@@ -61,7 +65,9 @@ Ontotect 已有便携 Agent Skills 目录和 Python 安装器。Cursor、Codex�
 | OpenCode | `.opencode/skills/ontotect/` | `~/.config/opencode/skills/ontotect/` |
 | Claude Code | `.claude/skills/ontotect/` | `~/.claude/skills/ontotect/` |
 
-这些是安装器目标，不保证真实产品已经发现技能或完成行为验证。
+这些是初始决定中的 canonical root-skill 目标。按 ADR 0004，完整安装还会在同一根目录
+生成其余已注册的 `ontotect-*` 目录，并在已审阅的 Kilo/OpenCode command roots 生成
+显式命令文件。这些结构目标不保证真实产品已经发现技能或完成行为验证。
 
 ## 后果
 
@@ -69,7 +75,8 @@ Ontotect 已有便携 Agent Skills 目录和 Python 安装器。Cursor、Codex�
 
 - 同一命令可从源码、本地 tarball、未来 npm 包或全局安装运行。
 - 不增加依赖树、生命周期自动执行或隐藏网络行为。
-- 五个宿主继续共享同一个 canonical 便携目录。
+- 五个宿主继续共享同一 canonical 源目录；ADR 0004 在安装时从中编译宿主可发现的
+  focused entries。
 - Dry-run、固定目标、显式覆盖和包白名单让安装可检查。
 
 ### 成本与局限

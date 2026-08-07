@@ -13,6 +13,7 @@ related:
   - ontotect/references/command-contract.md
   - ontotect/scripts/ontotect.py
   - docs/en/command-reference.md
+  - docs/decisions/0004-host-discovery-and-command-adapters.md
 supersedes: null
 superseded_by: null
 ---
@@ -89,7 +90,10 @@ Rejected because it would duplicate Agent behavior, require a fixed toolchain, b
 
 ### Independent skill package for every mode
 
-Rejected for now because it duplicates shared operating rules, assets, and references. It can be revisited if host discovery or context measurements show a concrete need.
+Initially rejected as manually maintained duplication. ADR 0004 revisits this
+after concrete host-discovery evidence: the installer now generates focused,
+self-contained entries from one canonical skill and one registry, preserving
+this protocol without hand-maintained behavior forks.
 
 ## Acceptance evidence
 

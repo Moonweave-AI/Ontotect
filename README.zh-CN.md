@@ -2,7 +2,7 @@
 
   <img src="docs/assets/ontotect-mark.svg" alt="Ontotect 语义图谱标识" width="96" />
   <h1>Ontotect</h1>
-  <p><strong>Ontology Engineering Skill · 本体工程技能</strong></p>
+  <p><strong>Ontology Engineering Skill Suite · 本体工程技能体系</strong></p>
   <p><em>工程化语义，而不只是生成三元组。</em></p>
   <p>
     <a href="https://www.npmjs.com/package/@moonweave-ai/ontotect"><img src="https://img.shields.io/npm/v/%40moonweave-ai%2Fontotect?logo=npm&amp;label=npm" alt="npm 版本" /></a>
@@ -16,7 +16,7 @@
   </p>
   <p><a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a></p>
   <p>
-    <strong>面向 Agent Skills、以证据驱动的本体工程工作流。</strong><br />
+    <strong>面向 Coding Agents、以证据驱动的本体工程技能体系。</strong><br />
     通过显式阶段与决策级证据，路由、设计、构建、审核、修正、优化、<br />
     重构、验证和治理本体。
   </p>
@@ -38,42 +38,65 @@
 > 已发布。稳定版发布前，命令契约和文档仍可能继续演进；已执行检查及其边界记录在
 > [验证记录](docs/zh-CN/verification-record.md)中。
 
-Ontotect 把本体需求转化为经过路由、分阶段并持续产生证据的工作流：从能力问题和
+> [!IMPORTANT]
+> 公开 `0.1.1` 早于当前源码树中的 20-entry discovery 修复。在后续版本发布前，请使用
+> 下方的源码安装器（或本地打包文件）安装 focused suite；不要预期公开 `0.1.1` 会显示
+> 这些入口。
+
+Ontotect 由 20 个可独立发现的 focused skills 与一套 canonical 本体工程工作流构成。
+它把本体需求转化为经过路由、分阶段并持续产生证据的工作流：从能力问题和
 概念承诺推进到 RDF/OWL/SHACL/SPARQL 制品、回归证据、语义影响以及可问责的发布决策。
 
 <a id="install-in-60-seconds"></a>
 
 ## 60 秒安装
 
-在需要接收技能的项目根目录中，把 Ontotect 安装到所有受支持的项目级 Agent Skills
-目录：
+在 Ontotect 源码 checkout 根目录中查看 20 个 focused entries，并让显式安装器指向需要
+接收它们的目标项目。运行前请替换示例目标路径：
 
 ~~~powershell
-npx @moonweave-ai/ontotect install --agents all --scope project --project-root .
+node bin/ontotect.js list
+node bin/ontotect.js plan --agents all --scope project --project-root C:\path\to\target-project
+node bin/ontotect.js install --agents all --scope project --project-root C:\path\to\target-project
 ~~~
 
-随后在当前 Agent 中查看帮助，或者让 Router 对真实需求进行分类：
+下一版套件发布后，同样的命令可通过 `npx @moonweave-ai/ontotect ...` 运行。
 
-~~~text
-$ontotect help
-$ontotect router "审核这个 OWL 本体中的逻辑、SHACL 和治理缺陷。"
-~~~
+默认的 `--suite full` 会安装 `ontotect-help`、`ontotect-router`、全部工程模式和全部
+生命周期阶段 skills；Kilo 与 OpenCode 还会获得同名 Markdown command adapters。只有在
+明确希望保留单一 Router 时，才使用 `--suite core --commands none`。
 
-将技能呈现为斜杠命令的宿主可以改用 `/ontotect ...`。可移植的自然语言回退形式为：
+按需重新加载宿主或新建会话后，使用各宿主支持的调用方式：
+
+| 宿主 | 帮助 | focused 审核 |
+|---|---|---|
+| Codex CLI / IDE | `$ontotect-help` 或 `/skills` | `$ontotect-review` |
+| Cursor | `/ontotect-help` | `/ontotect-review` |
+| Claude Code | `/ontotect-help` | `/ontotect-review` |
+| Kilo | 通过生成的 command adapter 使用 `/ontotect-help` | 通过 adapter 使用 `/ontotect-review` |
+| OpenCode | 通过生成的 command adapter 使用 `/ontotect-help` | 通过 adapter 使用 `/ontotect-review` |
+
+不清楚正确模式时，使用 `/ontotect-router <目标>`；Codex 中使用
+`$ontotect-router`。可移植的自然语言回退形式仍然是：
 
 ~~~text
 Use Ontotect. Command: review. Target: path/to/ontology.ttl.
 ~~~
 
-### 全局命令
+### 从当前源码安装全局命令
 
-需要直接从 shell 调用时，可以全局安装这个无依赖命令：
+公开 `0.1.1` 可以安装早期的单技能布局，但不提供 `list`、`--suite`、focused entries 或
+command adapters。在下一版发布前，如需从 shell 全局调用当前 suite compiler，请在 Ontotect
+源码 checkout 中运行：
 
 ~~~powershell
-npm install --global @moonweave-ai/ontotect
+npm install --global .
 ontotect help
-ontotect install --agents cursor,codex --scope project --project-root .
+ontotect list
+ontotect install --agents cursor,codex --scope project --project-root C:\path\to\target-project
 ~~~
+
+套件版本发布后，可在全局安装命令中用 `@moonweave-ai/ontotect` 替换 `.`。
 
 ### 源码与 dry-run 工作流
 
@@ -82,9 +105,11 @@ ontotect install --agents cursor,codex --scope project --project-root .
 
 ~~~powershell
 node bin/ontotect.js help
-node bin/ontotect.js install --agents all --scope project --project-root .
-python ontotect/scripts/install_skill.py --agents all --scope project --project-root .
-python ontotect/scripts/install_skill.py --agents all --scope project --project-root . --apply
+node bin/ontotect.js list
+node bin/ontotect.js plan --agents all --scope project --project-root C:\path\to\target-project
+node bin/ontotect.js install --agents all --scope project --project-root C:\path\to\target-project
+python ontotect/scripts/install_skill.py --agents all --scope project --project-root C:\path\to\target-project
+python ontotect/scripts/install_skill.py --agents all --scope project --project-root C:\path\to\target-project --apply
 ~~~
 
 完整命令契约见 [npm 与 npx 安装](docs/zh-CN/npm-and-npx-installation.md)，宿主
@@ -93,8 +118,9 @@ python ontotect/scripts/install_skill.py --agents all --scope project --project-
 
 ## Ontotect 是什么
 
-Ontotect 是封装为 Agent Skill 的工程工作流，提供：
+Ontotect 是封装为可发现 Agent Skill Suite 的工程工作流，提供：
 
+- 面向 Router、Help、Status、工程模式与生命周期阶段的 20 个 focused skills；
 - 面向不同本体场景的显式命令路由；
 - 从 charter 到 release 的阶段化生命周期；
 - 面向 RDF、RDFS、OWL 2、SKOS、SHACL、SPARQL、映射、模块和溯源的建模与
@@ -105,8 +131,10 @@ Ontotect 是封装为 Agent Skill 的工程工作流，提供：
 - 辅助性的审计、RDF 图差异、安装和命令卡脚本；
 - 区分已执行证据、假设和未验证工作的决策级输出契约。
 
-可安装技能位于 [`ontotect/`](ontotect/)，入口是
-[`ontotect/SKILL.md`](ontotect/SKILL.md)。
+canonical 源位于 [`ontotect/`](ontotect/)，其中
+[`ontotect/SKILL.md`](ontotect/SKILL.md) 是行为事实源，
+[`skill-suite.json`](ontotect/assets/skill-suite.json) 是 focused-entry 注册表。安装器会编译
+完整、自包含的 skill 目录；用户不需要手工把 wrapper 散放到宿主文件夹中。
 
 ## 为什么需要 Ontotect
 
@@ -149,6 +177,7 @@ Ontotect 不是：
 
 | 能力 | Ontotect 的做法 |
 |---|---|
+| 可发现技能体系 | 安装 20 个 focused skills，让 Help、Router、工程模式和生命周期阶段成为一等 Agent 入口。 |
 | 领域专用执行 | 把本体工程的决策、制品、失败模式和发布门编码为可执行工作流。 |
 | 场景感知路由 | 在 `build`、`review`、`repair`、`optimize`、`refactor`、`validate`、`govern`、`release` 中选择，并编排混合请求。 |
 | 生命周期控制 | 将 `charter`、`reuse`、`conceptualize`、`formalize`、`implement`、`verify`、`release` 暴露为可寻址阶段。 |
@@ -291,15 +320,16 @@ ontology design patterns、OntoClean、upper ontologies、mappings、FAIR 与 OB
 ## 跨 Agent 设计
 
 Ontotect 保持可移植的 `name` 和 `description` frontmatter、相对引用和宿主无关的
-工作流语义。可选宿主 metadata 不控制核心行为。
+工作流语义。安装器会在每个所选 skill root 下生成相同的 20 个 focused 目录；可选宿主
+metadata 只控制呈现，不控制本体工程行为。
 
-| 宿主 | 示例项目级技能目录 |
-|---|---|
-| Cursor | `.cursor/skills/ontotect/` |
-| Codex | `.agents/skills/ontotect/` |
-| Kilo | `.kilo/skills/ontotect/` 或 `.agents/skills/ontotect/` |
-| OpenCode | `.opencode/skills/ontotect/`、`.agents/skills/ontotect/` 或 `.claude/skills/ontotect/` |
-| Claude Code | `.claude/skills/ontotect/` |
+| 宿主 | 项目级 skill root | focused 调用 |
+|---|---|---|
+| Cursor | `.cursor/skills/` | `/ontotect-review` |
+| Codex | `.agents/skills/` | `$ontotect-review` 或 `/skills` |
+| Kilo | `.kilo/skills/` | `/ontotect-review`；adapters 位于 `.kilo/commands/` |
+| OpenCode | `.opencode/skills/` | `/ontotect-review`；adapters 位于 `.opencode/commands/` |
+| Claude Code | `.claude/skills/` | `/ontotect-review` |
 
 调用和刷新行为因宿主而异。[兼容性指南](docs/zh-CN/compatibility.md)记录安装与
 发现行为，[本地验证记录](docs/zh-CN/verification-record.md)区分结构检查和宿主
@@ -313,9 +343,9 @@ bin/
 └── ontotect.js              无依赖 Node 与 npm 入口
 
 ontotect/
-├── SKILL.md                 可移植技能入口
+├── SKILL.md                 canonical 本体工程行为
 ├── references/              命令与本体工程知识
-├── assets/                  briefs、cards、fixtures、reports 和 checklists
+├── assets/                  suite 注册表、adapter 模板、fixtures 与工程模板
 ├── scripts/                 installer、command cards、audit 和 RDF diff
 └── agents/openai.yaml       可选宿主 metadata
 
@@ -327,8 +357,8 @@ docs/
 package.json                 本地软件包 metadata 与 CLI mapping
 ~~~
 
-运行时技能采用渐进式披露：先打开 `SKILL.md`，再只加载当前 gate 所需的命令、
-方法、验证、工具或治理参考。
+安装器会在 canonical root skill 旁编译 19 个 focused entries。每个 generated entry 都包含
+完整运行时包，再通过渐进式披露只加载当前 gate 所需的 references。
 
 ## 文档
 
@@ -338,6 +368,7 @@ package.json                 本地软件包 metadata 与 CLI mapping
 | 首次使用 | [开始使用](docs/zh-CN/getting-started.md) |
 | 安装与刷新 | [安装](docs/zh-CN/installation.md) |
 | Node、npm 与 npx 安装 | [npm 与 npx 安装](docs/zh-CN/npm-and-npx-installation.md) |
+| skill 或 slash entry 缺失 | [排查发现问题](docs/zh-CN/troubleshooting-discovery.md) |
 | 所有命令与语法 | [命令参考](docs/zh-CN/command-reference.md) |
 | Router、阶段和工作状态 | [路由与工作流](docs/zh-CN/routing-and-workflow.md) |
 | 构建、审核、修正、优化、重构、验证、治理、发布 | [场景手册](docs/zh-CN/scenario-playbooks.md) |

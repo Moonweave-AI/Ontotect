@@ -5,14 +5,15 @@ owner: project-maintainers
 created: 2026-08-07
 updated: 2026-08-07
 last_reviewed: 2026-08-07
-review_cycle_days: 180
-summary: 在常见 Agent Skills 宿主中安装完整 Ontotect 技能目录并保持其便携结构。
+review_cycle_days: 90
+summary: 通过显式 Node/npx 或 Python installer 安装完整 Ontotect skill suite 与宿主命令适配器。
 canonical: docs/en/installation.md
 related:
   - ontotect/references/agent-compatibility.md
   - ontotect/scripts/install_skill.py
   - docs/zh-CN/npm-and-npx-installation.md
   - docs/zh-CN/compatibility.md
+  - docs/zh-CN/troubleshooting-discovery.md
 supersedes: null
 superseded_by: null
 ---
@@ -21,79 +22,135 @@ superseded_by: null
 
 [English](../en/installation.md) · [文档首页](index.md) · 本页是英文 canonical 的简体中文镜像。
 
-Ontotect 遵循开放的 Agent Skills 目录约定。请安装完整 `ontotect/` 目录；只复制 `SKILL.md` 会破坏相对 references、assets、命令规范和 scripts。
+请使用 installer 部署 Ontotect suite，不要手工把 wrapper files 散放到不同宿主目录。
+installer 会从一套 canonical 源编译全部 focused skills、生成呈现 metadata、在确有需要的
+宿主中增加兼容 commands，并在写入前预检整个事务。
 
-## 使用 npm 安装器
+> [!IMPORTANT]
+> 公开 `@moonweave-ai/ontotect@0.1.1` 早于 focused-suite compiler。它只安装早期的单一
+> `ontotect` skill，不提供 `list`、`--suite`、`--commands`、focused entries 或 command
+> adapters。在后续套件版本发布前，请使用当前源码 checkout 或本地 packed archive 执行
+> 本页流程。
 
-从当前源码树预览全部五个项目级目标：
+## 套件版本发布后使用 npx 安装
 
-```powershell
-node bin/ontotect.js plan --agents all --scope project --project-root .
-```
-
-应用已审阅的计划：
-
-```powershell
-node bin/ontotect.js install --agents all --scope project --project-root .
-```
-
-该包没有依赖或生命周期脚本；仅获取包不会复制技能。`0.1.1` 是 npm 上 `@moonweave-ai/ontotect` 的当前公开版本。公共 npx、源码、本地包、用户级、覆盖及安全路径详见 [npm 与 npx 安装](npm-and-npx-installation.md)。
-
-## 使用 Python 安装器
-
-从仓库根目录预览项目级安装：
+先列出 20 个可发现 entries：
 
 ```powershell
-python ontotect/scripts/install_skill.py --agents all --scope project --project-root .
+npx @moonweave-ai/ontotect list
 ```
 
-检查计划后应用：
+预览完整项目级安装：
 
 ```powershell
-python ontotect/scripts/install_skill.py --agents all --scope project --project-root . --apply
+npx @moonweave-ai/ontotect plan --agents all --scope project --project-root .
 ```
 
-用 `--agents cursor codex kilo opencode claude` 选择宿主，用 `--scope user` 选择用户范围。除非同时提供 `--force`，安装器不会覆盖现有技能。当前接口以 `--help` 为准。Node 与 Python 安装器采用同一组五宿主 canonical 项目/用户目标。
+应用已审阅计划：
 
-## 手动项目安装
+```powershell
+npx @moonweave-ai/ontotect install --agents all --scope project --project-root .
+```
 
-将 `ontotect/` 完整复制到宿主发现路径：
+默认是 `--suite full --commands auto`。计划包含：
 
-| 宿主 | 常用项目路径 |
+- 每个所选宿主一个 canonical `ontotect` target；
+- 每个所选宿主 19 个 generated focused skill targets；
+- Kilo 与 OpenCode 各 20 个显式 command adapters。
+
+仅获取 package 不会安装 skills；项目没有 install 或 postinstall lifecycle hook。
+
+## 从源码 checkout 安装
+
+在 Ontotect checkout 中运行下列命令，并替换示例目标路径。Node 入口是当前 canonical
+行为，下一版套件 npm binary 将暴露相同能力：
+
+```powershell
+node bin/ontotect.js list
+node bin/ontotect.js plan --agents all --scope project --project-root C:\path\to\target-project
+node bin/ontotect.js install --agents all --scope project --project-root C:\path\to\target-project
+```
+
+Python installer 默认 dry-run：
+
+```powershell
+python ontotect/scripts/install_skill.py --agents all --scope project --project-root C:\path\to\target-project
+python ontotect/scripts/install_skill.py --agents all --scope project --project-root C:\path\to\target-project --apply
+```
+
+两个 installer 都读取 `ontotect/assets/skill-suite.json`，生成匹配的 focused `SKILL.md`
+和 `agents/openai.yaml`，并使用同一目标矩阵。
+
+## 选择宿主与 scope
+
+Node/npx 使用 `--agents cursor,codex`，Python 使用 `--agents cursor codex` 选择子集；
+`--agents all` 选择全部五个宿主。
+
+| 宿主 key | 项目级 skill root | 用户级 skill root |
+|---|---|---|
+| `cursor` | `.cursor/skills/` | `~/.cursor/skills/` |
+| `codex` | `.agents/skills/` | `~/.agents/skills/` |
+| `kilo` | `.kilo/skills/` | `~/.kilo/skills/` |
+| `opencode` | `.opencode/skills/` | `~/.config/opencode/skills/` |
+| `claude` | `.claude/skills/` | `~/.claude/skills/` |
+
+Kilo commands 使用项目级 `.kilo/commands/` 或用户级 `~/.config/kilo/commands/`；
+OpenCode commands 使用项目级 `.opencode/commands/` 或用户级
+`~/.config/opencode/commands/`。
+
+`--scope user` 使用操作系统用户主目录；`--project-root` 只选择项目级输出。
+
+## 选择发现表面
+
+下方不带路径的 `ontotect` 示例假定已用 `npm install --global .` 全局安装当前 checkout，或
+正在使用后续的 focused-suite 版本；它们不描述公开 `0.1.1`。
+
+除非明确需要最小安装，否则使用完整 suite：
+
+```powershell
+ontotect install --agents codex --scope user --suite full
+ontotect install --agents codex --scope user --suite core --commands none
+```
+
+`full` 创建 Help、Router、Status、八个工程模式、通用 Stage 与七个 stage-specific entries；
+`core` 只创建 `ontotect`。
+
+`--commands auto` 从同一个 registry 生成 Kilo/OpenCode adapters；`--commands none` 禁止
+生成。Cursor、Codex 与 Claude 不会收到重复 command files。
+
+## 冲突与更新行为
+
+installer 会在复制前检查每个 core skill、focused skill 与 command file。任何一个
+Ontotect 自有目标存在，都会阻止整个请求：
+
+```powershell
+ontotect plan --agents all --scope user --json
+ontotect install --agents all --scope user --force
+```
+
+只有在审阅路径并确定干净替换 generated installation 后才使用 `--force`。installer 会先
+stage 全部输出，提交期间使用 rollback backups，并在 `.ontotect-suite.json` 中只记录受管
+entry names。后续 forced refresh 会删除该状态中已经过期的 entries，但保留未知 sibling
+skills 和共享 `commands/` 中的无关文件。symlink/junction 路径逃逸与错误目标类型会在
+staging 前被拒绝；安装不使用 checksum 或版本锁定。
+
+## 刷新与调用
+
+安装后重新加载宿主或新建会话：
+
+| 宿主 | 首次发现检查 |
 |---|---|
-| Cursor | `.cursor/skills/ontotect/` |
-| Codex | `.agents/skills/ontotect/` |
-| Kilo | `.kilo/skills/ontotect/` 或 `.agents/skills/ontotect/` |
-| OpenCode | `.opencode/skills/ontotect/` 或 `.agents/skills/ontotect/` |
-| Claude Code | `.claude/skills/ontotect/` |
+| Codex | `/skills`，然后 `$ontotect-help` 与 `$ontotect-review` |
+| Cursor | `/ontotect-help` 与 `/ontotect-review` |
+| Kilo | `/reload`，然后通过生成的 command adapter 使用 `/ontotect-help` |
+| OpenCode | 重启，然后通过已安装 adapter 使用 `/ontotect-help` |
+| Claude Code | 已存在的 skills 目录会热更新，可直接使用 `/ontotect-help`；只有会话启动后才新建顶层 `.claude/skills/` 目录时才需重启 |
 
-用户/全局路径和宿主发现规则会独立变化。维护中的详细表和官方链接位于 [agent-compatibility.md](../../ontotect/references/agent-compatibility.md)。
+有效目录只能证明结构安装。真实发现与行为要单独记录；entry 缺失时参见
+[排查发现问题](troubleshooting-discovery.md)。
 
-## 验证发现
+## 可选本体工具
 
-安装后：
-
-1. 重新加载宿主或新建会话。
-2. 若宿主提供技能列表，确认其中存在 `ontotect`。
-3. 发送 `Use Ontotect. Command: help. Target: first-time user.`。
-4. 让宿主路由一个无害示例。
-5. 确认它能按需读取 `references/workflow.md`。
-6. 确认仅加载技能不会执行脚本或请求额外权限。
-
-目录复制和 frontmatter 有效只证明结构兼容。行为兼容还要求真实宿主发现技能、解析相对文件、遵循命令契约，并在工作需要时提供经用户批准的文件或命令工具。
-
-## 可选 Python 能力
-
-Navigator 只使用 Python 标准库。建议性本体审计需要 RDFLib；可选 SHACL 验证还需要 pySHACL。不要仅为加载技能而安装依赖。请求的检查不可用时标为 `unverified`，或在改变环境前取得用户批准。
-
-```powershell
-python ontotect/scripts/ontotect.py help
-python ontotect/scripts/ontology_audit.py --help
-python ontotect/scripts/ontology_diff.py --help
-```
-
-Navigator 只输出指导卡，不检查、修复、验证或发布本体。
-
-## 更新
-
-通过经过审查的仓库更新替换或合并完整技能包。项目证据保存在安装目录之外。默认不要添加哈希、依赖固化或重复宿主版本检查；只有具体验收或风险确实需要时才增加更强完整性控制。
+installer 只需要 Node 或 Python 标准库。Ontotect 的辅助 ontology audit 可选使用 RDFLib
+和 pySHACL，但加载 skill 本身不会安装它们。若所需 validator 或 reasoner 不可用，将检查
+标为 `unverified`，或在改变环境前取得授权。

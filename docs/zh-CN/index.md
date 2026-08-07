@@ -19,12 +19,14 @@ superseded_by: null
 
 [English](../en/index.md) · [项目 README](../../README.zh-CN.md) · 本页是英文 canonical 的简体中文镜像。
 
-Ontotect 是一个本体工程技能，用于系统化地设计、构建、审核、修正、优化、重构、验证和治理本体。它让支持 Agent Skills 的宿主成为证据驱动的本体工程协作者，同时保持概念承诺、形式语义、图约束、实现语法和治理之间的区别。
+Ontotect 是从一套 canonical workflow 编译出的 20-entry 本体工程 skill suite，用于系统化
+设计、构建、审核、修正、优化、重构、验证和治理本体。
 
 ## 选择阅读路径
 
 - 首次使用：阅读[快速入门](getting-started.md)。
 - 安装到 Cursor、Codex、Kilo、OpenCode 或 Claude Code：阅读[安装](installation.md)；npm/npx 用户可直接阅读 [npm 与 npx 安装](npm-and-npx-installation.md)。
+- 文件已经安装但 skill 或 slash entry 缺失：使用[排查发现问题](troubleshooting-discovery.md)。
 - 知道任务但不知道命令：先用 `help`，再用 `router`；参见[命令参考](command-reference.md)。
 - 需要具体模式示例：阅读[场景手册](scenario-playbooks.md)。
 - 需要阶段门和路由规则：阅读[路由与工作流](routing-and-workflow.md)。
@@ -37,6 +39,7 @@ Ontotect 是一个本体工程技能，用于系统化地设计、构建、审�
 | [快速入门](getting-started.md) | 第一次安装、路由和审核教程 |
 | [安装](installation.md) | 五种常见 Agent Skills 宿主的项目级和用户级安装 |
 | [npm 与 npx 安装](npm-and-npx-installation.md) | 公共 registry、源码、本地包、目标和覆盖路径 |
+| [排查发现问题](troubleshooting-discovery.md) | 缺失 skill/slash 诊断、调用语法、刷新和证据层级 |
 | [命令参考](command-reference.md) | 便携 Agent 命令及独立的 Python navigator CLI |
 | [路由与工作流](routing-and-workflow.md) | 模式选择、生命周期、阶段门和迭代 |
 | [场景手册](scenario-playbooks.md) | 构建、审核、修正、优化、重构、验证、治理和发布路径 |
@@ -65,6 +68,8 @@ Ontotect 是一个本体工程技能，用于系统化地设计、构建、审�
 
 ## 项目状态
 
-GitHub `main` 当前标识 Ontotect 0.1.1，且 `@moonweave-ai/ontotect@0.1.1` 已发布到 npm，`latest` 指向 0.1.1。结构安装和本地夹具已完成测试，但目录复制成功并不证明每个外部宿主都已发现和执行技能。兼容性声明必须指出实际检查内容，并把未执行的行为标为 `unverified`。
+`@moonweave-ai/ontotect@0.1.1` 是当前公开 npm `latest`，但它早于本源码树中的 focused
+skill-suite discovery 修复。在新版本发布前，不得把公开 0.1.1 报告为包含 20-entry
+installer。结构安装与真实宿主 discovery 仍是不同证据。
 
 Ontotect 的原创仓库内容采用 [MIT 许可证](../../LICENSE)。第三方参考资料继续适用其自身条款，私有构建语料不参与分发。

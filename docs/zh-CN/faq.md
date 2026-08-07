@@ -22,7 +22,9 @@ superseded_by: null
 
 ## Ontotect 是什么？
 
-它是为本体设计、构建、审核、修复、优化、重构、验证、治理和发布提供系统工作流的 Agent Skill。它不是本体编辑器、triple store 或完整 reasoner。
+它是由一套系统本体工程工作流生成的 20 个可独立发现 Agent Skills，覆盖本体设计、构建、
+审核、修复、优化、重构、验证、治理和发布。它不是本体编辑器、triple store 或完整
+reasoner。
 
 ## 首次用户从哪里开始？
 
@@ -38,7 +40,10 @@ superseded_by: null
 
 ## `npx @moonweave-ai/ontotect install` 会执行本体工程吗？
 
-不会。npm 可执行程序只规划或复制完整技能到固定宿主发现路径，不运行 Agent 工作流、validator、reasoner、repair 或发布。组织包已可从公共 npm registry 获取；可用 `npx @moonweave-ai/ontotect help` 查看安装器帮助，并用 `npx @moonweave-ai/ontotect install ...` 复制技能。
+不会。npm 可执行程序只会把 focused suite 列出、规划或安装到固定宿主发现路径：复制
+canonical root、生成可自包含的 focused skills，并为 Kilo 与 OpenCode 生成薄 slash-command
+adapters。它不运行 Agent 工作流、validator、reasoner、repair 或发布。公开 `0.1.1` 早于
+本次 discovery 修复，因此在后续套件版本发布前应使用源码安装器或本地包。
 
 ## 为什么区分 `validate` 和 `verify`？
 

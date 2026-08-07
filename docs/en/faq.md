@@ -22,7 +22,10 @@ superseded_by: null
 
 ## What is Ontotect?
 
-An Agent Skill that supplies a systematic ontology-engineering workflow for design, construction, review, repair, optimization, refactoring, validation, governance, and release. It is not an ontology editor, triple store, or complete reasoner.
+A suite of 20 independently discoverable Agent Skills generated from one
+systematic ontology-engineering workflow for design, construction, review,
+repair, optimization, refactoring, validation, governance, and release. It is
+not an ontology editor, triple store, or complete reasoner.
 
 ## Where should a first-time user start?
 
@@ -38,7 +41,12 @@ The portable commands are Agent prompt contracts. Use `Use Ontotect. Command: re
 
 ## Does `npx @moonweave-ai/ontotect install` perform ontology engineering?
 
-No. The npm executable only plans or copies the complete skill into fixed host discovery roots. It does not run the Agent workflow, validators, reasoners, repairs, or publication. The organization package is available from the public npm registry; use `npx @moonweave-ai/ontotect help` to inspect the installer and `npx @moonweave-ai/ontotect install ...` to copy the skill.
+No. The npm executable lists, plans, or installs the focused suite into fixed
+host discovery roots. It copies the canonical root and generates self-contained
+focused skills; for Kilo and OpenCode it also generates thin slash-command
+adapters. It does not run the Agent workflow, validators, reasoners, repairs, or
+publication. Public `0.1.1` predates this discovery repair, so use the source
+installer or a local package until a later suite version is published.
 
 ## Why separate `validate` from `verify`?
 

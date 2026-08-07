@@ -13,6 +13,7 @@ related:
   - ontotect/references/command-contract.md
   - ontotect/scripts/ontotect.py
   - docs/zh-CN/command-reference.md
+  - docs/decisions/0004-host-discovery-and-command-adapters.md
 supersedes: null
 superseded_by: null
 ---
@@ -89,7 +90,9 @@ Ontotect 必须在 Cursor、Codex、Kilo、OpenCode、Claude Code 和其他 Agen
 
 ### 每个模式使用独立 Skill 包
 
-暂不采用，因为会复制共享规则、assets 和 references。若宿主发现或上下文测量证明有实际需要，可重新评估。
+最初因手工维护会复制共享规则、assets 与 references 而拒绝。ADR 0004 在获得明确的宿主
+发现证据后重新评估了这一选择：安装器现在从一套 canonical skill 与一个注册表生成
+focused、自包含的入口，在保持本协议的同时避免手工维护的行为分叉。
 
 ## 验收证据
 

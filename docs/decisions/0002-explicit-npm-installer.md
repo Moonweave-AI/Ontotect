@@ -12,6 +12,7 @@ related:
   - package.json
   - bin/ontotect.js
   - docs/decisions/0003-organization-scoped-npm-package.md
+  - docs/decisions/0004-host-discovery-and-command-adapters.md
   - docs/en/npm-and-npx-installation.md
   - docs/en/npm-installer-security-review.md
 supersedes: null
@@ -24,7 +25,12 @@ superseded_by: null
 
 ## Status
 
-Accepted on 2026-08-07. The project uses the MIT License, and the initial public release was authorized. ADR 0003 amends only the package identity from the originally proposed unscoped name to `@moonweave-ai/ontotect`; the executable and all safety controls in this ADR remain unchanged.
+Accepted on 2026-08-07. The project uses the MIT License, and the initial public
+release was authorized. ADR 0003 amends the package identity to
+`@moonweave-ai/ontotect`. ADR 0004 later amends the single-entry installation
+layout into a generated focused skill suite plus Kilo/OpenCode command adapters;
+the explicit invocation, fixed roots, zero-dependency, no-lifecycle-script,
+preflight, and overwrite controls in this ADR remain in force.
 
 ## Context
 
@@ -61,7 +67,11 @@ The project is released under the MIT License. npm package identity metadata mus
 | OpenCode | `.opencode/skills/ontotect/` | `~/.config/opencode/skills/ontotect/` |
 | Claude Code | `.claude/skills/ontotect/` | `~/.claude/skills/ontotect/` |
 
-These are installer targets, not a guarantee that a live product has discovered or behaviorally validated the skill.
+These are the canonical root-skill targets from the initial decision. Under ADR
+0004, a full installation also creates the other registered `ontotect-*`
+directories beside this root and creates explicit command files in the reviewed
+Kilo/OpenCode command roots. These structural targets are not a guarantee that a
+live product has discovered or behaviorally validated the suite.
 
 ## Consequences
 
@@ -69,7 +79,8 @@ These are installer targets, not a guarantee that a live product has discovered 
 
 - A single command works from source, a local tarball, a future npm package, or a global installation.
 - No dependency tree, lifecycle execution, or hidden network behavior is added.
-- The same portable directory remains canonical across all five hosts.
+- The same portable source directory remains canonical across all five hosts;
+  ADR 0004 compiles host-visible focused entries from it at installation time.
 - Dry-run, fixed destinations, explicit overwrite, and a package allowlist make installation inspectable.
 
 ### Costs and limitations

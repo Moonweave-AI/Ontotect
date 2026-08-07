@@ -13,6 +13,7 @@ related:
   - ontotect/references/command-router.md
   - ontotect/scripts/ontotect.py
   - docs/decisions/0001-portable-command-router.md
+  - docs/decisions/0004-host-discovery-and-command-adapters.md
 supersedes: null
 superseded_by: null
 ---
@@ -21,7 +22,8 @@ superseded_by: null
 
 [English](../en/command-reference.md) · [文档首页](index.md) · 本页是英文 canonical 的简体中文镜像。
 
-Ontotect 定义了宿主中立的 Agent 命令协议。它是提示契约，不是 shell 命令，也不意味着每个宿主都注册相同的 slash-command UI。
+Ontotect 定义宿主中立的 Agent 命令协议，并把它编译为 20 个 focused skill entries。协议是
+语义契约；focused skills 是可独立发现的宿主入口。
 
 ## 便携 Agent 协议
 
@@ -31,7 +33,38 @@ Ontotect 定义了宿主中立的 Agent 命令协议。它是提示契约，不�
 Use Ontotect. Command: <command>. Target: <target or goal>.
 ```
 
-提供技能快捷入口的宿主也可能接受 `$ontotect <command> ...` 或 `/ontotect <command> ...`。这些只是便捷形式，显式协议才是 canonical。
+root skill 仍可在宿主支持时接受 `$ontotect <command> ...` 或
+`/ontotect <command> ...`，但完整 installer 还会提供 focused names。Codex 使用
+`$<skill-name>` 或 `/skills`；Cursor 与 Claude 使用 `/<skill-name>`；Kilo/OpenCode 使用
+原生 skill slash 或 generated command adapters。
+
+## 可发现的 Focused Entries
+
+| Skill entry | 固定 canonical 命令 | 用途 |
+|---|---|---|
+| `ontotect` | 有请求时为 `router`；无参数时为 `help` | 通用入口与回退 Router |
+| `ontotect-help` | `help` | 首次接触说明 |
+| `ontotect-router` | `router` | 选择模式、阶段、证据路径和下一 gate |
+| `ontotect-status` | `status` | 在不推进工作的前提下重建状态 |
+| `ontotect-build` | `build` | 创建或扩展本体 |
+| `ontotect-review` | `review` | 证据驱动的只读审核 |
+| `ontotect-repair` | `repair` | 修正已复现缺陷 |
+| `ontotect-optimize` | `optimize` | 改善已测量目标 |
+| `ontotect-refactor` | `refactor` | 在保持契约下重构 |
+| `ontotect-validate` | `validate` | 执行指定证据而不重新设计 |
+| `ontotect-govern` | `govern` | 定义所有权、标识符与变更政策 |
+| `ontotect-release` | `release` 模式 | 评估和准备发布就绪性 |
+| `ontotect-stage` | `stage <stage>` | 从第一参数选择阶段 |
+| `ontotect-charter` | `stage charter` | 定义目的、范围、CQ、角色与验收 |
+| `ontotect-reuse` | `stage reuse` | 评估 reuse/import/module/mapping |
+| `ontotect-conceptualize` | `stage conceptualize` | 建立概念模型 |
+| `ontotect-formalize` | `stage formalize` | 选择语义与形式承诺 |
+| `ontotect-implement` | `stage implement` | 交付经过测试的纵向切片 |
+| `ontotect-verify` | `stage verify` | 集成验证证据 |
+| `ontotect-stage-release` | `stage release` | 完成生命周期 Stage G |
+
+选择 focused skill 即代表显式命令；意图推断不得静默替换它。generated entry 仍携带完整
+canonical workflow 与全部本地 references。
 
 ## 协调命令
 

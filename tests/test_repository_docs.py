@@ -54,6 +54,28 @@ class RepositoryDocumentationTests(unittest.TestCase):
         "verify",
         "release",
     }
+    SUITE_COMMANDS = {
+        "ontotect": "router",
+        "ontotect-help": "help",
+        "ontotect-router": "router",
+        "ontotect-status": "status",
+        "ontotect-build": "build",
+        "ontotect-review": "review",
+        "ontotect-repair": "repair",
+        "ontotect-optimize": "optimize",
+        "ontotect-refactor": "refactor",
+        "ontotect-validate": "validate",
+        "ontotect-govern": "govern",
+        "ontotect-release": "release",
+        "ontotect-stage": "stage",
+        "ontotect-charter": "stage charter",
+        "ontotect-reuse": "stage reuse",
+        "ontotect-conceptualize": "stage conceptualize",
+        "ontotect-formalize": "stage formalize",
+        "ontotect-implement": "stage implement",
+        "ontotect-verify": "stage verify",
+        "ontotect-stage-release": "stage release",
+    }
 
     def test_bilingual_entry_points_exist(self) -> None:
         self.assertTrue((ROOT / "README.md").is_file())
@@ -214,6 +236,129 @@ class RepositoryDocumentationTests(unittest.TestCase):
             {"book/", "paper/", "tools/", "book-to-skill/", "tmp/", "tests/"}
             & files
         )
+
+    def test_skill_suite_manifest_and_command_adapter_are_complete(self) -> None:
+        manifest = json.loads(
+            (SKILL_ROOT / "assets" / "skill-suite.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual(manifest.get("schema_version"), "1.0")
+        skills = manifest.get("skills")
+        self.assertIsInstance(skills, list)
+        self.assertEqual(len(skills), 20)
+
+        required_fields = {
+            "name",
+            "display_name",
+            "short_description",
+            "description",
+            "command",
+            "instruction",
+        }
+        names = [skill.get("name") for skill in skills]
+        self.assertEqual(names, list(self.SUITE_COMMANDS))
+        self.assertEqual(len(names), len(set(names)))
+        self.assertEqual(
+            {skill["name"]: skill["command"] for skill in skills},
+            self.SUITE_COMMANDS,
+        )
+        self.assertEqual(skills[0].get("dispatch"), "conditional")
+        self.assertTrue(
+            all(skill.get("dispatch", "fixed") == "fixed" for skill in skills[1:])
+        )
+
+        for skill in skills:
+            with self.subTest(skill=skill.get("name")):
+                self.assertEqual(required_fields - set(skill), set())
+                for field in required_fields:
+                    self.assertIsInstance(skill[field], str)
+                    self.assertTrue(skill[field].strip())
+                self.assertRegex(skill["name"], r"^ontotect(?:-[a-z0-9-]+)?$")
+                self.assertLessEqual(len(skill["short_description"]), 64)
+                self.assertLessEqual(len(skill["description"]), 1024)
+
+        template = (SKILL_ROOT / "assets" / "command-adapter.md").read_text(
+            encoding="utf-8"
+        )
+        placeholders = re.findall(r"\{\{([a-z_]+)\}\}", template)
+        self.assertEqual(
+            set(placeholders), {"short_description", "instruction", "skill"}
+        )
+        for placeholder in ("short_description", "instruction", "skill"):
+            self.assertEqual(placeholders.count(placeholder), 1)
+        self.assertEqual(template.count("$ARGUMENTS"), 1)
+        self.assertTrue(
+            template.startswith("---\ndescription: {{short_description}}\n---\n")
+        )
+        self.assertIn("`{{skill}}` skill", template)
+
+        canonical = (SKILL_ROOT / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("Selecting a\nfocused entry is itself an explicit command", canonical)
+        self.assertIn("must not fall back to\n`help` or `router`", canonical)
+
+        openai_metadata = (SKILL_ROOT / "agents" / "openai.yaml").read_text(
+            encoding="utf-8"
+        )
+        self.assertNotIn("Use $ontotect router", openai_metadata)
+        self.assertIn("no request or arguments were supplied, execute help", openai_metadata)
+        self.assertIn("otherwise execute router", openai_metadata)
+
+    def test_readmes_and_bilingual_docs_project_the_skill_suite(self) -> None:
+        readmes = (ROOT / "README.md", ROOT / "README.zh-CN.md")
+        for path in readmes:
+            body = path.read_text(encoding="utf-8")
+            with self.subTest(path=path.relative_to(ROOT), surface="README"):
+                for token in (
+                    "20",
+                    "skill-suite.json",
+                    "--suite full",
+                    "--commands none",
+                    "ontotect-help",
+                    "ontotect-router",
+                    "ontotect-review",
+                ):
+                    self.assertIn(token, body)
+
+        suite_docs = (
+            "architecture.md",
+            "command-reference.md",
+            "compatibility.md",
+            "getting-started.md",
+            "index.md",
+            "installation.md",
+            "npm-and-npx-installation.md",
+            "troubleshooting-discovery.md",
+        )
+        for name in suite_docs:
+            for language in ("en", "zh-CN"):
+                path = DOCS_ROOT / language / name
+                body = path.read_text(encoding="utf-8")
+                with self.subTest(
+                    path=path.relative_to(ROOT), surface="suite-description"
+                ):
+                    self.assertIn("20", body)
+
+        for language in ("en", "zh-CN"):
+            command_reference = (
+                DOCS_ROOT / language / "command-reference.md"
+            ).read_text(encoding="utf-8")
+            with self.subTest(language=language, surface="command-reference"):
+                for name in self.SUITE_COMMANDS:
+                    self.assertIn(f"`{name}`", command_reference)
+
+            installation = (DOCS_ROOT / language / "installation.md").read_text(
+                encoding="utf-8"
+            )
+            with self.subTest(language=language, surface="installation"):
+                for token in (
+                    "skill-suite.json",
+                    "--suite full --commands auto",
+                    "--suite core --commands none",
+                    ".kilo/commands/",
+                    ".opencode/commands/",
+                ):
+                    self.assertIn(token, installation)
 
     def test_banner_is_accessible_svg(self) -> None:
         banner = ROOT / "docs" / "assets" / "ontotect-banner.svg"

@@ -19,12 +19,15 @@ superseded_by: null
 
 [简体中文](../zh-CN/index.md) · [Project README](../../README.md)
 
-Ontotect is an ontology engineering skill for systematic ontology design, construction, review, repair, optimization, refactoring, validation, and governance. It turns an Agent Skills host into an evidence-led ontology-engineering collaborator while keeping conceptual commitments, formal semantics, graph constraints, implementation syntax, and governance distinct.
+Ontotect is a 20-entry ontology engineering skill suite compiled from one
+canonical workflow for systematic design, construction, review, repair,
+optimization, refactoring, validation, and governance.
 
 ## Choose your path
 
 - New to Ontotect: follow [Getting started](getting-started.md).
 - Installing in Cursor, Codex, Kilo, OpenCode, or Claude Code: use [Installation](installation.md); npm and npx users can go directly to [npm and npx installation](npm-and-npx-installation.md).
+- Installed files exist but a skill or slash entry is missing: use [Troubleshoot discovery](troubleshooting-discovery.md).
 - Know the task but not the command: start with `help`, then `router`; see [Command reference](command-reference.md).
 - Need a mode-specific example: use [Scenario playbooks](scenario-playbooks.md).
 - Need lifecycle gates and routing rules: read [Routing and workflow](routing-and-workflow.md).
@@ -37,6 +40,7 @@ Ontotect is an ontology engineering skill for systematic ontology design, constr
 | [Getting started](getting-started.md) | A first installation, route, and review walkthrough |
 | [Installation](installation.md) | Project and user installation across supported Agent Skills hosts |
 | [npm and npx installation](npm-and-npx-installation.md) | Public registry, source, local-package, destination, and overwrite paths |
+| [Troubleshoot discovery](troubleshooting-discovery.md) | Missing skill/slash diagnosis, invocation syntax, refresh, and evidence levels |
 | [Command reference](command-reference.md) | Portable Agent commands and the separate Python navigator CLI |
 | [Routing and workflow](routing-and-workflow.md) | Mode selection, lifecycle stages, gates, and iteration |
 | [Scenario playbooks](scenario-playbooks.md) | Build, review, repair, optimize, refactor, validate, govern, and release recipes |
@@ -65,6 +69,10 @@ English pages are canonical. Files under `docs/zh-CN/` are same-name translation
 
 ## Project status
 
-GitHub `main` identifies Ontotect 0.1.1, and `@moonweave-ai/ontotect@0.1.1` is published on npm with `latest` pointing to 0.1.1. Structural installation and local fixtures have been tested, but a successful directory copy is not evidence that every external host has loaded and executed the skill. Each compatibility claim must identify what was actually checked and mark unavailable behavior `unverified`.
+`@moonweave-ai/ontotect@0.1.1` is the current public npm `latest`, but it
+predates the focused skill-suite discovery repair in this source tree. Until a
+new release is published, public 0.1.1 must not be reported as containing the
+20-entry installer. Structural installation and live-host discovery remain
+separate evidence.
 
 Ontotect's original repository content is released under the [MIT License](../../LICENSE). Third-party references retain their own terms, and the private construction corpus is not distributed.

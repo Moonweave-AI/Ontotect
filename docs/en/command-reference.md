@@ -13,6 +13,7 @@ related:
   - ontotect/references/command-router.md
   - ontotect/scripts/ontotect.py
   - docs/decisions/0001-portable-command-router.md
+  - docs/decisions/0004-host-discovery-and-command-adapters.md
 supersedes: null
 superseded_by: null
 ---
@@ -21,7 +22,9 @@ superseded_by: null
 
 [简体中文](../zh-CN/command-reference.md) · [Documentation home](index.md)
 
-Ontotect defines a host-neutral Agent command protocol. It is a prompt contract, not a shell command and not a claim that every host registers the same slash-command UI.
+Ontotect defines a host-neutral Agent command protocol and compiles it into 20
+focused skill entries. The protocol is the semantic contract; the focused
+skills are independently discoverable host entry points.
 
 ## Portable Agent protocol
 
@@ -31,7 +34,40 @@ Use this form on every host:
 Use Ontotect. Command: <command>. Target: <target or goal>.
 ```
 
-Hosts that expose skills through shortcuts may also accept `$ontotect <command> ...` or `/ontotect <command> ...`. Treat those as conveniences; the explicit protocol is canonical.
+The root skill still accepts `$ontotect <command> ...` or
+`/ontotect <command> ...` where supported, but the full installer also provides
+focused names. Codex uses `$<skill-name>` or `/skills`; Cursor and Claude use
+`/<skill-name>`; Kilo/OpenCode use native skill slash discovery or generated
+command adapters.
+
+## Discoverable focused entries
+
+| Skill entry | Fixed canonical command | Purpose |
+|---|---|---|
+| `ontotect` | `router` when a request is present; `help` with no arguments | General entry and fallback router |
+| `ontotect-help` | `help` | First-contact orientation |
+| `ontotect-router` | `router` | Select mode, stage, evidence path, and next gate |
+| `ontotect-status` | `status` | Reconstruct work state without advancing it |
+| `ontotect-build` | `build` | Create or extend an ontology |
+| `ontotect-review` | `review` | Read-only evidence-led review |
+| `ontotect-repair` | `repair` | Correct a reproduced defect |
+| `ontotect-optimize` | `optimize` | Improve a measured objective |
+| `ontotect-refactor` | `refactor` | Restructure under a preservation contract |
+| `ontotect-validate` | `validate` | Execute specified evidence without redesign |
+| `ontotect-govern` | `govern` | Define ownership, identifiers, and change policy |
+| `ontotect-release` | `release` mode | Evaluate and prepare release readiness |
+| `ontotect-stage` | `stage <stage>` | Select a stage from the first argument |
+| `ontotect-charter` | `stage charter` | Frame purpose, scope, CQs, roles, and acceptance |
+| `ontotect-reuse` | `stage reuse` | Assess reuse/import/module/mapping choices |
+| `ontotect-conceptualize` | `stage conceptualize` | Develop the conceptual model |
+| `ontotect-formalize` | `stage formalize` | Choose semantics and formal commitments |
+| `ontotect-implement` | `stage implement` | Deliver a tested vertical slice |
+| `ontotect-verify` | `stage verify` | Integrate verification evidence |
+| `ontotect-stage-release` | `stage release` | Complete lifecycle Stage G |
+
+Selection of a focused skill is an explicit command. Intent inference must not
+silently replace it. The generated entry still carries the complete canonical
+workflow and all local references.
 
 ## Coordination commands
 

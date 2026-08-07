@@ -5,14 +5,16 @@ owner: project-maintainers
 created: 2026-08-07
 updated: 2026-08-07
 last_reviewed: 2026-08-07
-review_cycle_days: 180
-summary: 从公共 npm 包、npx、源码或本地包，把 Ontotect 安装到五种常见 Agent Skills 宿主。
+review_cycle_days: 90
+summary: 从 npm、npx、源码或本地包，把 Ontotect focused skill suite 安装到五种常见 Agent 宿主。
 canonical: docs/en/npm-and-npx-installation.md
 related:
   - docs/zh-CN/installation.md
   - docs/decisions/0002-explicit-npm-installer.md
   - docs/decisions/0003-organization-scoped-npm-package.md
+  - docs/decisions/0004-host-discovery-and-command-adapters.md
   - docs/zh-CN/npm-installer-security-review.md
+  - docs/zh-CN/troubleshooting-discovery.md
   - package.json
 supersedes: null
 superseded_by: null
@@ -22,13 +24,16 @@ superseded_by: null
 
 [English](../en/npm-and-npx-installation.md) · [文档首页](index.md) · 本页是英文 canonical 的简体中文镜像。
 
-npm 包是同一个便携 `ontotect/` 目录的零依赖小型适配器；Python 和手动安装也使用该目录。获取包不会把技能安装到任何 Agent 宿主，因为不存在 npm 生命周期脚本；用户必须显式运行 `plan` 或 `install`。
+npm 包是围绕一套 canonical `ontotect/` 源的零依赖 installer。只有显式运行 `install`
+时才编译 focused skill suite。获取包不会安装到任何 Agent 宿主，因为不存在 npm lifecycle
+scripts。
 
 ## 从源码树运行
 
-只检查五个项目级目标，不写入：
+列出注册表并检查全部项目级目标，不写入：
 
 ```powershell
+node bin/ontotect.js list
 node bin/ontotect.js plan --agents all --scope project --project-root .
 ```
 
@@ -44,7 +49,9 @@ node bin/ontotect.js install --agents all --scope project --project-root .
 node bin/ontotect.js install --agents cursor,codex --project-root .
 ```
 
-默认宿主集合为 `all`，默认范围为 `project`，默认项目根为当前工作目录。使用 `--json` 获取结构化输出；使用 `--dry-run` 让 `install` 只生成计划。
+默认值是 `--agents all --scope project --suite full --commands auto`。完整计划为每个宿主
+包含 20 个 skill entries，并为 Kilo/OpenCode 生成同名 commands。使用 `--json` 获取结构化
+输出；使用 `--dry-run` 让 `install` 只生成计划。
 
 ## 测试本地 npm 包
 
@@ -52,6 +59,7 @@ node bin/ontotect.js install --agents cursor,codex --project-root .
 
 ```powershell
 npm install --global .
+ontotect list
 ontotect plan --agents all --project-root .
 ontotect install --agents all --project-root .
 ```
@@ -68,9 +76,14 @@ npm pack --dry-run --json
 
 ## 公共 npm 与 npx 命令
 
-`0.1.1` 已在 Moonweave AI 组织 scope 下发布，并且是当前 `latest` 版本。可直接从公共 npm registry 运行：
+`0.1.1` 是当前公开 `latest`，但它早于本源码分支中的 focused skill-suite discovery 修复。
+在新版本发布前，请使用源码 checkout 或本地 packed archive 测试 20-entry suite；不得把公开
+`0.1.1` 报告为已经包含该修复。
+
+suite 版本发布后，公共流程为：
 
 ```powershell
+npx @moonweave-ai/ontotect list
 npx @moonweave-ai/ontotect plan --agents all --scope project --project-root .
 npx @moonweave-ai/ontotect install --agents all --scope project --project-root .
 ```
@@ -82,29 +95,37 @@ npm install --global @moonweave-ai/ontotect
 ontotect install --agents all --scope project --project-root .
 ```
 
-公共 package identity 是 `@moonweave-ai/ontotect`，安装后的可执行命令仍为 `ontotect`。公共 registry 获取和真实宿主发现是两类独立检查；报告兼容性时，应区分 package 已发布的状态与尚未执行的宿主行为。
+公共 package identity 是 `@moonweave-ai/ontotect`，executable 仍为 `ontotect`。Registry
+获取、suite 安装与真实宿主发现是三类独立检查。
 
 ## 目标路径
 
-| 宿主 key | 项目级 | 用户级 |
+| 宿主 key | 项目级 skill root | 用户级 skill root |
 |---|---|---|
-| `cursor` | `.cursor/skills/ontotect/` | `~/.cursor/skills/ontotect/` |
-| `codex` | `.agents/skills/ontotect/` | `~/.agents/skills/ontotect/` |
-| `kilo` | `.kilo/skills/ontotect/` | `~/.kilo/skills/ontotect/` |
-| `opencode` | `.opencode/skills/ontotect/` | `~/.config/opencode/skills/ontotect/` |
-| `claude` | `.claude/skills/ontotect/` | `~/.claude/skills/ontotect/` |
+| `cursor` | `.cursor/skills/` | `~/.cursor/skills/` |
+| `codex` | `.agents/skills/` | `~/.agents/skills/` |
+| `kilo` | `.kilo/skills/` | `~/.kilo/skills/` |
+| `opencode` | `.opencode/skills/` | `~/.config/opencode/skills/` |
+| `claude` | `.claude/skills/` | `~/.claude/skills/` |
 
-`--scope user` 使用操作系统用户主目录；`--project-root` 不会重定向用户级安装。非标准目标应人工审阅后复制完整目录。
+full 模式下，每个 root 会收到 `ontotect/` 和 19 个 generated sibling directories。
+Kilo/OpenCode command roots 见[安装](installation.md)。`--scope user` 使用操作系统用户
+主目录；`--project-root` 不会重定向用户级安装。应优先使用 installer，而不是手工散放
+wrapper files。
 
 ## 覆盖与更新
 
-只要一个目标已存在，整个多宿主请求都会被阻止。先检查路径并保留本地工作，只有明确要替换或合并该生成安装时才使用 `--force`：
+任何 core skill、focused skill 或 Ontotect command file 已存在，都会阻止整个请求。先审阅
+计划并保留本地工作，只有明确要进行干净的受管替换时才使用 `--force`：
 
 ```powershell
 ontotect install --agents cursor --project-root . --force
 ```
 
-`--force` 覆盖同名文件，但保留目标中原有的无关额外文件。安装副本应视为生成镜像；canonical 修改应在源技能包中完成，而不是直接改镜像。
+`--force` 从 staged copy 替换每个受管 skill directory、覆盖受管 command files，并删除
+上一次安装状态中记录的过期 entries。未知 sibling skills 与共享 command 目录中的无关文件
+会被保留。安装副本是 generated output；canonical 修改应在源 package 或 suite registry
+中完成，再重新安装。
 
 ## 安装器不会做什么
 
@@ -114,4 +135,6 @@ ontotect install --agents cursor --project-root . --force
 - 不安装可选 Python/RDF 依赖。
 - 不发布 npm 包或本体制品。
 
-复制后请重新加载宿主，并执行[安装](installation.md)中的 discovery smoke test。安全设计与剩余风险见 [npm 安装器安全审查](npm-installer-security-review.md)。
+安装后重新加载宿主，并执行[安装](installation.md)中的 smoke test。entry 缺失时使用
+[排查发现问题](troubleshooting-discovery.md)。安全设计与剩余风险见
+[npm 安装器安全审查](npm-installer-security-review.md)。

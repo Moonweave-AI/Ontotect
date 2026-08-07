@@ -26,15 +26,18 @@ superseded_by: null
 
 工作对象：公共 Agent skill 分发 Feature。风险：**S4**，因为包管理器可执行程序能够写入项目或用户 Agent 配置。所需质量：**QA-L4**。Owner：项目维护者。审查 DRI：实现维护者。
 
-只要下列控制持续成立，并记录发布权限、registry 认证、包检查和发布后验证，该设计就继续适用于已发布 package。包检查、安装器测试或路径控制失败时结论为 `revise`；若私有语料、秘密、来源不明资产、生命周期自动执行或未声明网络操作进入包，则触发 Stop-Ship。
+历史公开 0.1.1 制品与当前源码候选是两个独立证据对象。当前源码设计在下列控制下可用于
+本地安装，但尚不是已发布的 suite release。任何后续发布仍需显式授权、package 检查、
+registry 验证与发布后检查。installer tests 或路径控制失败时结论为 `revise`；若私有语料、
+秘密、来源不明资产、lifecycle 自动执行或未声明网络操作进入包，则触发 Stop-Ship。
 
 ## 资产与安全目标
 
 | 资产 | 目标 |
 |---|---|
-| Canonical `ontotect/` 技能 | 复制预期公共技能，不损坏、不遗漏、不暗中加入可执行内容 |
-| 项目及用户技能根目录 | 仅在显式命令后写入已选择的固定宿主目标 |
-| 现有宿主配置 | 未给出 `--force` 时绝不覆盖已有 `ontotect` 目录 |
+| Canonical `ontotect/` 源与套件注册表 | 复制预期公共源，并且只编译 20 个已审阅入口，不暗中加入可执行内容 |
+| 项目及用户技能/命令根目录 | 仅在显式命令后写入已选择的固定宿主目标 |
+| 现有宿主配置 | 预检每个计划中的技能目录和命令文件；未给出 `--force` 时任何冲突都不得写入 |
 | 私有研究语料 | 书籍、论文、工具 PDF、提取全文和临时分析不得进入 npm tarball |
 | 用户项目与凭据 | 不扫描无关内容、不执行仓库内指令、不联系远程服务、不收集 telemetry |
 
@@ -52,8 +55,9 @@ npm registry / 本地 tarball
           v
 固定宿主根目录解析器 ------ 文件系统边界
           |
-          v
-项目或用户 skills/ontotect 目录
+          +---- 项目或用户 skills/ontotect* 目录
+          |
+          +---- 已审阅的 Kilo/OpenCode command 文件
 ```
 
 获取 npm 包不等于安装到 Agent 宿主。只有用户显式调用 `ontotect install` 时才跨越安全相关边界。
@@ -65,8 +69,8 @@ npm registry / 本地 tarball
 | 获取包时静默修改宿主 | 无 npm 生命周期脚本；只能显式运行 `install` | 检查 `package.json`；获取本地包但不调用 CLI |
 | 依赖或传递包被攻陷 | 无声明依赖，只用 Node 标准库 | 检查全部 dependency 字段和 package tree |
 | 意外发布语料或秘密 | `files` 白名单与 tarball 内容检查 | `npm pack --dry-run --json`；拒绝私有目录、临时输出、环境文件、凭据、测试和 PDF |
-| 任意路径写入 | 固定宿主映射；只允许项目根或 OS 用户目录作为基点；技能名固定 | 单测所有项目/用户目标及错误参数 |
-| 意外覆盖 | 目标存在时失败，除非 `--force`；计划列出每个目标 | 测试首次安装、重复拒绝、dry-run、显式 force |
+| 任意路径写入 | 固定宿主映射与 registry names；项目根或 OS 用户目录是 anchor；通过 `lstat`、解析后 containment 与目标类型规则检查已有组件 | 测试全部项目/用户目标、错误参数、symlink/junction roots 与 exact-target links |
+| 意外或部分覆盖 | 全局预检每个 root skill、focused skill、command file 与受管 stale target；全部输出先 staging，再通过带 rollback backups 的 rename transaction 提交 | 预置靠后的冲突与错误目标类型，确认前面的目标也未创建；测试干净 force refresh 并保留未知 siblings |
 | Dry-run 实际写入 | 计划与应用路径分离 | 比较隔离根目录 dry-run 前后状态 |
 | 源路径逃逸或复制缓存垃圾 | 源目录从包位置解析；排除临时缓存名 | 将目标相对文件集及字节与源技能直接比较 |
 | 隐藏网络或 telemetry | CLI 不使用网络 API，不含 analytics | 静态检查 imports，并执行隔离的本地 tarball |
@@ -77,8 +81,10 @@ npm registry / 本地 tarball
 
 - 默认 `project`；用户级写入必须给出 `--scope user`。
 - `plan` 与 `--dry-run` 只读。
-- `install` 只在一个或多个固定技能根目录下创建 `ontotect`。
-- `--force` 只授权替换这些精确目标，不授权任意文件系统写入。
+- `install` 只在固定技能根目录下创建已注册的 `ontotect` / `ontotect-*` 目录，并在
+  `auto` 模式下于固定 Kilo/OpenCode command roots 创建同名 Markdown command 文件。
+- `--force` 只授权干净替换这些精确受管技能目录、替换这些精确命令文件，并且只删除
+  先前 Ontotect state 中记录的过期名称；不授权任意文件系统写入，也不删除未知 siblings。
 - 安装器不修改宿主设置、shell profile、仓库 manifest 或本体文件。
 - 远程发布、身份验证、registry ownership 和 npm provenance 不属于 CLI，必须进入独立授权的发布操作。
 
@@ -97,7 +103,8 @@ npm registry / 本地 tarball
 1. 运行 Node 单元测试；
 2. 检查 `npm pack --dry-run --json`；
 3. 在已忽略临时目录创建 tarball，并针对隔离项目根运行其 binary；
-4. 将全部复制文件与 canonical 技能直接比较；
+4. 直接比较 canonical payload files，根据 registry 验证 generated `SKILL.md` 与 metadata，
+   并根据 template 验证 command adapters；
 5. 运行仓库文档、Skill Creator 及现有 Python 回归；
 6. 在[验证记录](verification-record.md)写入结果与边界。
 
@@ -113,4 +120,13 @@ npm registry / 本地 tarball
 
 已审阅源码候选通过 29 项 Python 测试、8 项 Node 测试、Skill Creator 验证、生成技能 advisory scan，以及 0 warning 的 Claude、Amp 与 Copilot 静态 lenses。Dry-run package 检查报告 55 个预期条目、0 个禁止条目、零依赖和零生命周期脚本。通过不存在的 user npm 配置查询公共包：精确 metadata 报告 0.1.1、MIT、`ontotect` 可执行命令与 Moonweave-AI 仓库，`latest` 指向 0.1.1。精确版本公共 npx help 退出码为 0。五个隔离项目级宿主布局均安装 48 个文件并包含 `SKILL.md`，其相对文件集与直接字节内容一致。npm 页面正确呈现居中品牌标识、横幅、版本徽章、新版 README 与仓库链接。
 
-当前结果：发布分发控制集继续为 **pass with follow-up actions**。0.1.0 证据保持为历史；0.1.1 现在是当前公开版本与 `latest`。用户/全局范围安装、真实宿主发现与行为、账号恢复、package provenance 与永久私密报告路径仍为 `unverified` 后续控制。
+当前已发布制品的结论：发布分发控制集继续为 **pass with follow-up actions**。0.1.0
+证据保持为历史；0.1.1 是当前公开版本与 `latest`。
+
+## Focused-suite 源码修复 — 2026-08-07
+
+当前源码树增加声明式 20-entry registry、生成式 focused skills、Kilo/OpenCode command
+adapters、`list` 与扩展后的 `plan` 输出、full/core 套件模式、解析路径/类型预检、纯路径
+受管状态、干净 forced refresh，以及带 rollback backups 的 staged transaction commit。
+focused copies 会排除嵌套的分发安装器。本次源码修复不属于公开 0.1.1；它的本地测试
+证据写入 active 验证记录，真实宿主 UI discovery 与任何后续公开发布仍是独立 gate。
