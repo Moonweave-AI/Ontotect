@@ -1,0 +1,166 @@
+{
+  "schema_version": "1.0",
+  "skills": [
+    {
+      "name": "ontotect",
+      "display_name": "Ontotect",
+      "short_description": "Route and execute ontology engineering workflows",
+      "description": "Systematic ontology engineering for designing, constructing, reviewing, repairing, optimizing, refactoring, validating, documenting, and governing ontologies, vocabularies, taxonomies, knowledge graphs, semantic models, and mappings. Use when the request spans ontology stages or when Ontotect should choose the appropriate workflow.",
+      "command": "router",
+      "dispatch": "conditional",
+      "instruction": "If no arguments were supplied, execute `help`. Otherwise preserve any explicit Ontotect command in the arguments; when none is explicit, execute `router`."
+    },
+    {
+      "name": "ontotect-help",
+      "display_name": "Ontotect Help",
+      "short_description": "Learn what Ontotect is and how to use it",
+      "description": "Explain Ontotect, its ontology-engineering modes, lifecycle stages, invocation forms, evidence boundaries, and the best first command. Use when a user is new to Ontotect or asks how to start.",
+      "command": "help",
+      "instruction": "Execute the canonical `help` command."
+    },
+    {
+      "name": "ontotect-router",
+      "display_name": "Ontotect Router",
+      "short_description": "Route ontology work to the right mode and stage",
+      "description": "Route an ontology-engineering request to the appropriate Ontotect mode, lifecycle entry stage, evidence path, authorization boundary, and next gate. Use when the desired outcome is clear but the correct workflow is not.",
+      "command": "router",
+      "instruction": "Execute the canonical `router` command."
+    },
+    {
+      "name": "ontotect-status",
+      "display_name": "Ontotect Status",
+      "short_description": "Report ontology work state and the next gate",
+      "description": "Reconstruct and report the current Ontotect work state, including mode, stage, artifacts, decisions, evidence, blockers, and next gate. Use when ontology work is already in progress and must not be advanced or modified.",
+      "command": "status",
+      "instruction": "Execute the canonical `status` command."
+    },
+    {
+      "name": "ontotect-build",
+      "display_name": "Ontotect Build",
+      "short_description": "Design, construct, or extend an ontology",
+      "description": "Design, construct, or extend an ontology through explicit requirements, competency questions, reuse analysis, conceptualization, formalization, implementation, verification, and release gates. Use for new ontology work or authorized extensions.",
+      "command": "build",
+      "instruction": "Execute the canonical `build` command."
+    },
+    {
+      "name": "ontotect-review",
+      "display_name": "Ontotect Review",
+      "short_description": "Review an ontology without silently changing it",
+      "description": "Perform an evidence-driven, read-only review of an ontology, vocabulary, taxonomy, mapping, shapes graph, query set, or release bundle. Use to identify semantic, logical, structural, validation, documentation, tooling, and governance defects without silently repairing them.",
+      "command": "review",
+      "instruction": "Execute the canonical `review` command."
+    },
+    {
+      "name": "ontotect-repair",
+      "display_name": "Ontotect Repair",
+      "short_description": "Repair a reproduced ontology defect",
+      "description": "Repair a reproduced ontology defect with a minimal authorized change, protected semantic invariants, regression evidence, and migration notes when needed. Use after a defect has been localized and file modification is explicitly authorized.",
+      "command": "repair",
+      "instruction": "Execute the canonical `repair` command."
+    },
+    {
+      "name": "ontotect-optimize",
+      "display_name": "Ontotect Optimize",
+      "short_description": "Optimize measured ontology cost or complexity",
+      "description": "Optimize an ontology or ontology toolchain against a measured reasoning, query, validation, loading, modularity, or maintenance objective while preserving declared semantics. Use when a baseline and measurable optimization target exist.",
+      "command": "optimize",
+      "instruction": "Execute the canonical `optimize` command."
+    },
+    {
+      "name": "ontotect-refactor",
+      "display_name": "Ontotect Refactor",
+      "short_description": "Refactor ontology structure safely",
+      "description": "Refactor ontology structure under an explicit preservation contract for identifiers, entailments, competency questions, mappings, imports, shapes, and downstream behavior. Use for modularization, naming cleanup, pattern extraction, or structural simplification that is not intended to change meaning.",
+      "command": "refactor",
+      "instruction": "Execute the canonical `refactor` command."
+    },
+    {
+      "name": "ontotect-validate",
+      "display_name": "Ontotect Validate",
+      "short_description": "Validate ontology evidence without redesigning it",
+      "description": "Execute and interpret ontology validation evidence such as parsing, profile checks, reasoning, competency queries, SHACL, graph diffs, documentation checks, or release tests. Use when the requested checks are known and redesign is outside scope.",
+      "command": "validate",
+      "instruction": "Execute the canonical `validate` command."
+    },
+    {
+      "name": "ontotect-govern",
+      "display_name": "Ontotect Govern",
+      "short_description": "Govern ontology ownership and change",
+      "description": "Define or review ontology ownership, authority, identifier policy, change control, deprecation, mappings, provenance, maintenance, and decision records. Use when the problem is organizational or lifecycle governance rather than only formal modeling.",
+      "command": "govern",
+      "instruction": "Execute the canonical `govern` command."
+    },
+    {
+      "name": "ontotect-release",
+      "display_name": "Ontotect Release",
+      "short_description": "Evaluate ontology release readiness",
+      "description": "Evaluate and prepare an ontology release disposition from integrated semantic, validation, migration, governance, documentation, and approval evidence. Use for release readiness; remote publication still requires separate explicit authority.",
+      "command": "release",
+      "instruction": "Execute the canonical `release` mode command."
+    },
+    {
+      "name": "ontotect-stage",
+      "display_name": "Ontotect Stage",
+      "short_description": "Select one ontology lifecycle stage",
+      "description": "Run or plan one named Ontotect lifecycle stage while preserving its prerequisites and stop conditions. Use with charter, reuse, conceptualize, formalize, implement, verify, or release when the user wants explicit stage control.",
+      "command": "stage",
+      "instruction": "Execute `stage <stage>`, taking the stage name from the first argument. Valid stages are `charter`, `reuse`, `conceptualize`, `formalize`, `implement`, `verify`, and `release`."
+    },
+    {
+      "name": "ontotect-charter",
+      "display_name": "Ontotect Charter",
+      "short_description": "Frame ontology purpose, scope, and acceptance",
+      "description": "Frame an ontology project by defining purpose, users, scope, non-goals, competency questions, constraints, roles, and acceptance evidence. Use at lifecycle Stage A before reuse analysis or formal modeling.",
+      "command": "stage charter",
+      "instruction": "Execute the canonical `stage charter` command."
+    },
+    {
+      "name": "ontotect-reuse",
+      "display_name": "Ontotect Reuse",
+      "short_description": "Assess ontology reuse, import, and mapping",
+      "description": "Assess candidate ontologies and vocabularies for direct reuse, import, module extraction, specialization, mapping, or justified new definition. Use at lifecycle Stage B after the ontology contract is clear.",
+      "command": "stage reuse",
+      "instruction": "Execute the canonical `stage reuse` command."
+    },
+    {
+      "name": "ontotect-conceptualize",
+      "display_name": "Ontotect Conceptualize",
+      "short_description": "Build a precise ontology conceptual model",
+      "description": "Develop terms, definitions, examples, counterexamples, categories, identity criteria, taxonomy, and relations independently of implementation syntax. Use at lifecycle Stage C for conceptual ontology analysis.",
+      "command": "stage conceptualize",
+      "instruction": "Execute the canonical `stage conceptualize` command."
+    },
+    {
+      "name": "ontotect-formalize",
+      "display_name": "Ontotect Formalize",
+      "short_description": "Choose semantics and formalize ontology commitments",
+      "description": "Select the semantic stack, OWL profile, IRI and module policy, axioms, constraints, assumptions, and query contracts for an ontology. Use at lifecycle Stage D after conceptual commitments are sufficiently clear.",
+      "command": "stage formalize",
+      "instruction": "Execute the canonical `stage formalize` command."
+    },
+    {
+      "name": "ontotect-implement",
+      "display_name": "Ontotect Implement",
+      "short_description": "Implement a tested ontology vertical slice",
+      "description": "Implement an ontology in small, reviewable vertical slices connecting terms, axioms, constraints, examples, competency queries, and tests. Use at lifecycle Stage E after the formalization contract is established.",
+      "command": "stage implement",
+      "instruction": "Execute the canonical `stage implement` command."
+    },
+    {
+      "name": "ontotect-verify",
+      "display_name": "Ontotect Verify",
+      "short_description": "Integrate ontology verification evidence",
+      "description": "Integrate syntax, logical, profile, competency-query, SHACL, semantic-diff, documentation, domain-review, and operational evidence. Use at lifecycle Stage F to determine whether earlier ontology commitments hold.",
+      "command": "stage verify",
+      "instruction": "Execute the canonical `stage verify` command."
+    },
+    {
+      "name": "ontotect-stage-release",
+      "display_name": "Ontotect Stage Release",
+      "short_description": "Complete the ontology lifecycle release gate",
+      "description": "Complete lifecycle Stage G by classifying semantic change, preparing migrations and release artifacts, confirming governance and approvals, and producing a release disposition. Use when explicit lifecycle-stage control is required; this differs from the broader release mode entry.",
+      "command": "stage release",
+      "instruction": "Execute the canonical `stage release` command."
+    }
+  ]
+}

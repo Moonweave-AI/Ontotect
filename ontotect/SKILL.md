@@ -25,8 +25,11 @@ Engineer ontologies as governed, testable semantic systems. Preserve the distinc
 
 ## Use the command interface
 
-Ontotect is one portable skill with internal commands. Accept any host's direct
-skill invocation or the host-neutral form:
+Ontotect is distributed as a focused skill suite generated from this canonical
+operating contract. A host may load the root `ontotect` router or one of the
+fixed entries such as `ontotect-help`, `ontotect-review`, or
+`ontotect-conceptualize`. Accept any host's native skill invocation or the
+host-neutral form:
 
 ```text
 Use Ontotect. Command: <command>. Target: <path-or-IRI>. <request>
@@ -39,7 +42,13 @@ Lifecycle stages are `charter`, `reuse`, `conceptualize`, `formalize`,
 stage aliases. Read [command-contract.md](references/command-contract.md) before
 interpreting options or mutation authority.
 
-When no command is explicit, run [command-router.md](references/command-router.md).
+When the user invokes the root `ontotect` entry with no request or arguments,
+execute `help`. When a request reaches the root entry without an explicit
+command, run [command-router.md](references/command-router.md). Selecting a
+focused entry is itself an explicit command even when no additional arguments
+were supplied: for example, `ontotect-status` executes `status` and
+`ontotect-review` executes `review`; these focused entries must not fall back to
+`help` or `router` merely because their argument string is empty.
 For an engineering route, emit a [Route Card](assets/route-card.md) and continue
 within its boundary. If automatic routing selects `help`, answer help directly;
 if it selects `status`, reconstruct the Work State directly. An explicit
