@@ -36,12 +36,12 @@ Ontotect 是一个本体工程技能，用于系统化地设计、构建、审�
 |---|---|
 | [快速入门](getting-started.md) | 第一次安装、路由和审核教程 |
 | [安装](installation.md) | 五种常见 Agent Skills 宿主的项目级和用户级安装 |
-| [npm 与 npx 安装](npm-and-npx-installation.md) | 源码、本地包、未来 registry、目标和覆盖路径 |
+| [npm 与 npx 安装](npm-and-npx-installation.md) | 公共 registry、源码、本地包、目标和覆盖路径 |
 | [命令参考](command-reference.md) | 便携 Agent 命令及独立的 Python navigator CLI |
 | [路由与工作流](routing-and-workflow.md) | 模式选择、生命周期、阶段门和迭代 |
 | [场景手册](scenario-playbooks.md) | 构建、审核、修正、优化、重构、验证、治理和发布路径 |
 | [方法论与证据](methodology-and-evidence.md) | 研究基础、来源纪律与工程综合 |
-| [参考文献与致谢](references-and-acknowledgments.md) | 书籍、论文、标准、工具和项目的标准格式引用 |
+| [参考文献与来源说明](references-and-acknowledgments.md) | 书籍、论文、标准、工具和项目的标准格式引用 |
 | [架构](architecture.md) | 技能包、渐进披露、命令层、资产和脚本 |
 | [质量与验证](quality-and-validation.md) | 十层证据、QA 期望和结果解释 |
 | [本地验证记录](verification-record.md) | 当前源技能包实际执行的检查及其明确边界 |
@@ -64,6 +64,6 @@ Ontotect 是一个本体工程技能，用于系统化地设计、构建、审�
 
 ## 项目状态
 
-文档和技能目前是 draft/pre-release。可以验证结构安装和本地夹具，但目录复制成功并不证明每个外部宿主都已发现和执行技能。兼容性声明必须指出实际检查内容，并把未执行的行为标为 `unverified`。
+Ontotect `0.1.0` 已发布到 GitHub 和 npm。结构安装和本地夹具已完成测试，但目录复制成功并不证明每个外部宿主都已发现和执行技能。兼容性声明必须指出实际检查内容，并把未执行的行为标为 `unverified`。
 
 Ontotect 的原创仓库内容采用 [MIT 许可证](../../LICENSE)。第三方参考资料继续适用其自身条款，私有构建语料不参与分发。

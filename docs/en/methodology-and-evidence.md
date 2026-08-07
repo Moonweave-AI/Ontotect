@@ -59,7 +59,7 @@ No single source is treated as universally sufficient. Ontotect makes commitment
 
 ## Construction references
 
-The construction process used open Agent Skills conventions, Skill Creator guidance, and [book-to-skill](https://github.com/virgiliojr94/book-to-skill) alongside the ontology-engineering literature, standards, and tools described above. The complete standard-form citations and acknowledgments are maintained in [References and acknowledgments](references-and-acknowledgments.md); the detailed claim-to-source ledger remains [sources.md](../../ontotect/references/sources.md).
+The construction process used open Agent Skills conventions, Skill Creator guidance, and [book-to-skill](https://github.com/virgiliojr94/book-to-skill) alongside the ontology-engineering literature, standards, and tools described above. Complete standard-form citations and source attribution are maintained in [References and source attribution](references-and-acknowledgments.md); the detailed claim-to-source ledger remains [sources.md](../../ontotect/references/sources.md).
 
 ## Copyright and redistribution boundary
 

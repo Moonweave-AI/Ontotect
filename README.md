@@ -1,113 +1,100 @@
-# Ontotect
+<div align="center">
 
-**Ontology Engineering Skill**
+  <img src="docs/assets/ontotect-mark.svg" alt="Ontotect semantic graph mark" width="96" />
+  <h1>Ontotect</h1>
+  <p><strong>Ontology Engineering Skill</strong></p>
+  <p><em>Engineer meaning, not just triples.</em></p>
+  <p>
+    <a href="https://www.npmjs.com/package/@moonweave-ai/ontotect"><img src="https://img.shields.io/npm/v/%40moonweave-ai%2Fontotect?logo=npm&amp;label=npm" alt="npm version" /></a>
+    <a href="https://www.npmjs.com/package/@moonweave-ai/ontotect"><img src="https://img.shields.io/npm/dm/%40moonweave-ai%2Fontotect?logo=npm&amp;label=downloads" alt="monthly npm downloads" /></a>
+    <a href="https://github.com/Moonweave-AI/Ontotect"><img src="https://img.shields.io/github/stars/Moonweave-AI/Ontotect?logo=github&amp;label=stars" alt="GitHub stars" /></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2ea44f.svg" alt="MIT License" /></a>
+  </p>
+  <p>
+    <a href="docs/en/compatibility.md"><img src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-2563eb" alt="macOS, Windows, and Linux" /></a>
+    <a href="docs/en/compatibility.md"><img src="https://img.shields.io/badge/agents-Cursor%20%7C%20Codex%20%7C%20Kilo%20%7C%20OpenCode%20%7C%20Claude%20Code-7c3aed" alt="Cursor, Codex, Kilo, OpenCode, and Claude Code" /></a>
+  </p>
+  <p><a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a></p>
+  <p>
+    <strong>The evidence-driven ontology engineering workflow for Agent Skills.</strong><br />
+    Route, design, build, review, repair, optimize, refactor, validate, and govern<br />
+    ontologies through explicit stages and decision-ready evidence.
+  </p>
+  <p>
+    <a href="#install-in-60-seconds"><strong>Install Ontotect</strong></a> ·
+    <a href="#commands-for-different-scenarios">Explore commands</a> ·
+    <a href="docs/en/index.md">Read the docs</a>
+  </p>
 
-[English (canonical)](README.md) · [简体中文](README.zh-CN.md)
+</div>
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-2ea44f.svg)](LICENSE)
+---
 
 ![Ontotect banner: ontology engineering from routed intent to semantic evidence](docs/assets/ontotect-banner.svg)
 
-> **Preview**
->
-> Ontotect is usable from a source checkout as an installable Agent Skill. Its
-> command contract and documentation may still evolve before the Owner declares
-> a stable release. The source is released under the MIT License; public npm
-> publication remains pending. Current verification status is recorded in the
-> [local verification record](docs/en/verification-record.md).
+> [!NOTE]
+> **Public preview · v0.1.0.** The organization package is available as
+> [`@moonweave-ai/ontotect`](https://www.npmjs.com/package/@moonweave-ai/ontotect).
+> Its command contract and documentation may continue to evolve before a stable
+> release. Executed checks and remaining boundaries are recorded in the
+> [verification record](docs/en/verification-record.md).
 
-**Engineer meaning, not just triples.**
+Ontotect turns an ontology request into a routed, staged, evidence-producing
+workflow—from competency questions and conceptual commitments through
+RDF/OWL/SHACL/SPARQL artifacts, regression evidence, semantic impact, and
+accountable release decisions.
 
-Ontotect is a domain-specific ontology engineering execution system for
-systematic ontology design, construction, review, repair, optimization,
-refactoring, validation, release, and governance.
+<a id="install-in-60-seconds"></a>
 
-It turns an ontology request into a routed, staged, evidence-producing workflow:
-from competency questions and conceptual commitments through RDF/OWL/SHACL/SPARQL
-artifacts, regression evidence, semantic impact, and accountable release decisions.
+## Install in 60 seconds
 
-[Get started](docs/en/getting-started.md) ·
-[Command reference](docs/en/command-reference.md) ·
-[Routing and workflow](docs/en/routing-and-workflow.md) ·
-[Evidence register](ontotect/references/sources.md)
-
-## 60-second quick start
-
-From this source checkout, install Ontotect into the supported project-level
-skill roots:
+From the root of the project that should receive the skill, install Ontotect
+into every supported project-level Agent Skills directory:
 
 ~~~powershell
-node bin/ontotect.js install --agents all --scope project --project-root .
+npx @moonweave-ai/ontotect install --agents all --scope project --project-root .
 ~~~
 
-Then start with help or let the router classify a real request:
+Then ask the active agent for help or let the router classify a real request:
 
 ~~~text
 $ontotect help
 $ontotect router "Review this OWL ontology for logical, SHACL, and governance defects."
 ~~~
 
-Hosts that expose skills as slash commands may use `/ontotect ...` instead.
-When a host exposes neither form, use the portable natural-language fallback:
+Hosts that expose skills as slash commands may use `/ontotect ...`. The
+portable natural-language fallback is:
 
 ~~~text
 Use Ontotect. Command: review. Target: path/to/ontology.ttl.
 ~~~
 
-The optional planning CLI emits the same help, route, and work-state cards
-without performing ontology engineering:
+### Global command
+
+Install the dependency-free command globally when direct shell access is useful:
 
 ~~~powershell
-python ontotect/scripts/ontotect.py help
-python ontotect/scripts/ontotect.py router "Repair the failing shipment constraints."
+npm install --global @moonweave-ai/ontotect
+ontotect help
+ontotect install --agents cursor,codex --scope project --project-root .
 ~~~
 
-The Python installer remains available for a dry-run-first workflow:
+### Source and dry-run workflows
 
-~~~powershell
-python ontotect/scripts/install_skill.py --agents all --scope project --project-root .
-python ontotect/scripts/install_skill.py --agents all --scope project --project-root . --apply
-~~~
-
-See [Installation](docs/en/installation.md) for host-specific locations and
-[Getting started](docs/en/getting-started.md) for a complete first session.
-
-## npm and npx installation
-
-### Source checkout
-
-Run the dependency-free Node entry point directly:
+From a source checkout, run the Node entry point directly or preview installation
+with the Python installer before applying it:
 
 ~~~powershell
 node bin/ontotect.js help
 node bin/ontotect.js install --agents all --scope project --project-root .
+python ontotect/scripts/install_skill.py --agents all --scope project --project-root .
+python ontotect/scripts/install_skill.py --agents all --scope project --project-root . --apply
 ~~~
 
-### Local package preview
-
-Install this checkout as a local global package, then use the `ontotect`
-executable:
-
-~~~powershell
-npm install --global .
-ontotect help
-ontotect install --agents all --scope project --project-root .
-~~~
-
-### After public npm publication
-
-The registry forms become available after the official organization package
-`@moonweave-ai/ontotect` is published:
-
-~~~powershell
-npx @moonweave-ai/ontotect install --agents all --scope project --project-root .
-npm install --global @moonweave-ai/ontotect
-~~~
-
-The source-checkout and local-package forms above are the current paths. See
-[npm and npx installation](docs/en/npm-and-npx-installation.md) for the full
-command contract, and [Installation](docs/en/installation.md) for host roots,
-refresh behavior, and overwrite rules.
+See [npm and npx installation](docs/en/npm-and-npx-installation.md) for the
+complete command contract, [Installation](docs/en/installation.md) for host
+roots and overwrite rules, and [Getting started](docs/en/getting-started.md)
+for a complete first session.
 
 ## What Ontotect is
 
@@ -375,12 +362,12 @@ the current gate.
 | Documentation home | [docs/en/index.md](docs/en/index.md) |
 | First use | [Getting started](docs/en/getting-started.md) |
 | Install and refresh | [Installation](docs/en/installation.md) |
-| Node, npm, and future npx paths | [npm and npx installation](docs/en/npm-and-npx-installation.md) |
+| Node, npm, and npx installation | [npm and npx installation](docs/en/npm-and-npx-installation.md) |
 | All commands and syntax | [Command reference](docs/en/command-reference.md) |
 | Router, stages, and work state | [Routing and workflow](docs/en/routing-and-workflow.md) |
 | Build, review, repair, optimize, refactor, validate, govern, release | [Scenario playbooks](docs/en/scenario-playbooks.md) |
 | Methods and research basis | [Methodology and evidence](docs/en/methodology-and-evidence.md) |
-| Bibliography and project acknowledgments | [References and acknowledgments](docs/en/references-and-acknowledgments.md) |
+| Bibliography and source attribution | [References and source attribution](docs/en/references-and-acknowledgments.md) |
 | Package design | [Architecture](docs/en/architecture.md) |
 | Evidence layers and truthful reporting | [Quality and validation](docs/en/quality-and-validation.md) |
 | Checks actually executed and their limits | [Local verification record](docs/en/verification-record.md) |
@@ -442,8 +429,9 @@ contribution should:
 6. state which checks were actually run and mark the rest `unverified`;
 7. exclude private, sensitive, unlicensed, and raw reference-corpus material.
 
-The repository Owner will define the public issue, pull-request, review, and
-release mechanics when hosting is configured.
+Use [GitHub Issues](https://github.com/Moonweave-AI/Ontotect/issues) for scoped
+proposals and defects. Pull requests follow the review and evidence rules in
+the contribution guide.
 
 See [Contributing to Ontotect](CONTRIBUTING.md) for the complete source,
 translation, behavior-change, and verification rules.
@@ -466,10 +454,12 @@ corpora or third-party material that is not distributed by this repository.
 
 See [Governance and release](docs/en/governance-and-release.md).
 
-## Acknowledgments and references
+## References and source attribution
 
 Ontotect is grounded in established ontology-engineering literature, open
-standards, primary method publications, and official tool documentation.
+standards, primary method publications, and official tool documentation. This
+section records source roles and project attribution; the full evidence register
+contains complete bibliographic and verification details.
 
 ### Foundational books
 
@@ -532,6 +522,6 @@ Additional open-source project reference: virgiliojr94. (n.d.).
 [*book-to-skill*](https://github.com/virgiliojr94/book-to-skill) [Computer
 software]. GitHub.
 
-See [References and
-acknowledgments](docs/en/references-and-acknowledgments.md) for bibliographic
+See [References and source
+attribution](docs/en/references-and-acknowledgments.md) for bibliographic
 details, evidence roles, source boundaries, and additional primary references.

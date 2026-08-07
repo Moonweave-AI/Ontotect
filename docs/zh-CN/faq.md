@@ -64,9 +64,9 @@ superseded_by: null
 
 不。它分发原创综合和公开引用，不分发私有 PDF 或提取全文。证据登记说明覆盖和局限。
 
-## 在哪里查看书籍、论文、项目和工具致谢？
+## 在哪里查看书籍、论文、项目和工具的来源说明？
 
-标准格式引用见[参考文献与致谢](references-and-acknowledgments.md)；完整证据地图、覆盖说明及权威边界见 [sources.md](../../ontotect/references/sources.md)。
+标准格式引用见[参考文献与来源说明](references-and-acknowledgments.md)；完整证据地图、覆盖说明及权威边界见 [sources.md](../../ontotect/references/sources.md)。
 
 ## Ontotect 已采用开源许可证吗？
 

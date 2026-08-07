@@ -6,7 +6,7 @@ created: 2026-08-07
 updated: 2026-08-07
 last_reviewed: 2026-08-07
 review_cycle_days: 180
-summary: Standard-form bibliography and acknowledgments for the books, papers, standards, tools, projects, and Agent Skills work used to construct Ontotect.
+summary: Standard-form bibliography and source attribution for the books, papers, standards, tools, projects, and Agent Skills work used to construct Ontotect.
 canonical: docs/en/references-and-acknowledgments.md
 related:
   - ontotect/references/sources.md
@@ -16,17 +16,17 @@ supersedes: null
 superseded_by: null
 ---
 
-# References and acknowledgments
+# References and source attribution
 
 [简体中文](../zh-CN/references-and-acknowledgments.md) · [Documentation home](index.md)
 
-## Acknowledgments
+## Source attribution
 
-Ontotect exists because ontology engineering has accumulated unusually strong connections among philosophy, knowledge representation, software engineering, standards work, domain practice, and open tooling. We thank the authors and editors whose books and papers were available for study; W3C and other standards communities; and the maintainers of Protégé, ROBOT, ODK, OWLAPI, Apache Jena, Eclipse RDF4J, pySHACL, Ontop, WIDOCO, OOPS!, the Agent Skills specification, and host documentation.
+Ontotect builds on the accumulated work connecting philosophy, knowledge representation, software engineering, standards, domain practice, and open tooling. The bibliography recognizes the books and papers studied, W3C and other standards communities, and the maintainers of Protégé, ROBOT, ODK, OWLAPI, Apache Jena, Eclipse RDF4J, pySHACL, Ontop, WIDOCO, OOPS!, the Agent Skills specification, and host documentation.
 
 [virgiliojr94/book-to-skill](https://github.com/virgiliojr94/book-to-skill) provided a practical open project reference for organizing a large research corpus into an Agent Skill. Its generated-skill scanner and static host lenses were also used during local verification. The public Skill Creator guidance supplied the structural conventions used by the package.
 
-The project also acknowledges the local research collection supplied for this work. The public repository carries original synthesis and citations; it does not redistribute that private collection or its extracted full text.
+The construction research collection was read locally. The public repository carries original synthesis and citations; it does not redistribute that private collection or its extracted full text.
 
 ## Citation and evidence policy
 
@@ -42,9 +42,9 @@ The detailed evidence register—including page counts, the complete 29-file loc
 4. Allemang, D., Hendler, J., & Gandon, F. (2020). *Semantic Web for the working ontologist: Effective modeling for linked data, RDFS, and OWL* (3rd ed.). ACM. [https://doi.org/10.1145/3382097](https://doi.org/10.1145/3382097).
 5. Davies, J., Fensel, D., & van Harmelen, F. (Eds.). (2003). *Towards the Semantic Web: Ontology-driven knowledge management*. Wiley. [Publisher record](https://www.wiley.com/en-us/Towards+the+Semantic+Web%3A+Ontology+Driven+Knowledge+Management-p-9780470858073).
 
-## Supplied method and application papers
+## Method and application papers
 
-The following seventeen papers were read in full as the supplied paper set. They are cited by their published title rather than by the local shorthand filename.
+The following seventeen papers were read in full from the local research set. They are cited by their published title rather than by the local shorthand filename.
 
 1. Abdallah, A. A., & Fan, I.-S. (2022). Towards building ontology-based applications for integrating heterogeneous aircraft maintenance records. *2022 IEEE International Conference on Industrial Informatics*. [https://doi.org/10.1109/INDIN51773.2022.9976080](https://doi.org/10.1109/INDIN51773.2022.9976080).
 2. Abdelghany, A. S., Darwish, N. R., & Hefni, H. A. (2019). An agile methodology for ontology development. *International Journal of Intelligent Engineering and Systems, 12*(2). [https://doi.org/10.22266/ijies2019.0430.17](https://doi.org/10.22266/ijies2019.0430.17).
@@ -112,4 +112,4 @@ The following seventeen papers were read in full as the supplied paper set. They
 
 ## Attribution and update notes
 
-Third-party works retain their own copyright and license terms. A citation is acknowledgment, not permission to redistribute a book, paper, figure, ontology, dataset, or tool manual. Contributors adding a method or claim should update both this readable bibliography and the detailed evidence register, preferring the original publication, standards body, publisher, institutional record, or official project documentation.
+Third-party works retain their own copyright and license terms. A citation establishes source attribution; it does not grant permission to redistribute a book, paper, figure, ontology, dataset, or tool manual. Contributors adding a method or claim should update both this readable bibliography and the detailed evidence register, preferring the original publication, standards body, publisher, institutional record, or official project documentation.

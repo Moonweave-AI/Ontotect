@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="128"
+     height="128"
+     viewBox="0 0 128 128"
+     role="img"
+     aria-labelledby="ontotect-mark-title ontotect-mark-desc">
+  <title id="ontotect-mark-title">Ontotect mark</title>
+  <desc id="ontotect-mark-desc">
+    A semantic graph converging on a central ontology commitment.
+  </desc>
+
+  <defs>
+    <linearGradient id="mark-background" x1="12" y1="8" x2="116" y2="120"
+                    gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#071522"/>
+      <stop offset="0.58" stop-color="#111a31"/>
+      <stop offset="1" stop-color="#251542"/>
+    </linearGradient>
+    <linearGradient id="mark-accent" x1="27" y1="32" x2="102" y2="98"
+                    gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#75ead5"/>
+      <stop offset="1" stop-color="#b9a7ff"/>
+    </linearGradient>
+    <filter id="mark-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect x="4" y="4" width="120" height="120" rx="28"
+        fill="url(#mark-background)" stroke="#8ce8d7" stroke-opacity="0.28"/>
+  <path d="M31 36L53 53M97 34L76 53M31 92L52 75M97 94L76 75"
+        fill="none" stroke="#8ce8d7" stroke-width="2.5" stroke-opacity="0.7"/>
+  <path d="M64 24V48M64 80V105"
+        fill="none" stroke="#b8a8ff" stroke-width="2.5" stroke-opacity="0.72"/>
+
+  <g fill="#0e1c2f" stroke="url(#mark-accent)" stroke-width="2">
+    <circle cx="27" cy="33" r="7"/>
+    <circle cx="101" cy="31" r="7"/>
+    <circle cx="26" cy="96" r="7"/>
+    <circle cx="102" cy="98" r="7"/>
+    <circle cx="64" cy="20" r="6"/>
+    <circle cx="64" cy="109" r="6"/>
+  </g>
+
+  <path d="M64 45L81 55V75L64 85L47 75V55Z"
+        fill="#182849" stroke="url(#mark-accent)" stroke-width="3"
+        filter="url(#mark-glow)"/>
+  <circle cx="64" cy="65" r="5" fill="#f7f9ff"/>
+</svg>

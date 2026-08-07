@@ -36,12 +36,12 @@ Ontotect is an ontology engineering skill for systematic ontology design, constr
 |---|---|
 | [Getting started](getting-started.md) | A first installation, route, and review walkthrough |
 | [Installation](installation.md) | Project and user installation across supported Agent Skills hosts |
-| [npm and npx installation](npm-and-npx-installation.md) | Source, local-package, future registry, destination, and overwrite paths |
+| [npm and npx installation](npm-and-npx-installation.md) | Public registry, source, local-package, destination, and overwrite paths |
 | [Command reference](command-reference.md) | Portable Agent commands and the separate Python navigator CLI |
 | [Routing and workflow](routing-and-workflow.md) | Mode selection, lifecycle stages, gates, and iteration |
 | [Scenario playbooks](scenario-playbooks.md) | Build, review, repair, optimize, refactor, validate, govern, and release recipes |
 | [Methodology and evidence](methodology-and-evidence.md) | Research foundation, source discipline, and engineering synthesis |
-| [References and acknowledgments](references-and-acknowledgments.md) | Standard-form citations for books, papers, standards, tools, and projects |
+| [References and source attribution](references-and-acknowledgments.md) | Standard-form citations for books, papers, standards, tools, and projects |
 | [Architecture](architecture.md) | Skill package, progressive disclosure, command layer, assets, and scripts |
 | [Quality and validation](quality-and-validation.md) | Ten evidence layers, QA expectations, and honest result interpretation |
 | [Local verification record](verification-record.md) | Checks actually executed for this source package and their explicit limits |
@@ -64,6 +64,6 @@ English pages are canonical. Files under `docs/zh-CN/` are same-name translation
 
 ## Project status
 
-The documentation and skill are draft/pre-release. Structural installation and local fixtures can be tested, but a successful directory copy is not evidence that every external host has loaded and executed the skill. Each compatibility claim must identify what was actually checked and mark unavailable behavior `unverified`.
+Ontotect `0.1.0` is published on GitHub and npm. Structural installation and local fixtures have been tested, but a successful directory copy is not evidence that every external host has loaded and executed the skill. Each compatibility claim must identify what was actually checked and mark unavailable behavior `unverified`.
 
 Ontotect's original repository content is released under the [MIT License](../../LICENSE). Third-party references retain their own terms, and the private construction corpus is not distributed.

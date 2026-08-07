@@ -20,7 +20,7 @@ superseded_by: null
 
 [简体中文](CONTRIBUTING.zh-CN.md)
 
-Thank you for improving Ontotect. Contributions may change executable agent behavior, ontology-engineering guidance, templates, scripts, tests, or public documentation. Keep every change reviewable, attributable, and proportional to its semantic impact.
+Contributions to Ontotect may change executable agent behavior, ontology-engineering guidance, templates, scripts, tests, or public documentation. Keep every change reviewable, attributable, and proportional to its semantic impact.
 
 ## Before opening a change
 

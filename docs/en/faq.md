@@ -64,9 +64,9 @@ No. Use the weakest stack that meets the contract: SKOS for concept schemes, RDF
 
 No. It distributes original synthesis and public citations, not private PDFs or extracted full text. The evidence register documents coverage and limitations.
 
-## Where are the books, papers, projects, and tools credited?
+## Where are the books, papers, projects, and tools attributed?
 
-Read [References and acknowledgments](references-and-acknowledgments.md) for standard-form citations and [sources.md](../../ontotect/references/sources.md) for the complete evidence map, coverage notes, and authority boundaries.
+Read [References and source attribution](references-and-acknowledgments.md) for standard-form citations and [sources.md](../../ontotect/references/sources.md) for the complete evidence map, coverage notes, and authority boundaries.
 
 ## Is Ontotect licensed as open source?
 

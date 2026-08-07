@@ -192,6 +192,7 @@ class RepositoryDocumentationTests(unittest.TestCase):
         self.assertIn("ontotect/SKILL.md", files)
         self.assertIn("README.zh-CN.md", files)
         self.assertIn("docs/assets/ontotect-banner.svg", files)
+        self.assertIn("docs/assets/ontotect-mark.svg", files)
         self.assertIn("ontotect/scripts/*.py", files)
         self.assertNotIn("ontotect/scripts/", files)
 
@@ -227,7 +228,18 @@ class RepositoryDocumentationTests(unittest.TestCase):
         self.assertNotIn("<script", text.lower())
         self.assertNotIn("@import", text.lower())
 
-    def test_readmes_have_visuals_and_citation_first_acknowledgments(self) -> None:
+        mark = ROOT / "docs" / "assets" / "ontotect-mark.svg"
+        mark_root = ET.parse(mark).getroot()
+        self.assertEqual(mark_root.tag, "{http://www.w3.org/2000/svg}svg")
+        self.assertEqual(mark_root.attrib.get("role"), "img")
+        self.assertEqual(mark_root.attrib.get("viewBox"), "0 0 128 128")
+        self.assertIsNotNone(mark_root.find("svg:title", namespace))
+        self.assertIsNotNone(mark_root.find("svg:desc", namespace))
+        mark_text = mark.read_text(encoding="utf-8")
+        self.assertNotIn("<script", mark_text.lower())
+        self.assertNotIn("@import", mark_text.lower())
+
+    def test_readmes_have_accessible_visuals_and_source_attribution(self) -> None:
         forbidden = (
             "knowledge-compilation and progressive-disclosure approach was informed",
             "progressive-disclosure documentation approach was informed",
@@ -241,10 +253,21 @@ class RepositoryDocumentationTests(unittest.TestCase):
             body = path.read_text(encoding="utf-8")
             lowered = body.lower()
             with self.subTest(path=path.name):
+                self.assertIn('<div align="center">', body)
+                self.assertIn("<h1>Ontotect</h1>", body)
+                self.assertIn("docs/assets/ontotect-mark.svg", body)
                 self.assertIn("docs/assets/ontotect-banner.svg", body)
+                self.assertIn(
+                    "https://www.npmjs.com/package/@moonweave-ai/ontotect", body
+                )
+                self.assertIn('id="install-in-60-seconds"', body)
                 self.assertGreaterEqual(body.count("```mermaid"), 2)
                 self.assertIn("virgiliojr94/book-to-skill", body)
                 self.assertFalse(any(fragment in lowered for fragment in forbidden))
+                self.assertNotIn("public npm publication remains pending", lowered)
+                self.assertNotIn("after public npm publication", lowered)
+                self.assertNotIn("thank you", lowered)
+                self.assertNotIn("感谢用户", body)
 
     def test_command_surface_is_consistent(self) -> None:
         expected_refs = {

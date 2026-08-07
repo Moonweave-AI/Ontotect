@@ -6,7 +6,7 @@ created: 2026-08-07
 updated: 2026-08-07
 last_reviewed: 2026-08-07
 review_cycle_days: 180
-summary: Ontotect 构建所用书籍、论文、标准、工具、项目和 Agent Skills 工作的标准格式参考文献与致谢。
+summary: Ontotect 构建所用书籍、论文、标准、工具、项目和 Agent Skills 工作的标准格式参考文献与来源说明。
 canonical: docs/en/references-and-acknowledgments.md
 related:
   - ontotect/references/sources.md
@@ -16,17 +16,17 @@ supersedes: null
 superseded_by: null
 ---
 
-# 参考文献与致谢
+# 参考文献与来源说明
 
 [English](../en/references-and-acknowledgments.md) · [文档首页](index.md) · 本页是英文 canonical 的简体中文镜像。
 
-## 致谢
+## 来源说明
 
-本体工程把哲学、知识表示、软件工程、标准化、领域实践与开放工具紧密结合，Ontotect 正是建立在这些长期积累之上。我们感谢全部书籍与论文的作者、编辑，W3C 等标准社区，以及 Protégé、ROBOT、ODK、OWLAPI、Apache Jena、Eclipse RDF4J、pySHACL、Ontop、WIDOCO、OOPS!、Agent Skills 规范和各宿主文档的维护者。
+本体工程把哲学、知识表示、软件工程、标准化、领域实践与开放工具紧密结合，Ontotect 建立在这些长期积累之上。本书目列出了已研读书籍与论文的作者和编辑、W3C 等标准社区，以及 Protégé、ROBOT、ODK、OWLAPI、Apache Jena、Eclipse RDF4J、pySHACL、Ontop、WIDOCO、OOPS!、Agent Skills 规范和各宿主文档的维护者。
 
 [virgiliojr94/book-to-skill](https://github.com/virgiliojr94/book-to-skill) 为如何把大型研究语料组织成 Agent Skill 提供了实用的开放项目参考；其 generated-skill scanner 与静态 host lenses 也用于本地验证。公开 Skill Creator 指南提供了技能包采用的结构约定。
 
-项目也感谢用户为本次工作提供的本地研究集合。公共仓库只包含原创综合和引用，不再分发该私有集合或其提取全文。
+项目构建所用研究集合已在本地完整阅读。公共仓库只包含原创综合和引用，不再分发该私有集合或其提取全文。
 
 ## 引用与证据规则
 
@@ -42,9 +42,9 @@ superseded_by: null
 4. Allemang, D., Hendler, J., & Gandon, F. (2020). *Semantic Web for the working ontologist: Effective modeling for linked data, RDFS, and OWL* (3rd ed.). ACM. [https://doi.org/10.1145/3382097](https://doi.org/10.1145/3382097).
 5. Davies, J., Fensel, D., & van Harmelen, F. (Eds.). (2003). *Towards the Semantic Web: Ontology-driven knowledge management*. Wiley. [出版社记录](https://www.wiley.com/en-us/Towards+the+Semantic+Web%3A+Ontology+Driven+Knowledge+Management-p-9780470858073).
 
-## 用户提供的方法与应用论文
+## 方法与应用论文
 
-以下 17 篇论文均作为用户提供的 paper 集合全文阅读；引用使用正式发表标题，不使用本地缩写文件名。
+以下 17 篇论文均从本地研究集合全文阅读；引用使用正式发表标题，不使用本地缩写文件名。
 
 1. Abdallah, A. A., & Fan, I.-S. (2022). Towards building ontology-based applications for integrating heterogeneous aircraft maintenance records. *2022 IEEE International Conference on Industrial Informatics*. [https://doi.org/10.1109/INDIN51773.2022.9976080](https://doi.org/10.1109/INDIN51773.2022.9976080).
 2. Abdelghany, A. S., Darwish, N. R., & Hefni, H. A. (2019). An agile methodology for ontology development. *International Journal of Intelligent Engineering and Systems, 12*(2). [https://doi.org/10.22266/ijies2019.0430.17](https://doi.org/10.22266/ijies2019.0430.17).
@@ -112,4 +112,4 @@ superseded_by: null
 
 ## 归属与更新说明
 
-第三方作品继续适用各自版权和许可证。引用是致谢，不等于获得再分发书籍、论文、图片、本体、数据集或工具手册的许可。新增方法或主张时，应同时更新本可读书目与详细证据登记，并优先引用原始出版物、标准组织、出版社、机构记录或官方项目文档。
+第三方作品继续适用各自版权和许可证。引用用于明确来源归属，不代表获得再分发书籍、论文、图片、本体、数据集或工具手册的许可。新增方法或主张时，应同时更新本可读书目与详细证据登记，并优先引用原始出版物、标准组织、出版社、机构记录或官方项目文档。

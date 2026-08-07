@@ -1,106 +1,95 @@
-# Ontotect
+<div align="center">
 
-**Ontology Engineering Skill · 本体工程技能**
+  <img src="docs/assets/ontotect-mark.svg" alt="Ontotect 语义图谱标识" width="96" />
+  <h1>Ontotect</h1>
+  <p><strong>Ontology Engineering Skill · 本体工程技能</strong></p>
+  <p><em>工程化语义，而不只是生成三元组。</em></p>
+  <p>
+    <a href="https://www.npmjs.com/package/@moonweave-ai/ontotect"><img src="https://img.shields.io/npm/v/%40moonweave-ai%2Fontotect?logo=npm&amp;label=npm" alt="npm 版本" /></a>
+    <a href="https://www.npmjs.com/package/@moonweave-ai/ontotect"><img src="https://img.shields.io/npm/dm/%40moonweave-ai%2Fontotect?logo=npm&amp;label=downloads" alt="npm 月下载量" /></a>
+    <a href="https://github.com/Moonweave-AI/Ontotect"><img src="https://img.shields.io/github/stars/Moonweave-AI/Ontotect?logo=github&amp;label=stars" alt="GitHub Stars" /></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2ea44f.svg" alt="MIT 许可证" /></a>
+  </p>
+  <p>
+    <a href="docs/zh-CN/compatibility.md"><img src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-2563eb" alt="macOS、Windows 与 Linux" /></a>
+    <a href="docs/zh-CN/compatibility.md"><img src="https://img.shields.io/badge/agents-Cursor%20%7C%20Codex%20%7C%20Kilo%20%7C%20OpenCode%20%7C%20Claude%20Code-7c3aed" alt="Cursor、Codex、Kilo、OpenCode 与 Claude Code" /></a>
+  </p>
+  <p><a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a></p>
+  <p>
+    <strong>面向 Agent Skills、以证据驱动的本体工程工作流。</strong><br />
+    通过显式阶段与决策级证据，路由、设计、构建、审核、修正、优化、<br />
+    重构、验证和治理本体。
+  </p>
+  <p>
+    <a href="#install-in-60-seconds"><strong>安装 Ontotect</strong></a> ·
+    <a href="#commands-for-different-scenarios">查看命令</a> ·
+    <a href="docs/zh-CN/index.md">阅读文档</a>
+  </p>
 
-[English（canonical）](README.md) · [简体中文](README.zh-CN.md)
+</div>
 
-[![许可证：MIT](https://img.shields.io/badge/license-MIT-2ea44f.svg)](LICENSE)
+---
 
 ![Ontotect 横幅：从路由意图推进到语义证据的本体工程](docs/assets/ontotect-banner.svg)
 
-> **Preview · 预览状态**
->
-> Ontotect 已可从源码 checkout 作为 Agent Skill 安装使用。在 Owner 宣布稳定
-> 发布前，命令契约和文档仍可能演进。源码已采用 MIT 许可证；公共 npm 发布仍在
-> 准备中。当前验证状态记录在[本地验证记录](docs/zh-CN/verification-record.md)中。
+> [!NOTE]
+> **公开预览版 · v0.1.0。** Moonweave AI 组织包
+> [`@moonweave-ai/ontotect`](https://www.npmjs.com/package/@moonweave-ai/ontotect)
+> 已发布。稳定版发布前，命令契约和文档仍可能继续演进；已执行检查及其边界记录在
+> [验证记录](docs/zh-CN/verification-record.md)中。
 
-**工程化语义，而不只是生成三元组。**
+Ontotect 把本体需求转化为经过路由、分阶段并持续产生证据的工作流：从能力问题和
+概念承诺推进到 RDF/OWL/SHACL/SPARQL 制品、回归证据、语义影响以及可问责的发布决策。
 
-Ontotect 是领域专用的本体工程执行系统，用于系统化地设计、构建、审核、修正、
-优化、重构、验证、发布和治理本体。
+<a id="install-in-60-seconds"></a>
 
-它把本体需求转化为经过路由、分阶段并持续产生证据的工作流：从能力问题和概念
-承诺开始，推进到 RDF/OWL/SHACL/SPARQL 制品、回归证据、语义影响以及具有明确
-责任的发布决策。
+## 60 秒安装
 
-[开始使用](docs/zh-CN/getting-started.md) ·
-[命令参考](docs/zh-CN/command-reference.md) ·
-[路由与工作流](docs/zh-CN/routing-and-workflow.md) ·
-[证据登记](ontotect/references/sources.md)
-
-## 60 秒快速开始
-
-在源码 checkout 根目录中，把 Ontotect 安装到所有受支持的项目级技能目录：
+在需要接收技能的项目根目录中，把 Ontotect 安装到所有受支持的项目级 Agent Skills
+目录：
 
 ~~~powershell
-node bin/ontotect.js install --agents all --scope project --project-root .
+npx @moonweave-ai/ontotect install --agents all --scope project --project-root .
 ~~~
 
-随后先查看帮助，或者让 router 对真实需求进行分类：
+随后在当前 Agent 中查看帮助，或者让 Router 对真实需求进行分类：
 
 ~~~text
 $ontotect help
 $ontotect router "审核这个 OWL 本体中的逻辑、SHACL 和治理缺陷。"
 ~~~
 
-将技能呈现为斜杠命令的宿主可以改用 `/ontotect ...`。如果宿主没有暴露上述
-任一形式，请使用可移植的自然语言回退方式：
+将技能呈现为斜杠命令的宿主可以改用 `/ontotect ...`。可移植的自然语言回退形式为：
 
 ~~~text
 Use Ontotect. Command: review. Target: path/to/ontology.ttl.
 ~~~
 
-可选的规划 CLI 会输出相同的帮助卡、路由卡和工作状态卡，但不会代替 Agent
-执行本体工程：
+### 全局命令
+
+需要直接从 shell 调用时，可以全局安装这个无依赖命令：
 
 ~~~powershell
-python ontotect/scripts/ontotect.py help
-python ontotect/scripts/ontotect.py router "修正运输约束的失败。"
+npm install --global @moonweave-ai/ontotect
+ontotect help
+ontotect install --agents cursor,codex --scope project --project-root .
 ~~~
 
-如需先 dry run 再安装，仍可使用 Python installer：
+### 源码与 dry-run 工作流
 
-~~~powershell
-python ontotect/scripts/install_skill.py --agents all --scope project --project-root .
-python ontotect/scripts/install_skill.py --agents all --scope project --project-root . --apply
-~~~
-
-宿主专用目录见[安装](docs/zh-CN/installation.md)，完整首次使用流程见
-[开始使用](docs/zh-CN/getting-started.md)。
-
-## 使用 npm 与 npx 安装
-
-### 源码 checkout
-
-直接运行无依赖的 Node 入口：
+在源码 checkout 中，可以直接运行 Node 入口；也可以先用 Python installer 预览，
+确认后再应用安装：
 
 ~~~powershell
 node bin/ontotect.js help
 node bin/ontotect.js install --agents all --scope project --project-root .
+python ontotect/scripts/install_skill.py --agents all --scope project --project-root .
+python ontotect/scripts/install_skill.py --agents all --scope project --project-root . --apply
 ~~~
 
-### 本地软件包预览
-
-把当前 checkout 安装为本地全局软件包，然后使用 `ontotect` 可执行命令：
-
-~~~powershell
-npm install --global .
-ontotect help
-ontotect install --agents all --scope project --project-root .
-~~~
-
-### 公共 npm 发布后
-
-官方组织包 `@moonweave-ai/ontotect` 公开发布后，才可使用以下 registry 形式：
-
-~~~powershell
-npx @moonweave-ai/ontotect install --agents all --scope project --project-root .
-npm install --global @moonweave-ai/ontotect
-~~~
-
-当前可用的是上面的源码 checkout 与本地软件包形式。完整命令契约见
-[npm 与 npx 安装](docs/zh-CN/npm-and-npx-installation.md)，宿主目录、刷新行为
-和覆盖规则见[安装](docs/zh-CN/installation.md)。
+完整命令契约见 [npm 与 npx 安装](docs/zh-CN/npm-and-npx-installation.md)，宿主
+目录与覆盖规则见[安装](docs/zh-CN/installation.md)，完整首次使用流程见
+[开始使用](docs/zh-CN/getting-started.md)。
 
 ## Ontotect 是什么
 
@@ -168,6 +157,8 @@ Ontotect 不是：
 | 安全改进 | 要求冻结基线、保护 IRI 与蕴含、因果诊断、语义差异、回归检查和迁移决策。 |
 | 证据诚实 | 分别报告各项检查，并把不可用或无法解释的检查标记为 `unverified`。 |
 | 渐进式披露 | 将路由和核心规则保留在 `SKILL.md`，只在需要时加载专门参考、命令契约、assets 和 scripts。 |
+
+<a id="commands-for-different-scenarios"></a>
 
 ## 面向不同场景的命令
 
@@ -346,12 +337,12 @@ package.json                 本地软件包 metadata 与 CLI mapping
 | 文档首页 | [docs/zh-CN/index.md](docs/zh-CN/index.md) |
 | 首次使用 | [开始使用](docs/zh-CN/getting-started.md) |
 | 安装与刷新 | [安装](docs/zh-CN/installation.md) |
-| Node、npm 与未来的 npx 路径 | [npm 与 npx 安装](docs/zh-CN/npm-and-npx-installation.md) |
+| Node、npm 与 npx 安装 | [npm 与 npx 安装](docs/zh-CN/npm-and-npx-installation.md) |
 | 所有命令与语法 | [命令参考](docs/zh-CN/command-reference.md) |
 | Router、阶段和工作状态 | [路由与工作流](docs/zh-CN/routing-and-workflow.md) |
 | 构建、审核、修正、优化、重构、验证、治理、发布 | [场景手册](docs/zh-CN/scenario-playbooks.md) |
 | 方法与研究基础 | [方法论与证据](docs/zh-CN/methodology-and-evidence.md) |
-| 参考文献与项目致谢 | [参考文献与致谢](docs/zh-CN/references-and-acknowledgments.md) |
+| 参考文献与来源归属 | [参考文献与来源说明](docs/zh-CN/references-and-acknowledgments.md) |
 | 技能包设计 | [架构](docs/zh-CN/architecture.md) |
 | 证据层和诚实报告 | [质量与验证](docs/zh-CN/quality-and-validation.md) |
 | 实际执行的检查及其边界 | [本地验证记录](docs/zh-CN/verification-record.md) |
@@ -400,7 +391,9 @@ Ontotect 发布的是原创综合、约定俗成的名称、简短事实描述�
 6. 说明实际运行了哪些检查，其余项目标记为 `unverified`；
 7. 排除私有、敏感、无许可证以及原始参考语料内容。
 
-公共托管配置完成后，由仓库 Owner 确定 issue、pull request、审核和发布机制。
+范围明确的提案与缺陷请提交到
+[GitHub Issues](https://github.com/Moonweave-AI/Ontotect/issues)。Pull request
+遵循贡献指南中的审核与证据规则。
 
 完整来源、翻译、行为变更和验证规则见[为 Ontotect 贡献](CONTRIBUTING.zh-CN.md)。
 
@@ -420,9 +413,10 @@ Ontotect 的原创代码、文档、skill 内容和项目 assets 采用
 
 详见[治理与发布](docs/zh-CN/governance-and-release.md)。
 
-## 致谢与参考文献
+## 参考文献与来源说明
 
-Ontotect 以成熟的本体工程文献、开放标准、原始方法论文和官方工具文档为基础。
+Ontotect 以成熟的本体工程文献、开放标准、原始方法论文和官方工具文档为基础。本节
+记录来源作用与项目归属；完整证据登记包含详细书目信息和验证说明。
 
 ### 基础书籍
 
@@ -485,4 +479,4 @@ Ontotect 以成熟的本体工程文献、开放标准、原始方法论文和�
 [计算机软件]。GitHub。
 
 完整书目信息、证据角色、来源边界和其他一手参考资料见
-[参考文献与致谢](docs/zh-CN/references-and-acknowledgments.md)。
+[参考文献与来源说明](docs/zh-CN/references-and-acknowledgments.md)。

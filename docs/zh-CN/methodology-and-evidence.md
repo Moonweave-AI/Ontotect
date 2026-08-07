@@ -50,7 +50,7 @@ Ontotect 综合了本体工程方法、形式标准、工具实践和运行治�
 
 ## 构建参考
 
-构建过程在上述本体工程文献、标准和工具之外，还使用了开放 Agent Skills 约定、Skill Creator 指南及 [book-to-skill](https://github.com/virgiliojr94/book-to-skill)。完整标准格式引用与致谢见[参考文献与致谢](references-and-acknowledgments.md)，逐项主张—来源登记仍以 [sources.md](../../ontotect/references/sources.md) 为准。
+构建过程在上述本体工程文献、标准和工具之外，还使用了开放 Agent Skills 约定、Skill Creator 指南及 [book-to-skill](https://github.com/virgiliojr94/book-to-skill)。完整标准格式引用与来源归属见[参考文献与来源说明](references-and-acknowledgments.md)，逐项主张—来源登记仍以 [sources.md](../../ontotect/references/sources.md) 为准。
 
 ## 版权与再分发边界
 

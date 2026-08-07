@@ -295,6 +295,7 @@ test("package metadata is an explicit zero-dependency whitelist", async () => {
   assert.ok(packageJson.files.includes("ontotect/SKILL.md"));
   assert.ok(packageJson.files.includes("README.zh-CN.md"));
   assert.ok(packageJson.files.includes("docs/assets/ontotect-banner.svg"));
+  assert.ok(packageJson.files.includes("docs/assets/ontotect-mark.svg"));
   assert.ok(packageJson.files.includes("ontotect/scripts/*.py"));
   assert.ok(!packageJson.files.includes("ontotect/scripts/"));
   assert.equal(packageJson.dependencies, undefined);
@@ -337,6 +338,7 @@ test("a locally packed tarball installs all five hosts through npx", async (t) =
   assert.ok(packagePaths.includes("README.zh-CN.md"));
   assert.ok(packagePaths.includes("LICENSE"));
   assert.ok(packagePaths.includes("docs/assets/ontotect-banner.svg"));
+  assert.ok(packagePaths.includes("docs/assets/ontotect-mark.svg"));
 
   const tarball = join(tempRoot, packReport.filename);
   const executed = spawnSync(
