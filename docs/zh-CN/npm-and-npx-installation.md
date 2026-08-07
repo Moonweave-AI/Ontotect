@@ -68,7 +68,7 @@ npm pack --dry-run --json
 
 ## 公共 npm 与 npx 命令
 
-`0.1.0` 已在 Moonweave AI 组织 scope 下发布。可直接从公共 npm registry 运行：
+`0.1.1` 已在 Moonweave AI 组织 scope 下发布，并且是当前 `latest` 版本。可直接从公共 npm registry 运行：
 
 ```powershell
 npx @moonweave-ai/ontotect plan --agents all --scope project --project-root .

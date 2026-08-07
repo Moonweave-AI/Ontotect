@@ -37,7 +37,7 @@ Apply the reviewed plan:
 node bin/ontotect.js install --agents all --scope project --project-root .
 ```
 
-The package has no dependencies or lifecycle scripts; acquisition alone does not copy the skill. Version `0.1.0` is published as `@moonweave-ai/ontotect` on npm. See [npm and npx installation](npm-and-npx-installation.md) for public npx, source, local-package, user-scope, overwrite, and security paths.
+The package has no dependencies or lifecycle scripts; acquisition alone does not copy the skill. Version `0.1.1` is the current public release of `@moonweave-ai/ontotect` on npm. See [npm and npx installation](npm-and-npx-installation.md) for public npx, source, local-package, user-scope, overwrite, and security paths.
 
 ## Use the Python installer
 

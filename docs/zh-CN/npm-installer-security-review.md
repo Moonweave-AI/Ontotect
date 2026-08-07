@@ -101,10 +101,16 @@ npm registry / 本地 tarball
 5. 运行仓库文档、Skill Creator 及现有 Python 回归；
 6. 在[验证记录](verification-record.md)写入结果与边界。
 
-公开发布还需验证 npm 认证与 package ownership，记录发布权限和 MIT 许可证，检查准确的公开包，并记录账号恢复、package provenance 与私密漏洞报告路径。`@moonweave-ai/ontotect@0.1.0` 的发布事件已记录；匿名 registry 访问、公共 npx help 和五个宿主布局的隔离项目级安装均通过。不可用的控制必须保持明确，不能从命令成功推断。
+公开发布还需验证 npm 认证与 package ownership，记录发布权限和 MIT 许可证，检查准确的公开包，并记录账号恢复、package provenance 与私密漏洞报告路径。首次 `@moonweave-ai/ontotect@0.1.0` 发布与当前 0.1.1 补丁发布分别记录如下。不可用的控制必须保持明确，不能从命令成功推断。
 
-## 本地验证结果 — 2026-08-07
+## 首次 0.1.0 验证结果 — 2026-08-07
 
 六项本地证据均已执行。首次 pack 检查发现两个生成的 `.pyc` 文件并正确阻止验收，随后把 scripts 白名单收紧为公共 Python 源文件。MIT 发布候选 pack 包含 54 个预期条目（包括 `LICENSE`），禁止的语料、缓存、测试、临时、文档源或 tarball 文件为 0。8 项 Node 测试通过，其中真实本地 tarball 以 offline 和 ignore-scripts 模式经 npx 针对五个项目根执行；五份安装技能各含 48 个文件，并与 canonical 源逐字节直接一致。
 
-结果：发布分发控制集为 **pass with follow-up actions**。ADR 0002 与 ADR 0003 已接受，项目采用 MIT，`@moonweave-ai/ontotect@0.1.0` 已发布。Registry metadata 报告 `0.1.0`、`latest` 与 MIT，组织权限为 read-write；匿名访问、公共 npx help 与五个宿主布局的隔离项目级安装均通过，每个目标 48 个文件。用户/全局范围安装、真实宿主发现与行为、账号恢复、package provenance 与永久私密报告路径仍为 `unverified` 后续控制。
+首次结果：发布分发控制集为 **pass with follow-up actions**。ADR 0002 与 ADR 0003 已接受，项目采用 MIT，`@moonweave-ai/ontotect@0.1.0` 已发布。Registry metadata 报告 `0.1.0`、`latest` 与 MIT，组织权限为 read-write；匿名访问、公共 npx help 与五个宿主布局的隔离项目级安装均通过，每个目标 48 个文件。
+
+## 0.1.1 补丁验证结果 — 2026-08-07
+
+已审阅源码候选通过 29 项 Python 测试、8 项 Node 测试、Skill Creator 验证、生成技能 advisory scan，以及 0 warning 的 Claude、Amp 与 Copilot 静态 lenses。Dry-run package 检查报告 55 个预期条目、0 个禁止条目、零依赖和零生命周期脚本。通过不存在的 user npm 配置查询公共包：精确 metadata 报告 0.1.1、MIT、`ontotect` 可执行命令与 Moonweave-AI 仓库，`latest` 指向 0.1.1。精确版本公共 npx help 退出码为 0。五个隔离项目级宿主布局均安装 48 个文件并包含 `SKILL.md`，其相对文件集与直接字节内容一致。npm 页面正确呈现居中品牌标识、横幅、版本徽章、新版 README 与仓库链接。
+
+当前结果：发布分发控制集继续为 **pass with follow-up actions**。0.1.0 证据保持为历史；0.1.1 现在是当前公开版本与 `latest`。用户/全局范围安装、真实宿主发现与行为、账号恢复、package provenance 与永久私密报告路径仍为 `unverified` 后续控制。
